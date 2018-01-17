@@ -23,3 +23,53 @@
     l. Vacía la lista que contiene los módulos de segundo.
     m. Elimina la lista que contiene los módulos de primero.
 -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Selectores Dificultad Media</title>
+    <style type="text/css">
+        .verde {color:green;}
+        .azul {color:blue;}
+        .borde {border:2px solid;}
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+
+</head>
+<body>
+    <p>Primero</p>
+    <ul>
+        <li>Base de Datos</li>
+        <li>Lenguajes de Marcas</li>
+        <li></li>
+    </ul>
+
+    <p>Segundo</p>
+    <ul>
+        <li>DWESE
+            <ul data-hours="10">
+                <li class="azul" >Desarrollo Web en Entorno Servidor</li>
+            </ul>
+        </li>
+        <li>DWECL
+            <ul data-hours="7">
+                <li class="azul">Desarrollo Web en Entorno Cliente</li>
+            </ul>
+        </li>
+        <li>DAW
+            <ul data-hours="3">
+                <li class="azul">Despliegue de Aplicaciones Web</li>
+            </ul>
+        </li>
+        <li>DIWEB
+            <ul data-hours="6">
+                <li class="azul">Diseño de Interfaces Web</li>
+            </ul>
+        </li>
+        <li>EIE
+            <ul data-hours="4">
+                <li class="azul">Entorno e Iniciativa Empresarial</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
