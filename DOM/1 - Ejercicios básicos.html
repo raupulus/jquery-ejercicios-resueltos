@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+    // 1. Muestra en un alert la cantidad de cursos por los que está compuesto el ciclo.
+
+    // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
+
+    // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
+
+    // 4. Modifica el comportamiento anterior para poderlo hacer con una sola tecla.
+
+    // 5. Elimina el efecto del punto 3.
+
+    // 6. Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.
+
+    // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
+
+    // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.
+
+    // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
+-->
+<head>
+    <title>Titulo</title>
+    <style type="text/css">
+    /*
+        p + ul {
+            display: none;
+        }
+    */
+    /*    .fondo{background-color: grey}*/
+    </style>
+
+    <script>
+        // 1. Muestra en un alert la cantidad de cursos por los que está compuesto el ciclo.
+
+
+        // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
+
+        // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
+
+
+        // 4. Modifica el comportamiento anterior para poderlo hacer con una sola tecla.
+
+
+        // 5. Elimina el efecto del punto 3.
+
+
+        // 6. Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.
+
+
+        // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
+
+
+        // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.
+
+
+        // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
+    </script>
+
+</head>
+<body>
+    <p>Primero</p>
+    <ul>
+
+        <li>Base de Datos</li>
+        <li>Lenguajes de Marcas</li>
+        <li></li>
+    </ul>
+
+    <p>Segundo</p>
+    <ul>
+        <li >DWESE
+            <ul data-hours='10'>
+                <li class='azul' >Desarrollo Web en Entorno Servidor</li>
+
+            </ul>
+        </li>
+        <li>DWECL
+            <ul data-hours='7'>
+                <li class='azul'>Desarrollo Web en Entorno Cliente</li>
+
+            </ul>
+        </li>
+        <li>DAW
+            <ul data-hours='3'>
+                <li class='azul'>Despliegue de Aplicaciones Web</li>
+
+            </ul>
+        </li>
+        <li>DIWEB
+            <ul data-hours='6'>
+                <li class='azul'>Diseño de Interfaces Web</li>
+
+            </ul>
+        </li>
+        <li>EIE
+            <ul data-hours='4'>
+                <li class='azul'>Entorno e Iniciativa Empresarial</li>
+
+            </ul>
+        </li>
+    </ul>
+
+</body>
+</html>
