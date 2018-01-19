@@ -28,7 +28,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Ejercicios DOM</title>
+    <title>Ejercicios DOM Básicos</title>
     <meta charset="UTF-8">
     <style type="text/css">
     /*
@@ -40,9 +40,9 @@
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
+    window.onload = function() {
         // 1. Muestra en un alert la cantidad de cursos por los que está compuesto el ciclo.
-
-
+        //alert($('ul:eq(1)>li').length);
 
         // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
 
@@ -65,6 +65,8 @@
 
 
         // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
+
+    }
     </script>
 
 </head>
