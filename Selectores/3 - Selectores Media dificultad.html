@@ -77,12 +77,19 @@
             $('ul>li:contains(Base de Datos)').append('<li>Sistemas Informáticos</li>');
 
             // En la lista de los módulos de segundo, añade al final de cada uno de ellos la cantidad de horas semanales que tienen cuando se haga click sobre ellos. Parte del nombre de cada módulo y añade la información desde ul.
+            $('ul:eq(1) > li').click(function() {
+                var horas = $(this).find('ul').data('hours');
+                var texto = $(this).find('ul li').text();
+
+                // Añado las horas tras el texto actual:
+                $(this).find('ul li').text(texto + ' → ' + horas + ' horas');
+            })
 
             // Vacía la lista que contiene los módulos de segundo.
-            $('ul>li>ul').empty();
+            //$('ul>li>ul').empty();
 
             // Elimina la lista que contiene los módulos de primero.
-            $('ul:first').empty();
+            //$('ul:first').remove();
         }
     </script>
 </head>
