@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+    1 - Selecciona todos los elementos de tipo h2.
+    2 - Modifica el precio del vuelo para que ahora sea $199.99
+    3 - Asegúrate que este código se ejecuta una vez que el documento está listo.
+    4 - Modifica todos los títulos de las vacaciones (h2), su nuevo valor será "Sanlúcar de Barrameda".
+    5 - Selecciona la lista de vacaciones cuyo id es #vacations.
+    6 - Selecciona aquellos ítems que tenga la clase .america
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Selectores básicos</title>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+        // Asegúrate que este código se ejecuta cuando el documento está listo.
+        window.onload = function() {
+            // Seleccionar elementos de tipo 'h2'
+            $('h2').css({color: 'red'});
+
+            // Modifica el precio del vuelo para que ahora sea $199.99
+            $('.details').text('$199.99');
+
+            // Modifica todos los títulos de las vacaciones (h2), su nuevo valor será "Sanlúcar de Barrameda".
+            $('h2').text('Sanlucar de barrameda');
+
+            // Selecciona la lista de vacaciones cuyo id es #vacations.
+            $('#vacations').css({color: 'green'});
+
+            // Selecciona aquellos ítems que tenga la clase .america
+            $('.america').css({color: 'orange'});
+        }
+    </script>
+</head>
+<body>
+    <div id="vacations-wrapper">
+        <h1>Vacation Packages</h1>
+        <ul id="vacations">
+            <li class="vacation america">
+                <h2>San Francisco, California</h2>
+                <span class="details">$700</span>
+            </li>
+
+            <li class="vacation america">
+                <h2>Washington DC, District of Columbia</h2>
+                <span class="details">$400</span>
+            </li>
+
+            <li class="vacation europe">
+                <h2>London, England</h2>
+                <span class="details">$1,100</span>
+            </li>
+
+            <li class="vacation asia">
+                <h2>Shanghai, China</h2>
+                <span class="details">$1,200</span>
+            </li>
+        </ul>
+
+        <ul class="sorting">
+            <li><a href="#">America</a></li>
+            <li><a href="#">Europe</a></li>
+            <li><a href="#">Asia</a></li>
+        </ul>
+    </div>
+</body>
+</html>

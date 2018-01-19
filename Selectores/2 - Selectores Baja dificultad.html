@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+    a - Selecciona todos los módulos de primero
+    b - Selecciona el módulo Sistemas Informáticos
+    c - Selecciona el módulo que va detrás de Sistemas Informáticos
+    d - Selecciona los módulos que van detrás de Sistemas Informáticos
+    e - Selecciona los módulos que tengan el atributo href
+    f - Selecciona los módulos que no tengan el atributo href
+    g - Selecciona aquellos módulos que contengan la cadena 'mod'
+    h - Selecciona aquellos módulos que empiecen por la cadena 'mod'
+    i - Selecciona aquellos módulos que terminen con la cadena '.html'
+    j - Selecciona todas las horas de los módulos de segundo
+    k - Selecciona los ítems vacíos y añade el contenido 'Nodo vacío'
+    h - Selecciona los módulos DWESE, DAW y EIE
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Selectores Dificultad Baja</title>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+        // Asegurar ejecución después de cargar la página
+        window.onload = function() {
+            // Selecciona todos los módulos de primero
+            $('ul:first > li > a').css({color:'red'});
+
+            // Selecciona el módulo Sistemas Informáticos
+            $('ul:first > li').eq(2).find('a').css({color:'green'});
+
+            // Selecciona el módulo que va detrás de Sistemas Informáticos
+            $('ul:first > li').eq(2).next(['p']).find('a').css({color:'black'});
+
+            // Selecciona los módulos que van detrás de Sistemas Informáticos
+            $('ul:first > li').eq(2).nextAll(['p']).find('a').css({color:'blue'});
+
+            // Selecciona los módulos que tengan el atributo href
+            $('ul:first > li > a[href]').css({'background-color':'yellow'});
+
+            // Selecciona los módulos que no tengan el atributo href
+            $('ul:first > li > a').not('a[href]').css({'background-color':'black', color:'yellow'});
+
+            // Selecciona aquellos módulos que contengan la cadena 'mod'
+            $('ul:first > li > a[href*="mod"]').css({'font-size':'1.4em'});
+
+            // Selecciona aquellos módulos que empiecen por la cadena 'mod'
+            $('ul:first > li > a[href^="mod"]');
+
+            // Selecciona aquellos módulos que terminen con la cadena '.html'
+            $('ul:first > li > a[href$=".html"]');
+
+            // Selecciona todas las horas de los módulos de segundo
+            $('ul>li>ul').find('li:contains(horas)').css({color:'red'});
+
+            // Selecciona los ítems vacíos y añade el contenido 'Nodo vacío'
+            $('*:empty').text('Nodo Vacío');
+
+            // Selecciona los módulos DWESE, DAW y EIE
+            //$('li:contains(DWESE ?????| DAW | EIE)').css({color:'green'});
+        }
+    </script>
+</head>
+
+<body>
+    <p>Primero</p>
+    <ul>
+        <li><a href="#">Programación</a></li>
+        <li><a href="modBD.html">Base de Datos</a></li>
+        <li><a href="SImod.html">Sistemas Informáticos</a></li>
+        <li><a href="mod-LM.html">Lenguajes de Marcas</a></li>
+        <li><a>Formación y Orientación Laboral</a></li>
+        <li></li>
+    </ul>
+
+    <p>Segundo</p>
+    <ul>
+        <li>DWESE
+            <ul>
+                <li>Desarrollo Web en Entorno Servidor</li>
+                <li>10 horas</li>
+            </ul>
+        </li>
+        <li>DWECL
+            <ul>
+                <li>Desarrollo Web en Entorno Cliente</li>
+                <li>7 horas</li>
+            </ul>
+        </li>
+        <li>DAW
+            <ul>
+                <li>Despliegue de Aplicaciones Web</li>
+                <li>3 horas</li>
+            </ul>
+        </li>
+        <li>DIWEB
+            <ul>
+                <li>Diseño de Interfaces Web</li>
+                <li>6 horas</li>
+            </ul>
+        </li>
+        <li>EIE
+            <ul>
+                <li>Entorno e Iniciativa Empresarial</li>
+                <li>4 horas</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>
