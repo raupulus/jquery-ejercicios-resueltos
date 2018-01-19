@@ -45,6 +45,16 @@
             $('p:contains(Primero), p:contains(Segundo)').removeClass('borde');
 
             // La clase borde se debe asignar o quitar según hagamos click sobre primero o segundo.
+            $('p:contains(Primero), p:contains(Segundo)').click(
+                function(){
+                    // Compruebo si existe la clase para este elemento
+                    // Si existe la quito, si no existe la agrego
+                    if($(this).hasClass('borde')) {
+                        $(this).removeClass('borde');
+                    } else {
+                        $(this).addClass('borde');
+                    }
+                });
 
             // Modifica ‘Primero’ por ‘Módulos de primero’.
             $('p:contains(Primero)').text('Módulos de Primero');
