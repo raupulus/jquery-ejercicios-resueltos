@@ -31,12 +31,18 @@
     <title>Ejercicios DOM Básicos</title>
     <meta charset="UTF-8">
     <style type="text/css">
-    /*
+
         p + ul {
             display: none;
         }
-    */
+
     /*    .fondo{background-color: grey}*/
+    .oculto {
+        display: none;
+    }
+    .visible {
+        display: block;
+    }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
@@ -45,6 +51,16 @@
         //alert($('ul:eq(1)>li').length);
 
         // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
+
+// TOFIX → No se meter retraso en animación
+        $('p:contains("Primero"), p:contains("Segundo")').hover(
+            function() {
+                $(this).next().addClass('visible'); // Falta retraso
+            },
+            function() {
+                $(this).next().removeClass('visible'); // Falta retraso
+            }
+        );
 
         // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
 
@@ -68,12 +84,11 @@
 
     }
     </script>
-
 </head>
+
 <body>
     <p>Primero</p>
     <ul>
-
         <li>Base de Datos</li>
         <li>Lenguajes de Marcas</li>
         <li></li>
