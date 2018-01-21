@@ -42,7 +42,7 @@
     .oculto {
         display: none;
     }
-    
+
     .visible {
         display: block;
     }
@@ -97,9 +97,29 @@
     */
 
         // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
+        $('p:contains("Segundo")').next().find('li').on('click', function(e) {
+            // Elimina elemento antes de colocar otro
+            $('.hora').remove();
 
+            // Obtiene el número de horas sobre el elemento pulsado
+            var horas = $(this).find('ul').data('hours');
+
+            // Añade a variables las posiciones x/y del ratón
+            var mouseX = e.pageX;
+            var mouseY = e.pageY;
+
+            // Genera el nuevo bloque
+            var bloqueHora = $(this).append('<div class="hora" style="position:absolute; color:#ff0000">' + horas +'</div>');
+
+            // Mueve el bloque a la posición del ratón donde activó el evento.
+            // TOFIX → No se posicionar en su sitio con esto
+            $('.hora').css({ 'top' : mouseX,
+                            'left' : mouseY
+                          });
+        })
 
         // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.
+
 
 
         // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
