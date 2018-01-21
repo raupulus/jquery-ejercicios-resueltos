@@ -31,15 +31,18 @@
     <title>Ejercicios DOM Básicos</title>
     <meta charset="UTF-8">
     <style type="text/css">
-
+    /*
         p + ul {
             display: none;
         }
+    */
 
     /*    .fondo{background-color: grey}*/
+
     .oculto {
         display: none;
     }
+    
     .visible {
         display: block;
     }
@@ -51,8 +54,8 @@
         //alert($('ul:eq(1)>li').length);
 
         // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
-
-// TOFIX → No se meter retraso en animación
+    /*
+        // TOFIX → No se meter retraso en animación
         $('p:contains("Primero"), p:contains("Segundo")').hover(
             function() {
                 $(this).next().addClass('visible'); // Falta retraso
@@ -61,18 +64,37 @@
                 $(this).next().removeClass('visible'); // Falta retraso
             }
         );
+    */
 
         // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
-
+    /*
+        $('p:contains("Primero"), p:contains("Segundo")').on('click',
+            function() {
+                if ($(this).next().hasClass('visible')){
+                    $(this).next().removeClass('visible');
+                } else {
+                    $(this).next().addClass('visible'); // Falta transición al mover
+                }
+            })
+    */
 
         // 4. Modifica el comportamiento anterior para poderlo hacer con una sola tecla.
-
+    /*
+        ¿Qué tecla=?
+    */
 
         // 5. Elimina el efecto del punto 3.
-
+    /*
+        ¿Qué efecto=?
+    */
 
         // 6. Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.
-
+    /*
+        $('p:contains("Primero"), p:contains("Segundo")').one('click',
+            function() {
+                $(this).next().addClass('visible'); // Falta transición al mover
+            })
+    */
 
         // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
 
