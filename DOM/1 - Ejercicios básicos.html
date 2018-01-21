@@ -31,15 +31,18 @@
     <title>Ejercicios DOM Básicos</title>
     <meta charset="UTF-8">
     <style type="text/css">
-
+    /*
         p + ul {
             display: none;
         }
+    */
 
     /*    .fondo{background-color: grey}*/
+
     .oculto {
         display: none;
     }
+
     .visible {
         display: block;
     }
@@ -51,8 +54,8 @@
         //alert($('ul:eq(1)>li').length);
 
         // 2. Muestra las listas al pasar por encima el ratón de Primero o Segundo y ocultar al retirarlo. Utiliza el método hover. Tardará en aparecer y desparecer la información 2 segundos.
-
-// TOFIX → No se meter retraso en animación
+    /*
+        // TOFIX → No se meter retraso en animación
         $('p:contains("Primero"), p:contains("Segundo")').hover(
             function() {
                 $(this).next().addClass('visible'); // Falta retraso
@@ -61,27 +64,102 @@
                 $(this).next().removeClass('visible'); // Falta retraso
             }
         );
+    */
 
         // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
-
+    /*
+        $('p:contains("Primero"), p:contains("Segundo")').on('click',
+            function() {
+                if ($(this).next().hasClass('visible')){
+                    $(this).next().removeClass('visible');
+                } else {
+                    $(this).next().addClass('visible'); // Falta transición al mover
+                }
+            })
+    */
 
         // 4. Modifica el comportamiento anterior para poderlo hacer con una sola tecla.
-
+    /*
+        ¿Qué tecla=?
+    */
 
         // 5. Elimina el efecto del punto 3.
-
+    /*
+        ¿Qué efecto=?
+    */
 
         // 6. Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.
-
+    /*
+        $('p:contains("Primero"), p:contains("Segundo")').one('click',
+            function() {
+                $(this).next().addClass('visible'); // Falta transición al mover
+            })
+    */
 
         // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
+    /*
+        //No me funcina hover
+        $('p:contains("Segundo")').next().find('li').on('hover', function(e) {
+            alert('si');
+        }
 
+        $('p:contains("Segundo")').next().find('li').on('mouseHover', function(e) {
+            alert('si');
+        }
+     */
 
         // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.
+    /*
+        $('p:contains("Segundo")').next().find('li').on('click', function(e) {
+            // Elimina elemento antes de colocar otro
+            $('.hora').remove();
 
+            // Obtiene el número de horas sobre el elemento pulsado
+            var horas = $(this).find('ul').data('hours');
+
+            // Añade a variables las posiciones x/y del ratón
+            var mouseX = e.pageX;
+            var mouseY = e.pageY;
+
+            // Genera el nuevo bloque
+            var bloqueHora = $(this).append('<div class="hora" style="position:absolute; color:#ff0000">' + horas +'</div>');
+
+            // Mueve el bloque a la posición del ratón donde activó el evento.
+            // TOFIX → No se posicionar en su sitio con esto
+            $('.hora').css({ 'top' : mouseX,
+                            'left' : mouseY
+                          });
+        })
+    */
 
         // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
+    /*
+        $('p:contains("Segundo")').next().find('li').on('click', function(e, modalidad = 'presencial') {
+            // Elimina elemento antes de colocar otro
+            $('.hora').remove();
 
+            // Obtiene el número de horas sobre el elemento pulsado
+            var horas = $(this).find('ul').data('hours');
+
+            // Añade a variables las posiciones x/y del ratón
+            var mouseX = e.pageX;
+            var mouseY = e.pageY;
+
+            // Genera el nuevo bloque
+            var bloqueHora = $(this).append(
+                '<div class="hora" style="position:absolute; color:#ff0000">' +
+                    modalidad +
+                    ' ' +
+                    horas +
+                '</div>');
+
+            // Mueve el bloque a la posición del ratón donde activó el evento.
+            // TOFIX → No se posicionar en su sitio con esto
+            $('.hora').css({ 'top' : mouseX,
+                            'left' : mouseY
+                          });
+        })
+    */
     }
     </script>
 </head>
