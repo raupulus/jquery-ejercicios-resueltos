@@ -97,6 +97,19 @@
     */
 
         // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
+    /*
+        //No me funcina hover
+        $('p:contains("Segundo")').next().find('li').on('hover', function(e) {
+            alert('si');
+        }
+
+        $('p:contains("Segundo")').next().find('li').on('mouseHover', function(e) {
+            alert('si');
+        }
+     */
+
+
+        // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.
         $('p:contains("Segundo")').next().find('li').on('click', function(e) {
             // Elimina elemento antes de colocar otro
             $('.hora').remove();
@@ -117,9 +130,6 @@
                             'left' : mouseY
                           });
         })
-
-        // 8. Ahora aparecerá el número de horas cuando el usuario haga clic sobre el nombre del módulo. Realiza una delegación de eventos utilizando on.
-
 
 
         // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
