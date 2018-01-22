@@ -28,17 +28,17 @@ No dejará enviar el formulario mientras no se hayan introducido todos los campo
     window.onload = function() {
         // Añadir evento cuando pierde el focus a todos los inputs
         $('input[type="text"]').focusout(function() {
-            switch($(this).att('name')) {
-                case nombre:
+            switch($(this).attr('name')) {
+                case 'nombre':
                     alert('soy nombre');
                     break;
-                case tel:
+                case 'tel':
 
                     break;
-                case cp:
+                case 'cp':
 
                     break;
-                case email:
+                case 'email':
 
                     break;
             }

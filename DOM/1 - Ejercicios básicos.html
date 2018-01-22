@@ -63,9 +63,8 @@
 
         // 3. Despliega el contenido de las listas al pulsar la tecla y volver a plegar al pulsar Utilizar el método on. Se realizará de forma rápida.
 
-    /*
         // Añade función teclapulsada() a cualquier pulsación
-        $(document).keydown(teclapulsada);
+        $(document).on('keydown', teclapulsada);
 
         function teclapulsada(e) {
             var tecla = e.key;
@@ -78,9 +77,9 @@
                 $('p:contains("Primero"), p:contains("Segundo")').next().show('fast');
             }
         }
-    */
 
         // 4. Modifica el comportamiento anterior para poderlo hacer con una sola tecla.
+    /*
         // Añade función teclapulsada() a cualquier pulsación
         $(document).keydown(teclapulsada);
 
@@ -91,18 +90,24 @@
                 $('p:contains("Primero"), p:contains("Segundo")').next().toggle('fast');
             }
         }
+    */
 
         // 5. Elimina el efecto del punto 3.
     /*
-        
+
     */
 
         // 6. Vuelve a repetir el comportamiento del punto 4 pero ahora solo se producirá la primera vez que se pulse la tecla.
     /*
-        $('p:contains("Primero"), p:contains("Segundo")').one('click',
-            function() {
-                $(this).next().addClass('visible'); // Falta transición al mover
-            })
+        $(document).one('keydown', teclapulsada);
+
+        function teclapulsada(e) {
+            var tecla = e.key;
+
+            if ((tecla == 'ArrowUp') || (tecla == 'ArrowDown')) {
+                $('p:contains("Primero"), p:contains("Segundo")').next().toggle('fast');
+            }
+        }
     */
 
         // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
