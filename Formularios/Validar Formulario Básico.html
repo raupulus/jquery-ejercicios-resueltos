@@ -26,11 +26,19 @@ No dejará enviar el formulario mientras no se hayan introducido todos los campo
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-        // Añadir evento cuando pierde el focus a todos los inputs
+        function validar(patron, elemento) {
+            if (patron.test(elemento.val())) {
+                elemento.css('background-color', '#00ff00');
+            } else {
+                elemento.css('background-color', '#ff0000');
+            }
+        }
+
+        // Añadir evento a inputs cuando pierde foco
         $('input[type="text"]').focusout(function() {
             switch($(this).attr('name')) {
                 case 'nombre':
-                    alert('soy nombre');
+                    validar(new RegExp('^[A-Z]{1}[a-z]{3}','g'), $(this));
                     break;
                 case 'tel':
 
