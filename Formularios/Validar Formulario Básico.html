@@ -26,7 +26,23 @@ No dejará enviar el formulario mientras no se hayan introducido todos los campo
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        // Añadir evento cuando pierde el focus a todos los inputs
+        $('input[type="text"]').focusout(function() {
+            switch($(this).name) {
+                case nombre:
 
+                    break;
+                case tel:
+
+                    break;
+                case cp:
+
+                    break;
+                case email:
+
+                    break;
+            }
+        });
     }
     </script>
 </head>
