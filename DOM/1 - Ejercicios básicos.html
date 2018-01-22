@@ -104,6 +104,7 @@
 
         // 7. Al pasar el ratón por cada uno de los títulos de los módulos de segundo se mostrará la cantidad de horas semanales. Esta información emergente se mostrará a continuación de donde ubiquemos el ratón. Utiliza hover.
     /*
+        // TOFIX → No consigo posicionar en su sitio la caja emergente
         $('p:contains("Segundo")').next('ul').children('li').on('mouseover',
             function(e) {
                 // Elimina elemento antes de colocar otro
@@ -154,7 +155,7 @@
 
         // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
     /*
-        $('p:contains("Segundo")').next().find('li').on('click', function(e, modalidad = 'presencial') {
+        $('p:contains("Segundo")').next().children('li').on('click', function(e, modalidad = 'presencial') {
             // Elimina elemento antes de colocar otro
             $('.hora').remove();
 
