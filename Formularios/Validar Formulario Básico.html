@@ -26,11 +26,29 @@ No dejará enviar el formulario mientras no se hayan introducido todos los campo
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+
+        /**
+         * Muestra el error junto al bloque correspondiente
+         * @param  {Elemento} elemento Elemento al que aplicar error
+         */
+        function mostrarError(elemento) {
+            var formato = elemento.attr('placeholder');
+            // Crear nodo <span></span>
+
+            // Enganchar nodo con el mensaje de placeholder
+        }
+
+        /**
+         * Recibe un patrón y un elemento input para comprobar si es válido
+         * @param  {RegExp} patron   Expresión regular que debe cumplir
+         * @param  {Elemento} elemento Elemento al que aplicar error
+         */
         function validar(patron, elemento) {
             if (patron.test(elemento.val())) {
                 elemento.css('background-color', '#00ff00');
             } else {
                 elemento.css('background-color', '#ff0000');
+                mostrarError(elemento);
             }
         }
 
@@ -38,16 +56,16 @@ No dejará enviar el formulario mientras no se hayan introducido todos los campo
         $('input[type="text"]').focusout(function() {
             switch($(this).attr('name')) {
                 case 'nombre':
-                    validar(new RegExp('^[A-Z]{1}[a-z]{3}','g'), $(this));
+                    validar(new RegExp('^[A-Z]{1}[a-z]{3}$','g'), $(this));
                     break;
                 case 'tel':
-
+                    validar(new RegExp('^[0-9]{3}[\-]{1}[0-9]{6}$','g'), $(this));
                     break;
                 case 'cp':
-
+                    validar(new RegExp('^[1-9]{1}[0-9]{4}$','g'), $(this));
                     break;
                 case 'email':
-
+                    validar(new RegExp('^[a-z]+[@]{1}[a-z]+[\.]{1}[a-z]{2,3}$','g'), $(this));
                     break;
             }
         });
