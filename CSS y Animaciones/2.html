@@ -20,7 +20,7 @@ El div estará inicialmente ubicado en las coordenadas(0,100).
             position: absolute;
             top: 0;
             left: 100px;
-            width: 300px;
+            width: 700px;
             height: 100px;
             background-color: #ff0000;
         }
@@ -29,7 +29,7 @@ El div estará inicialmente ubicado en las coordenadas(0,100).
     <script>
     window.onload = function() {
         $('div').on('click', function() {
-
+            $(this).css({'left' : '+=100px', 'width' : '-=150px'});
         })
     }
     </script>
