@@ -7,7 +7,11 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Crea un div de 800x70 píxeles. Al hacer doble clic redimensionarlo a 250x250 píxeles y si se hace doble clic nuevamente retornar al tamaño 800x70. Escribir debajo tanto sus nuevas dimensiones como la posición que ocupa dentro del navegador.
+Crea un div de 800x70 píxeles.
+
+Al hacer doble clic redimensionarlo a 250x250 píxeles y si se hace doble clic nuevamente retornar al tamaño 800x70.
+
+Escribir debajo tanto sus nuevas dimensiones como la posición que ocupa dentro del navegador.
 -->
 <html lang="es">
 <head>
@@ -29,13 +33,15 @@ Crea un div de 800x70 píxeles. Al hacer doble clic redimensionarlo a 250x250 p�
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-
+        $('div').on('dblclick', function() {
+            $(this).toggleClass('cuadrado rectangulo');
+        })
     }
     </script>
 </head>
 
 <body>
-    <div class="rectangulo">
+    <div class="cuadrado">
 
     </div>
 </body>
