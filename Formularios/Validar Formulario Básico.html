@@ -93,7 +93,6 @@ No dejará enviar el formulario mientras no se hayan introducido todos los campo
             switch($(this).attr('name')) {
                 case 'nombre':
                     check[0] = validar(new RegExp('^[A-Z]{1}[a-z]{3}$','g'), $(this));
-                    //alert(check[0]);
                     break;
                 case 'tel':
                     check[1] = validar(new RegExp('^[0-9]{3}[\-]{1}[0-9]{6}$','g'), $(this));
