@@ -17,19 +17,41 @@ Se observa que mediante css() la acción acaba al instante mientras que con anim
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Ejercicios DOM Básicos</title>
+    <title>Redimensionar con Animaciones</title>
     <style type="text/css">
+        .rectangulo {
+            width: 800px;
+            height: 70px;
+            background-color: #00ff00;
+        }
 
+        .cuadrado {
+            width: 250px;
+            height: 250px;
+            background-color: #ff0000;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        $('div').on('dblclick', function() {
+            // Primero cambio la clase actual
+            $(this).toggleClass('cuadrado rectangulo');
 
+            // Elimino párrafos anteriores
+            $('p').remove();
+
+            // Añado un parráfo con el ancho y otro con el alto
+            var ancho = $(this).width();
+            var alto  = $(this).height();
+            $(this).parent().append('<p>Ancho → ' + ancho + '</p>');
+            $(this).parent().append('<p>Alto → ' + alto + '</p>');
+        })
     }
     </script>
 </head>
 
 <body>
-
+    <div class="rectangulo"></div>
 </body>
 </html>
