@@ -23,14 +23,21 @@ Modifica el ejercicio 3 para que la cantidad de píxeles que se amplia y reduce 
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+
     /*
         // Mediante CSS
         $('input').on('click', function() {
             // Compruebo el <input> para aumentar o disminuir
             if ($(this).attr('value') == 'Aumentar') {
-                $('div').css({'width' : '+=100px', 'height' : '+=100px'});
+                $('div').css({
+                    'width' : '+=' + $('#w_size').val(),
+                    'height' : '+=' + $('#h_size').val()
+                });
             } else if ($(this).attr('value') == 'Disminuir') {
-                $('div').css({'width' : '-=50px', 'height' : '-=50px'});
+                $('div').css({
+                    'width' : '-=' + $('#w_size').val(),
+                    'height' : '-=' + $('#h_size').val()
+                });
             }
 
             // Elimino párrafos anteriores
@@ -68,6 +75,7 @@ Modifica el ejercicio 3 para que la cantidad de píxeles que se amplia y reduce 
             $('body').append('<p>Ancho → ' + ancho + '</p>');
             $('body').append('<p>Alto → ' + alto + '</p>');
         })
+
     }
     </script>
 </head>
