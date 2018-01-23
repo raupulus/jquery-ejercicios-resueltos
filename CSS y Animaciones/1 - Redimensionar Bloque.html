@@ -34,15 +34,23 @@ Escribir debajo tanto sus nuevas dimensiones como la posición que ocupa dentro 
     <script>
     window.onload = function() {
         $('div').on('dblclick', function() {
+            // Primero cambio la clase actual
             $(this).toggleClass('cuadrado rectangulo');
+
+            // Elimino párrafos anteriores
+            $('p').remove();
+
+            // Añado un parráfo con el ancho y otro con el alto
+            var ancho = $(this).width();
+            var alto  = $(this).height();
+            $(this).parent().append('<p>Ancho → ' + ancho + '</p>');
+            $(this).parent().append('<p>Alto → ' + alto + '</p>');
         })
     }
     </script>
 </head>
 
 <body>
-    <div class="cuadrado">
-
-    </div>
+    <div class="rectangulo"></div>
 </body>
 </html>
