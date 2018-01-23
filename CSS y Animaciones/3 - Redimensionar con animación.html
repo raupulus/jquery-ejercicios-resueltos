@@ -28,7 +28,7 @@ Se observa que mediante css() la acción acaba al instante mientras que con anim
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-
+    /*
         // Mediante CSS
         $('input').on('click', function() {
             // Compruebo el <input> para aumentar o disminuir
@@ -36,6 +36,26 @@ Se observa que mediante css() la acción acaba al instante mientras que con anim
                 $('div').css({'width' : '+=100px', 'height' : '+=100px'});
             } else if ($(this).attr('value') == 'Disminuir') {
                 $('div').css({'width' : '-=50px', 'height' : '-=50px'});
+            }
+
+            // Elimino párrafos anteriores
+            $('p').remove();
+
+            // Añado un parráfo con el ancho y otro con el alto
+            var ancho = $('div').width();
+            var alto  = $('div').height();
+            $('body').append('<p>Ancho → ' + ancho + '</p>');
+            $('body').append('<p>Alto → ' + alto + '</p>');
+        })
+    */
+
+        // Mediante animate
+        $('input').on('click', function() {
+            // Compruebo el <input> para aumentar o disminuir
+            if ($(this).attr('value') == 'Aumentar') {
+                $('div').animate({'width' : '+=100px', 'height' : '+=100px'}, 'slow', 'linear');
+            } else if ($(this).attr('value') == 'Disminuir') {
+                $('div').animate({'width' : '-=50px', 'height' : '-=50px'}, 'slow', 'linear');
             }
 
             // Elimino párrafos anteriores
