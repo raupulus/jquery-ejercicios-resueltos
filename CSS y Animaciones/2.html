@@ -7,24 +7,35 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Crea un script que añada debajo del div un botón que al pulsar en él, mueva el div 100px a la izquierda y lo haga más pequeño 150 px. El div estará inicialmente ubicado en las coordenadas(0,100).
+Crea un script que añada debajo del div un botón que al pulsar en él, mueva el div 100px a la izquierda y lo haga más pequeño 150 px.
+
+El div estará inicialmente ubicado en las coordenadas(0,100).
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <title>Ejercicios DOM Básicos</title>
     <style type="text/css">
-
+        div {
+            position: absolute;
+            top: 0;
+            left: 100px;
+            width: 300px;
+            height: 100px;
+            background-color: #ff0000;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        $('div').on('click', function() {
 
+        })
     }
     </script>
 </head>
 
 <body>
-
+    <div></div>
 </body>
 </html>
