@@ -14,13 +14,18 @@ Realiza un script que oculte y muestre un div de forma rápida.
     <meta charset="UTF-8" />
     <title>Mostrar y Ocultar div</title>
     <style type="text/css">
-
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000;
+            border: 3px groove #000000;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
-        
-    }
+        window.onload = function() {
+            $('div').hide('fast').show('fast');
+        }
     </script>
 </head>
 
