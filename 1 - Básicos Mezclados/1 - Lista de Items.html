@@ -29,14 +29,19 @@ Realiza los siguientes casos:
     <script>
     window.onload = function() {
         // A) Eliminar la lista completa
+        var lista = $('ul').detach();
 
         // B) Restaurar lista
+        $('body').append(lista);
 
         // C) Añadir un elemento al final de la lista
+        $('ul').append('<li>Item 5</li>')
 
         // D) Añadir un elemento al principio de la lista
+        $('ul').prepend('<li>Item 0</li>')
 
         // E) Eliminar el último elemento
+        $('ul:last-child')
 
         // F) Eliminar el primer elemento
 
@@ -48,6 +53,11 @@ Realiza los siguientes casos:
 </head>
 
 <body>
-
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
 </body>
 </html>
