@@ -48,9 +48,15 @@ Modifica el ejercicio 3 para que la cantidad de píxeles que se amplia y reduce 
         $('input').on('click', function() {
             // Compruebo el <input> para aumentar o disminuir
             if ($(this).attr('value') == 'Aumentar') {
-                $('div').animate({'width' : '+=100px', 'height' : '+=100px'}, 'slow', 'linear');
+                $('div').animate({
+                    'width' : '+=' + $('#w_size').val(),
+                    'height' : '+=' + $('#h_size').val()
+                }, 'slow', 'linear');
             } else if ($(this).attr('value') == 'Disminuir') {
-                $('div').animate({'width' : '-=50px', 'height' : '-=50px'}, 'slow', 'linear');
+                $('div').animate({
+                    'width' : '-=' + $('#w_size').val(),
+                    'height' : '-=' + $('#h_size').val()
+                }, 'slow', 'linear');
             }
 
             // Elimino párrafos anteriores
@@ -67,8 +73,8 @@ Modifica el ejercicio 3 para que la cantidad de píxeles que se amplia y reduce 
 </head>
 
 <body>
-    Ancho <input id="w_aumentar" type="text" value="300" />
-    Alto <input id="h_aumentar" type="text" value="100" />
+    Ancho <input id="w_size" type="text" value="300" />
+    Alto <input id="h_size" type="text" value="100" />
     <br />
     <input id="aumentar" type="button" value="Aumentar" />
     <input id="disminuir" type="button" value="Disminuir" />
