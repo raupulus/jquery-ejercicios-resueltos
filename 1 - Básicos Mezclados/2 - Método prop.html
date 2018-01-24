@@ -31,12 +31,27 @@ Se aconseja usar attr() solo para obtener el valor de atributos HTML
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-
+        // Recorro todos los inputs
+        for (i of $('form > input')) {
+            switch ($(i).attr('type')) {
+                // Si es un input de texto escribo con attr()
+                case 'text':
+                    $(i).attr('value', 'Jamón Serrano 5J');
+                    break;
+                // Si es un input de check lo marco con prop()
+                case 'checkbox':
+                    $(i).prop('checked', true);
+                    break;
+            }
+        }
     }
     </script>
 </head>
 
 <body>
-
+    <form>
+        <input type="text" />
+        <input type="checkbox" />
+    </form>
 </body>
 </html>
