@@ -10,15 +10,21 @@
 Busca información en la API de jQuery sobre el método prop.
 
 ¿Qué diferencia existe con attr?
+    · attr() → Da el valor de atributos HTML
+
+    · prop() → Da el valor de propiedades del DOM de Javascript.
+        Sirve para modificar propiedades nativas de los elementos de Javascript. Si solo le pasamos la propiedad nos devolverá si su valor: elemento.prop('checked');
+        Si le pasamos la propiedad y como segundo parámetro su valor, este será asignado: elemento.prop('checked', true);
 
 ¿Cuándo se usa?
+Se aconseja usar prop() cuando se quiere saber el valor de una propiedad del DOM de Javascript la cual devuelve un booleano.
 
-Haz un ejemplo donde muestres la diferencia entre los dos.
+Se aconseja usar attr() solo para obtener el valor de atributos HTML
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title></title>
+    <title>Método Prop</title>
     <style type="text/css">
 
     </style>
