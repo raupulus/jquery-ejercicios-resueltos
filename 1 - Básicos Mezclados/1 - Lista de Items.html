@@ -9,13 +9,13 @@
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
 Implementa una página que contenga una lista con cuatro ítems.
 Realiza los siguientes casos:
-    A) Eliminar la lista completa
-    B) Restaurar lista
-    C) Añadir un elemento al final de la lista
-    D) Añadir un elemento al principio de la lista
-    E) Eliminar el último elemento
-    F) Eliminar el primer elemento
-    G) Eliminar el primero y segundo elemento
+    A) Eliminar la lista completa.
+    B) Restaurar lista.
+    C) Añadir un elemento al final de la lista.
+    D) Añadir un elemento al principio de la lista.
+    E) Eliminar el último elemento.
+    F) Eliminar el primer elemento.
+    G) Eliminar el primero y segundo elemento.
     H) Eliminar los dos últimos.
 -->
 <html lang="es">
@@ -28,29 +28,29 @@ Realiza los siguientes casos:
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-        // A) Eliminar la lista completa
+        // A) Eliminar la lista completa.
         var lista = $('ul').detach();
 
-        // B) Restaurar lista
+        // B) Restaurar lista.
         $('body').append(lista);
 
-        // C) Añadir un elemento al final de la lista
+        // C) Añadir un elemento al final de la lista.
         $('ul').append('<li>Item 5</li>');
 
-        // D) Añadir un elemento al principio de la lista
+        // D) Añadir un elemento al principio de la lista.
         $('ul').prepend('<li>Item 0</li>');
 
-        // E) Eliminar el último elemento
+        // E) Eliminar el último elemento.
         $('ul>li:last-child').remove();
 
-        // F) Eliminar el primer elemento
+        // F) Eliminar el primer elemento.
         $('ul>li:first-child').remove();
 
-        // G) Eliminar el primero y segundo elemento
+        // G) Eliminar el primero y segundo elemento.
         $('ul>li:eq(0), ul>li:eq(1)').remove();
 
-        // H) Eliminar los dos últimos.
-        
+        // H) Eliminar los dos últimos elementos.
+        //$('ul>li:nth-last-child(-n+2)').remove();
     }
     </script>
 </head>
