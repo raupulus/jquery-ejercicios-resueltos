@@ -35,19 +35,22 @@ Realiza los siguientes casos:
         $('body').append(lista);
 
         // C) Añadir un elemento al final de la lista
-        $('ul').append('<li>Item 5</li>')
+        $('ul').append('<li>Item 5</li>');
 
         // D) Añadir un elemento al principio de la lista
-        $('ul').prepend('<li>Item 0</li>')
+        $('ul').prepend('<li>Item 0</li>');
 
         // E) Eliminar el último elemento
-        $('ul:last-child')
+        $('ul>li:last-child').remove();
 
         // F) Eliminar el primer elemento
+        $('ul>li:first-child').remove();
 
         // G) Eliminar el primero y segundo elemento
+        $('ul>li:eq(0), ul>li:eq(1)').remove();
 
         // H) Eliminar los dos últimos.
+        
     }
     </script>
 </head>
