@@ -45,6 +45,9 @@ Añada la funcionalidad que estime oportuna.
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        // Contador de parejas
+        var contador = 0;
+
         // Caja principal
         $('body').append('<div id="cajaJuego"></div>');
 
@@ -53,6 +56,34 @@ Añada la funcionalidad que estime oportuna.
             $('#cajaJuego').append('<div><span>' + 1 + '</span></div>');
             $('#cajaJuego').append('<div><span>' + 2 + '</span></div>');
         }
+
+        $('#cajaJuego>div').on('click', function() {
+            // Si está oculto lo muestro y comparo con el descubierto
+            if ($(this).find('span').css('opacity') != 1) {
+                $(this).find('span').css('opacity', 1);
+
+                // Añado una carta descubierta al hacer click
+                contador += 1;
+
+                // Compruebo si hay otro elemento con opacity="1" y mido su valor
+                for (x of $('span')) {
+                    // El contenido .text() es igual que el actual
+                    // Es un span distinto al actual
+                    // La opacidad es 1
+                    // El contador es 1 o 3
+
+
+                    // Replantear con las condiciones de arriba
+                    if (($(x).text() == $(this).find('span').text()) &&
+                    ($(x).css('opacity') == 1) &&
+                    ($(x) != $(this).find('span'))) {
+                        alert('pareja');
+                    }
+                }
+
+                alert(contador);
+            }
+        });
     }
     </script>
 </head>
