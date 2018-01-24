@@ -20,16 +20,42 @@ Añada la funcionalidad que estime oportuna.
     <meta charset="UTF-8" />
     <title>Juego de Memoria</title>
     <style type="text/css">
+        div {
+            display: table-cell;
+            padding: 3px;
+            width: 80px;
+            height: 80px;
+            border: 3px groove #000000;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        span {
+            opacity: 0;
+        }
+
+        #cajaJuego {
+            margin: auto;
+            width: 100%;
+            border: 0;
+        }
+
 
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        // Caja principal
+        $('body').append('<div id="cajaJuego"></div>');
 
+        // Genera el contenido del Juego y oculta los números
+        for (let i=1; i<=2; i++) {
+            $('#cajaJuego').append('<div><span>' + 1 + '</span></div>');
+            $('#cajaJuego').append('<div><span>' + 2 + '</span></div>');
+        }
     }
     </script>
 </head>
-
 <body>
 
 </body>
