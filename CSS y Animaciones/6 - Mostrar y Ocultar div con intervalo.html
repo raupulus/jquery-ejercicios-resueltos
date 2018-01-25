@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Vuelve a realizar la misma tarea pero ahora debe pasar 2 segundos entre un efecto y otro.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mostrar y Ocultar div con intervalo</title>
+    <style type="text/css">
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: #ff0000;
+            border: 3px groove #000000;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+        $('div').hide('fast').delay(2000).show('fast');
+    }
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+</html>

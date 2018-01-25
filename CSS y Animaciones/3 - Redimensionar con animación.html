@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Modifica el ejercicio 1, añade dos botones sobre el div.
+
+Cada vez que se pulse sobre uno de ellos añadirá 100 px al ancho y alto y cuando se pulse en el otro reducirá dichas dimensiones en 50px.
+Utiliza primero css() y luego animate.
+
+Se observa que mediante css() la acción acaba al instante mientras que con animate hay una transición en el proceso
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Redimensionar con Animaciones</title>
+    <style type="text/css">
+        div {
+            width: 300px;
+            height: 140px;
+            background-color: #00ff00;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+    /*
+        // Mediante CSS
+        $('input').on('click', function() {
+            // Compruebo el <input> para aumentar o disminuir
+            if ($(this).attr('value') == 'Aumentar') {
+                $('div').css({'width' : '+=100px', 'height' : '+=100px'});
+            } else if ($(this).attr('value') == 'Disminuir') {
+                $('div').css({'width' : '-=50px', 'height' : '-=50px'});
+            }
+
+            // Elimino párrafos anteriores
+            $('p').remove();
+
+            // Añado un parráfo con el ancho y otro con el alto
+            var ancho = $('div').width();
+            var alto  = $('div').height();
+            $('body').append('<p>Ancho → ' + ancho + '</p>');
+            $('body').append('<p>Alto → ' + alto + '</p>');
+        })
+    */
+
+        // Mediante animate
+        $('input').on('click', function() {
+            // Compruebo el <input> para aumentar o disminuir
+            if ($(this).attr('value') == 'Aumentar') {
+                $('div').animate({'width' : '+=100px', 'height' : '+=100px'}, 'slow', 'linear');
+            } else if ($(this).attr('value') == 'Disminuir') {
+                $('div').animate({'width' : '-=50px', 'height' : '-=50px'}, 'slow', 'linear');
+            }
+
+            // Elimino párrafos anteriores
+            $('p').remove();
+
+            // Añado un parráfo con el ancho y otro con el alto
+            var ancho = $('div').width();
+            var alto  = $('div').height();
+            $('body').append('<p>Ancho → ' + ancho + '</p>');
+            $('body').append('<p>Alto → ' + alto + '</p>');
+        })
+    }
+    </script>
+</head>
+
+<body>
+    <input id="aumentar" type="button" value="Aumentar" />
+    <input id="disminuir" type="button" value="Disminuir" />
+    <div class="rectangulo"></div>
+</body>
+</html>

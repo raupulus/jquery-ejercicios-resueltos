@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Desarrolla un juego de memoria.
+
+Para ello deberá de tener una serie de imágenes que se darán la vuelta de 2 en 2. Si la imagen, valor, es igual, se mantendrán visibles.
+
+El juego acabará cuando todas las imágenes, valores... Estén descubiertos.
+
+Añada la funcionalidad que estime oportuna.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Juego de Memoria</title>
+    <style type="text/css">
+        div {
+            display: inline-table;
+            padding: 3px;
+            width: 80px;
+            height: 80px;
+            border: 3px groove #000000;
+            cursor: pointer;
+        }
+
+        span {
+            opacity: 0;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        #cajaJuego {
+            display: block !important;
+            margin: auto;
+            width: 100%;
+            border: 0;
+            cursor: auto;
+            text-align: center;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+        // Almacena los dos últimos valores para comprobar si es pareja
+        var pareja = [];
+        var cartas = [1,1,2,2];
+
+        // Genera el contenido del Juego con números aleatorios 1|2 de cartas[]
+        $('body').append('<div id="cajaJuego"></div>');
+        while (cartas.length > 0) {
+            x = parseInt((Math.random()+0.01) * 3);
+            for (carta of cartas) {
+                if (carta == x) {
+                    $('#cajaJuego').append('<div><span>' + x + '</span></div>');
+                    cartas.splice(cartas.indexOf(x),1);  // Elimina del array
+                }
+            }
+        }
+
+        // Añade el evento click a cada div
+        $('#cajaJuego>div').on('click', function() {
+            // Si al hacer click está oculto lo muestro
+            if ($(this).find('span').css('opacity') != 1) {
+                $(this).find('span').css('opacity', 1);
+
+                // Añado el valor de este elemento al array de parejas
+                pareja.push($(this).find('span').text());
+
+                // En el caso de elegir 2 que no forman pareja
+                if ((pareja.length == 2) && (pareja[0] != pareja[1])) {
+                    alert('No forman pareja');
+                    pareja.length = 0; // Limpia el array de parejas
+                    $('span').css('opacity', 0);  // Oculta
+                }
+                // En el caso de elegir 2 y si forman pareja
+                else if ((pareja.length == 2) && (pareja[0] == pareja[1])) {
+                    alert('Has encontrado una pareja');
+                }
+                // En el caso de elegir 4 y completar el juego
+                else if ((pareja.length == 4) && (pareja[2] == pareja[3])) {
+                    alert('Has ganado');
+                }
+            }
+        });
+    }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

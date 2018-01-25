@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Implementa una página que contenga una lista con cuatro ítems.
+Realiza los siguientes casos:
+    A) Eliminar la lista completa.
+    B) Restaurar lista.
+    C) Añadir un elemento al final de la lista.
+    D) Añadir un elemento al principio de la lista.
+    E) Eliminar el último elemento.
+    F) Eliminar el primer elemento.
+    G) Eliminar el primero y segundo elemento.
+    H) Eliminar los dos últimos.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lista de Items</title>
+    <style type="text/css">
+
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+        // A) Eliminar la lista completa.
+        var lista = $('ul').detach();
+
+        // B) Restaurar lista.
+        $('body').append(lista);
+
+        // C) Añadir un elemento al final de la lista.
+        $('ul').append('<li>Item 5</li>');
+
+        // D) Añadir un elemento al principio de la lista.
+        $('ul').prepend('<li>Item 0</li>');
+
+        // E) Eliminar el último elemento.
+        $('ul>li:last-child').remove();
+
+        // F) Eliminar el primer elemento.
+        $('ul>li:first-child').remove();
+
+        // G) Eliminar el primero y segundo elemento.
+        $('ul>li:eq(0), ul>li:eq(1)').remove();
+
+        // H) Eliminar los dos últimos elementos.
+        //$('ul>li:nth-last-child(-n+2)').remove();
+    }
+    </script>
+</head>
+
+<body>
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+</body>
+</html>

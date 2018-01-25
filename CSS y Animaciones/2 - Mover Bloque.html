@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea un script que añada debajo del div un botón que al pulsar en él, mueva el div 100px a la izquierda y lo haga más pequeño 150 px.
+
+El div estará inicialmente ubicado en las coordenadas(0,100).
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mover Bloque</title>
+    <style type="text/css">
+        div {
+            position: absolute;
+            top: 0;
+            left: 100px;
+            width: 700px;
+            height: 100px;
+            background-color: #ff0000;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+        $('div').on('click', function() {
+            $(this).css({'left' : '+=100px', 'width' : '-=150px'});
+        })
+    }
+    </script>
+</head>
+
+<body>
+    <div></div>
+</body>
+</html>

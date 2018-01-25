@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Valida los campos según el patrón indicado en el atributo placeholder
+
+Si no cumple las condiciones, dibujar el recuadro en color rojo y mostrar junto a este en un bloque <span> el formato correcto.
+
+Si cumple las condiciones mostrar el fondo del <input> en color verde.
+
+No dejará enviar el formulario mientras no se hayan introducido todos los campos correctamente.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Validar Formulario Básico</title>
+    <style>
+        label {display: block;}
+        span {color: red;}
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    // @var check Contiene el resultado de cada validación
+    // El orden es → nombre, telefono, codigo postal, email.
+    var check = [false, false, false, false];
+
+    /**
+     * Muestra el error junto al bloque correspondiente, mediante <span>
+     * @param  {Elemento} elemento Elemento al que aplicar error
+     */
+    function mostrarError(elemento) {
+        var formato = elemento.attr('placeholder');
+        elemento.parent().append('<span>' + formato + '</span>');
+    }
+
+    /**
+     * Recibe un patrón y un elemento input para comprobar si es válido
+     * @param  {RegExp} patron   Expresión regular que debe cumplir
+     * @param  {Elemento} elemento Elemento al que aplicar error
+     * @return {Boolean} Devuelve boolean indicando si es correcto
+     */
+    function validar(patron, elemento) {
+        // Limpio bloques <span> con errores.
+        elemento.parent().find('span').remove();
+
+        // Comprueba si cumple el patrón y actúa en consecuencia.
+        if (patron.test(elemento.val())) {
+            elemento.css('background-color', '#00ff00');
+            return true;
+        } else {
+            elemento.css('background-color', '#ff0000');
+            mostrarError(elemento);
+            return false;
+        }
+    }
+
+    /**
+     * Comprueba que todos los valores del array "check" sean "true" siendo
+     * en este caso verificación de que se han cumplido los requisitos.
+     * @return {Boolean} Devuelve boolean indicando si es correcto
+     */
+    function enviarFormulario() {
+        for (x of check) {
+            if (x == false) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Añadir eventos a los elementos del DOM
+     */
+    window.onload = function() {
+        // Elimina acción de submit si el formulario no valida
+        $('input[type="submit"]').on('click', function(e) {
+            var formValido = enviarFormulario();
+            if (formValido) {
+                alert('Se superan todas las validaciones');
+            } else {
+                alert('Error al validar, corrige el/los campos');
+                e.preventDefault();
+            }
+        });
+
+        // Añadir evento a inputs cuando pierde foco
+        $('input[type="text"]').focusout(function() {
+            switch($(this).attr('name')) {
+                case 'nombre':
+                    check[0] = validar(new RegExp('^[A-Z]{1}[a-z]{3}$','g'), $(this));
+                    break;
+                case 'tel':
+                    check[1] = validar(new RegExp('^[0-9]{3}[\-]{1}[0-9]{6}$','g'), $(this));
+                    break;
+                case 'cp':
+                    check[2] = validar(new RegExp('^[1-9]{1}[0-9]{4}$','g'), $(this));
+                    break;
+                case 'email':
+                    check[3] = validar(new RegExp('^[a-z]+[@]{1}[a-z]+[\.]{1}[a-z]{2,3}$','g'), $(this));
+                    break;
+            }
+        });
+    }
+    </script>
+</head>
+
+<body>
+    <h1>Formulario de Contacto</h1>
+    <form name="formulario" id="f">
+        <label> Nombre:
+            <input type="text" name="nombre" placeholder="Xxxx" />
+        </label>
+        <label>Teléfono:
+            <input type="text" name="tel" placeholder="XXX-XXXXXX" />
+        </label>
+        <label> Código postal:
+            <input type="text" name="cp" placeholder="XXXXX"  />
+        </label>
+        <label> Email:
+            <input type="text" name="email" placeholder="xxx@xxxx.xx" />
+        </label>
+        <input type="submit" name="enviar" value="Enviar" />
+    </form>
+</body>
+</html>

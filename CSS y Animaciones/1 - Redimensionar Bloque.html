@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea un div de 800x70 píxeles.
+
+Al hacer doble clic redimensionarlo a 250x250 píxeles y si se hace doble clic nuevamente retornar al tamaño 800x70.
+
+Escribir debajo tanto sus nuevas dimensiones como la posición que ocupa dentro del navegador.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ejercicios DOM Básicos</title>
+    <style type="text/css">
+        .rectangulo {
+            width: 800px;
+            height: 70px;
+            background-color: #00ff00;
+        }
+
+        .cuadrado {
+            width: 250px;
+            height: 250px;
+            background-color: #ff0000;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+        $('div').on('dblclick', function() {
+            // Primero cambio la clase actual
+            $(this).toggleClass('cuadrado rectangulo');
+
+            // Elimino párrafos anteriores
+            $('p').remove();
+
+            // Añado un parráfo con el ancho y otro con el alto
+            var ancho = $(this).width();
+            var alto  = $(this).height();
+            $(this).parent().append('<p>Ancho → ' + ancho + '</p>');
+            $(this).parent().append('<p>Alto → ' + alto + '</p>');
+        })
+    }
+    </script>
+</head>
+
+<body>
+    <div class="rectangulo"></div>
+</body>
+</html>
