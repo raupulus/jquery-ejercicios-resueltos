@@ -51,6 +51,9 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        // Variable que almacena si mover o detener
+        var movimiento = false;
+
         $('body').append('<div id="cajaPrincipal">' +
                              '<div id="pieza"></div>' +
                          '</div>' +
@@ -62,6 +65,31 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
                              '<input type="button" value="Parar y Detener" />' +
                          '</div>'
         );
+
+        function parar() {
+            movimiento = false;
+        }
+
+        function mover() {
+                $('#pieza').animate({'margin-left':'350'}, 2000, 'linear');
+                $('#pieza').animate({'margin-top':'350'}, 2000, 'linear');
+                $('#pieza').animate({'margin-left':'0'}, 2000, 'linear');
+                $('#pieza').animate({'margin-top':'0'}, 2000, 'linear');
+        }
+
+        function empezar() {
+            movimiento = true;
+
+            // while (movimiento) {
+            //     mover();
+            // }
+
+            for (var i = 0; i <= 100; i++) {
+                mover();
+            }
+        }
+        $('input[value="Empezar"]').on('click', empezar);
+        $('input[value="Parar"]').on('click', parar);
     }
     </script>
 </head>
