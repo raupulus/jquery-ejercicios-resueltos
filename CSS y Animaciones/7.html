@@ -7,19 +7,36 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Desarrolla un script que al pulsar en un botón se mueva un div 100 px a la derecha y a continuación, aumente el tamaño de la letra de su contenido a 30px. Utiliza animate() y css().
+Desarrolla un script que al pulsar en un botón se mueva un div 100 px a la derecha y a continuación, aumente el tamaño de la letra de su contenido a 30px.
+
+Utiliza animate() y css().
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <title>Ejercicios DOM Básicos</title>
     <style type="text/css">
-
+        #pieza {
+            width: 100px;
+            height: 100px;
+            background-color: #227788;
+            text-align: center;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
+        // Crea botón y la pieza
+        $('body').append('<input type="button" value="Mover" />' +
+                         '<div id="pieza">Una Pieza</div>');
 
+        // Añade evento al botón
+        $('input[type="button"]').on('click', function() {
+            // Con CSS
+            $('#pieza').css({'marginLeft':'+=100px', 'fontSize':'30px'});
+
+            // Con animate
+        });
     }
     </script>
 </head>
