@@ -30,7 +30,6 @@ Implementar las siguientes funciones:
     <script src="./jquery-3.2.1.js"></script>
     <script src="./js.cookie.js"></script>
     <script>
-    window.onload = function() {
         /**
          * Elimina todas las cookies
          */
@@ -65,7 +64,28 @@ Implementar las siguientes funciones:
         function guardar() {
 
         }
-    }
+
+        window.onload = function() {
+            for (let i of $('input')) {
+                switch ($(i).attr('value')) {
+                    case 'Guardar':
+                        $(i).on('click', guardar);
+                        break;
+                    case 'Ver Cookie':
+                        $(i).on('click', ver);
+                        break;
+                    case 'Ver Todas':
+                        $(i).on('click', verTodas);
+                        break;
+                    case 'Eliminar Una':
+                        $(i).on('click', eliminar);
+                        break;
+                    case 'Eliminar Todas':
+                        $(i).on('click', eliminarTodas);
+                        break;
+                }
+            }
+        }
     </script>
 </head>
 
