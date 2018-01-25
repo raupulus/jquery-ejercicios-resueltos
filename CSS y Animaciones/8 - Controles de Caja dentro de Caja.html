@@ -54,6 +54,9 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
         // Variable que almacena si mover o detener
         var movimiento = false;
 
+        // Duración de las transiciones en milisegundos
+        var tiempo = 2000;
+
         $('body').append('<div id="cajaPrincipal">' +
                              '<div id="pieza"></div>' +
                          '</div>' +
@@ -66,30 +69,57 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
                          '</div>'
         );
 
+        /**
+         * Establece la varible de movimiento en falso
+         */
         function parar() {
             movimiento = false;
         }
 
+        function parartodo() {
+            // No queda claro funcionalidad.
+        }
+
+        function pararYsaltar() {
+            // No queda claro funcionalidad.
+        }
+
+        function pararYdetener() {
+            // No queda claro funcionalidad.
+        }
+
+        /**
+         * Da una vuelta a la pieza sobre la caja.
+         */
         function mover() {
-                $('#pieza').animate({'margin-left':'350'}, 2000, 'linear');
-                $('#pieza').animate({'margin-top':'350'}, 2000, 'linear');
-                $('#pieza').animate({'margin-left':'0'}, 2000, 'linear');
-                $('#pieza').animate({'margin-top':'0'}, 2000, 'linear');
+            $('#pieza').animate({'margin-left':'350'}, tiempo, 'linear');
+            $('#pieza').animate({'margin-top':'350'}, tiempo, 'linear');
+            $('#pieza').animate({'margin-left':'0'}, tiempo, 'linear');
+            $('#pieza').animate({'margin-top':'0'}, tiempo, 'linear');
         }
 
         function empezar() {
             movimiento = true;
 
+            // No consigo realizar el bucle porque se solapan iteraciones
+            // y no encuentro explicación por qué ocurre esto
             // while (movimiento) {
             //     mover();
             // }
 
-            for (var i = 0; i <= 100; i++) {
+            // Solución temporal mientras descubro que ocurre con animate()
+            for (var i = 0; i <= 10; i++) {
                 mover();
+                if (movimiento) {
+                    break;
+                }
             }
         }
         $('input[value="Empezar"]').on('click', empezar);
         $('input[value="Parar"]').on('click', parar);
+        $('input[value="Parar Todo"]').on('click', parartodo);
+        $('input[value="Parar y Saltar"]').on('click', pararYsaltar);
+        $('input[value="Parar y Detener"]').on('click', pararYdetener);
     }
     </script>
 </head>
