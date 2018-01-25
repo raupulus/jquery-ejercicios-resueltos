@@ -20,7 +20,15 @@ Deberás ocultar al clickar el botón, dicho párrafo.
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-        
+        /**
+         * Esta función oculta todo el contenido al ser llamada
+         */
+        function todoOculto() {
+            $('p.intro').hide();
+        }
+
+        // Añado el evento 'onclick' con la función todoOculto()
+        $('input[name="ocultar"]').on('click', todoOculto);
     }
     </script>
 </head>
