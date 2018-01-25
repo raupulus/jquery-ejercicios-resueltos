@@ -19,20 +19,26 @@ Haz un ejemplo que utilice:
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-        // :first-child → h1
+        // :first-child → <h1>
         $('body h1:first-child').css('color', '#ff0000');
 
-        // :first-of-type
+        // :first-of-type → div
+        $('div:first-of-type').css('color', '#00ff00')
 
         // :last-child
+        $('body div:last-child').css('color', '#0000ff');
 
-        // :last-of-type
+        // :last-of-type → <p>
+        $('div p:last-of-type').css('color', '#AA7799');
 
-        // :nth-child(n)
+        // :nth-child(n) → <div> 4
+        $('body div:nth-child(5)').css('color', '#00ffff');
 
-        // :nth-last-child(n)
+        // :nth-last-child(n) → <p> 2
+        $('div ul li:nth-last-child(2)').css('color', '#BB55ff');
 
-        // :nth-of-type(n)
+        // :nth-of-type(n) → <div> Bloque 8
+        $('body div:nth-of-type(8)').css('color', '#882255');
 
         // :nth-last-of-type(n)
 
@@ -47,16 +53,29 @@ Haz un ejemplo que utilice:
 <body>
     <h1>Selectores hijos</h1>
     <div id="primer">
-        Bloque 1 y párrafo 1
+        Bloque 1
     </div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
-    <div>Bloque 1</div>
+    <div>Bloque 2</div>
+    <div>Bloque 3</div>
+    <div>Bloque 4</div>
+    <div>Bloque 5</div>
+    <div>Bloque 6</div>
+    <div>Bloque 7</div>
+    <div>Bloque 8</div>
+    <div id="bloque9">
+        Bloque 9 con lista:
+        <ul>
+            <li>Elemento de lista 1</li>
+            <li>Elemento de lista 2</li>
+            <li>Elemento de lista 3</li>
+        </ul>
+    </div>
+    <div>
+        Bloque 10 con párrafos:
+        <p>Parráfo 1</p>
+        <p>Parráfo 2</p>
+        <p>Parráfo 3</p>
+    </div>
+    <div>Bloque 11</div>
 </body>
 </html>
