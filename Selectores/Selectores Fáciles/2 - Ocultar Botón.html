@@ -16,14 +16,24 @@ Al pulsar el botón debe ocultarse dicho botón.
     <title>Ocultar Botón</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
+    window.onload = function() {
+        /**
+         * Esta función oculta todo el contenido al ser llamada
+         */
+        function todoOculto() {
+            $('input[name="ocultar"]').hide();
+        }
 
+        // Añado el evento 'onclick' con la función todoOculto()
+        $('input[name="ocultar"]').on('click', todoOculto);
+    }
     </script>
 </head>
 
 <body>
-    <h1>Ocultar Botón</h1>
-    <p>
-
-    </p>
+    <h1>Ocultar elementos</h1>
+    <p>Párrafo 1</p>
+    <p>Párrafo 2</p>
+    <input type="button" name="ocultar" value="Ocultar" />
 </body>
 </html>

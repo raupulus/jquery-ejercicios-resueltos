@@ -7,7 +7,16 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Oculta los terceros elementos de la lista del script 5.
+Oculta todos los terceros elementos de todas las listas del script 5.
+    Lista 1:
+        - Tortilla
+        - Jamón
+        - Queso
+
+    Lista 2:
+        - Coca Cola
+        - Leche
+        - Té
 -->
 <html lang="es">
 <head>
@@ -15,14 +24,24 @@ Oculta los terceros elementos de la lista del script 5.
     <title>Ocultar elementos de lista</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-
+    window.onload = function() {
+        $('ul>li:nth-child(3)').hide();
+    }
     </script>
 </head>
 
 <body>
     <h1>Ocultar elementos de lista</h1>
-    <p>
+    <ul>
+        <li>Tortilla</li>
+        <li>Jamón</li>
+        <li>Queso</li>
+    </ul>
 
-    </p>
+    <ul>
+        <li>Coca Cola</li>
+        <li>Leche</li>
+        <li>Té</li>
+    </ul>
 </body>
 </html>

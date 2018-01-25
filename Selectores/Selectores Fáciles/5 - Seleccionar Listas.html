@@ -24,14 +24,24 @@ Lista 2:
     <title>Seleccionar Listas</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-
+    window.onload = function() {
+        $('ul:first>li:eq(2)').hide();
+    }
     </script>
 </head>
 
 <body>
     <h1>Seleccionar Listas</h1>
-    <p>
+    <ul>
+        <li>Tortilla</li>
+        <li>Jamón</li>
+        <li>Queso</li>
+    </ul>
 
-    </p>
+    <ul>
+        <li>Coca Cola</li>
+        <li>Leche</li>
+        <li>Té</li>
+    </ul>
 </body>
 </html>
