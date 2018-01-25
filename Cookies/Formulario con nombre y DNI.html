@@ -11,6 +11,7 @@ Crear un formulario con el campo Nombre y el campo DNI.
 
 Utilizar el plugin https://plugins.jquery.com/js-cookie/
 https://github.com/js-cookie/js-cookie
+https://blog.endeos.com/gestionar-cookies-con-jquery/
 
 Implementar las siguientes funciones:
     - Guardar → Guarda los valores de los inputs en cookies. Solo incorpora en
@@ -59,10 +60,16 @@ Implementar las siguientes funciones:
         }
 
         /**
-         * Guarda los valores de los inputs en cookies
+         * Guarda los valores de los inputs en cookies solo si se ha introducido
+         * algún valor en el campo input del formulario.
          */
         function guardar() {
-
+            for (let i of $('input[type="text"]')) {
+                if ($(i).val() !== '') {
+                    alert($(i).val());
+                    Cookies.set('nombre', 'valor');
+                }
+            }
         }
 
         window.onload = function() {
