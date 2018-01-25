@@ -9,9 +9,11 @@
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
 Crear un documento HTML con un encabezado, dos párrafos y un botón.
 
-Cuando pulses el botón mediante el selector $(“*”) se debe ocultar todo. 
+Cuando pulses el botón mediante el selector $(“*”) se debe ocultar todo.
 
-Hay varias formas de hacerlo, para este caso utiliza el método hide()
+Hay varias formas de hacerlo, para este caso utiliza el método hide() para ocultar.
+
+Puedes utilizar el método on() para asignar el evento.
 -->
 <html lang="es">
 <head>
@@ -19,7 +21,17 @@ Hay varias formas de hacerlo, para este caso utiliza el método hide()
     <title>Ocultar elementos</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
+    window.onload = function() {
+        /**
+         * Esta función oculta todo el contenido al ser llamada
+         */
+        function todoOculto() {
+            $('*').hide();
+        }
 
+        // Añado el evento 'onclick' con la función todoOculto()
+        $('input[name="ocultar"]').on('click', todoOculto);
+    }
     </script>
 </head>
 
@@ -27,5 +39,6 @@ Hay varias formas de hacerlo, para este caso utiliza el método hide()
     <h1>Ocultar elementos</h1>
     <p>Párrafo 1</p>
     <p>Párrafo 2</p>
+    <input type="button" name="ocultar" value="Ocultar" />
 </body>
 </html>
