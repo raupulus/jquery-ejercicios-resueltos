@@ -10,8 +10,7 @@
 Crea un documento con un conjunto de párrafos y div.
 
 Haz un ejemplo que utilice:
-first-child, :first-of-type, :last-child, :last-of-
-type, :nth-child(n), :nth-last-child(n), :nth-of-type(n), :nth-last-of-type(n), :only-child, :only-of-type.
+:first-child, :first-of-type, :last-child, :last-of-type, :nth-child(n), :nth-last-child(n), :nth-of-type(n), :nth-last-of-type(n), :only-child, :only-of-type.
 -->
 <html lang="es">
 <head>
@@ -19,14 +18,45 @@ type, :nth-child(n), :nth-last-child(n), :nth-of-type(n), :nth-last-of-type(n), 
     <title>Selectores hijos</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
+    window.onload = function() {
+        // :first-child → h1
+        $('body h1:first-child').css('color', '#ff0000');
 
+        // :first-of-type
+
+        // :last-child
+
+        // :last-of-type
+
+        // :nth-child(n)
+
+        // :nth-last-child(n)
+
+        // :nth-of-type(n)
+
+        // :nth-last-of-type(n)
+
+        // :only-child
+
+        // :only-of-type
+
+    }
     </script>
 </head>
 
 <body>
     <h1>Selectores hijos</h1>
-    <p>
-
-    </p>
+    <div id="primer">
+        Bloque 1 y párrafo 1
+    </div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
+    <div>Bloque 1</div>
 </body>
 </html>
