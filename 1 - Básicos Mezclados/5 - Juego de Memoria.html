@@ -21,23 +21,28 @@ Añada la funcionalidad que estime oportuna.
     <title>Juego de Memoria</title>
     <style type="text/css">
         div {
-            display: table-cell;
+            display: inline-table;
             padding: 3px;
             width: 80px;
             height: 80px;
             border: 3px groove #000000;
-            text-align: center;
-            vertical-align: middle;
+            cursor: pointer;
         }
 
         span {
             opacity: 0;
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
         }
 
         #cajaJuego {
+            display: block !important;
             margin: auto;
             width: 100%;
             border: 0;
+            cursor: auto;
+            text-align: center;
         }
     </style>
     <script src="./jquery-3.2.1.js"></script>
@@ -45,12 +50,18 @@ Añada la funcionalidad que estime oportuna.
     window.onload = function() {
         // Almacena los dos últimos valores para comprobar si es pareja
         var pareja = [];
+        var cartas = [1,1,2,2];
 
-        // Genera el contenido del Juego y oculta los números
+        // Genera el contenido del Juego con números aleatorios 1|2 de cartas[]
         $('body').append('<div id="cajaJuego"></div>');
-        for (let i=1; i<=2; i++) {
-            $('#cajaJuego').append('<div><span>' + 1 + '</span></div>');
-            $('#cajaJuego').append('<div><span>' + 2 + '</span></div>');
+        while (cartas.length > 0) {
+            x = parseInt((Math.random()+0.01) * 3);
+            for (carta of cartas) {
+                if (carta == x) {
+                    $('#cajaJuego').append('<div><span>' + x + '</span></div>');
+                    cartas.splice(cartas.indexOf(x),1);  // Elimina del array
+                }
+            }
         }
 
         // Añade el evento click a cada div
