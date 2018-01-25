@@ -7,7 +7,9 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Crea un div con las siguientes dimensiones:400x400. Dentro de éste otro (50x50). Detrás del primer div contener añadir 5 botones con las siguientes funcionalidades:
+Crea un div con las siguientes dimensiones:400x400. Dentro de éste otro (50x50).
+
+Detrás del primer div contener añadir 5 botones con las siguientes funcionalidades:
 
     a) Empezar: Comienza la animación
     b) Parar: Para la animación actual pero continúa con el resto.
@@ -18,14 +20,32 @@ Crea un div con las siguientes dimensiones:400x400. Dentro de éste otro (50x50)
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Ejercicios DOM Básicos</title>
+    <title>Controles de Caja dentro de Caja</title>
     <style type="text/css">
+        #cajaPrincipal {
+            width: 400px;
+            height: 400px;
+            border: 10px solid #000000;
+        }
 
+        #pieza {
+            width: 50px;
+            height: 50px;
+            background-color: #ff0000;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-
+        $('body').append('<div id="cajaPrincipal">' +
+                             '<div id="pieza"></div>' +
+                         '</div>' +
+                         '<input type="button" value="Empezar" />' +
+                         '<input type="button" value="Parar" />' +
+                         '<input type="button" value="Parar Todo" />' +
+                         '<input type="button" value="Parar y Saltar" />' +
+                         '<input type="button" value="Parar y Detener" />'
+        );
     }
     </script>
 </head>
