@@ -26,26 +26,38 @@ A continuación poner el fondo de las filas impares en verde:
             text-align: center;
             background-color: #319acf;
         }
+
         table {
             margin: auto;
             padding: 0;
             border-collapse: collapse;
         }
+
+        tr {
+            border: 3px solid #000000;
+        }
+
         th {
             font-size: 1.4em;
-            color: #96ff00;
+            color: #ffe600;
             background-color: #000000;
             border: 3px solid #000000;
         }
+        
         td {
             padding: 5px 8px;
             margin: 0;
-            border: 3px solid #000000;
         }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
+    window.onload = function() {
+        // Filas pares en color rojo
+        $('tr:nth-of-type(even)').css('background-color', '#DD0000');
 
+        // Filas impares en color verde
+        $('tr:nth-of-type(odd)').css('background-color', '#00DD00');
+    }
     </script>
 </head>
 
@@ -68,54 +80,41 @@ A continuación poner el fondo de las filas impares en verde:
                 <td>Contenido 3</td>
                 <td>Contenido 4</td>
             </tr>
-        </tbody>
 
-        <tbody>
             <tr>
                 <td>Contenido 1</td>
                 <td>Contenido 2</td>
                 <td>Contenido 3</td>
                 <td>Contenido 4</td>
             </tr>
-        </tbody>
 
-        <tbody>
             <tr>
                 <td>Contenido 1</td>
                 <td>Contenido 2</td>
                 <td>Contenido 3</td>
                 <td>Contenido 4</td>
             </tr>
-        </tbody>
-
-        <tbody>
             <tr>
                 <td>Contenido 1</td>
                 <td>Contenido 2</td>
                 <td>Contenido 3</td>
                 <td>Contenido 4</td>
             </tr>
-        </tbody>
 
-        <tbody>
             <tr>
                 <td>Contenido 1</td>
                 <td>Contenido 2</td>
                 <td>Contenido 3</td>
                 <td>Contenido 4</td>
             </tr>
-        </tbody>
 
-        <tbody>
             <tr>
                 <td>Contenido 1</td>
                 <td>Contenido 2</td>
                 <td>Contenido 3</td>
                 <td>Contenido 4</td>
             </tr>
-        </tbody>
 
-        <tbody>
             <tr>
                 <td>Contenido 1</td>
                 <td>Contenido 2</td>
