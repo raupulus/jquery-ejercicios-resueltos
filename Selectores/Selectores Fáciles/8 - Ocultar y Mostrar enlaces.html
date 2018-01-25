@@ -19,7 +19,28 @@ Debes situar un botón para ocultar el enlace que se abre en una nueva ventana y
     <title>Ocultar y Mostrar enlaces</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    
+    window.onload = function() {
+        // Asigna dirección y abrir en ventana nueva al enlace 1
+        $('a:first').attr({
+            'href': 'http://www.laguialinux.es',
+            'target': '_blank'
+        });
+
+        // Ocultar Enlace 1
+        $('a[target="_blank"]').next('input').on('click', function() {
+            $('a[target="_blank"]').hide();
+        });
+
+        // Asigna dirección al enlace 2
+        $('a:eq(1)').attr({
+            'href': 'http://www.fryntiz.es',
+        });
+
+        // Ocultar Enlace 2
+        $('a:eq(1)').next('input').on('click', function() {
+            $('a:eq(1)').hide();
+        });
+    }
     </script>
 </head>
 
