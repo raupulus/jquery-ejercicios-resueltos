@@ -16,6 +16,9 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
     c) Parar todo: Detiene todas las animaciones de inmediato.
     d) Para y salta a la siguiente: Detiene la animación activa, pero acabándola primero y luego continua el resto.
     e) Parar todo y termina la actual: Detiene las animaciones pero acabando primero la que se encuentra en ejecución.
+    f) Ir al estado final de todas las animaciones
+
+Funcionamiento de stop() → stop(pararTodas,iralfinal)
 -->
 <html lang="es">
 <head>
@@ -51,75 +54,80 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
-        // Variable que almacena si mover o detener
-        var movimiento = false;
-
         // Duración de las transiciones en milisegundos
         var tiempo = 2000;
+        var xyz;
 
         $('body').append('<div id="cajaPrincipal">' +
                              '<div id="pieza"></div>' +
                          '</div>' +
                          '<div id="cajaBotones">' +
                              '<input type="button" value="Empezar" />' +
-                             '<input type="button" value="Parar" />' +
+                             '<input type="button" value="Saltar Animacion" />' +
                              '<input type="button" value="Parar Todo" />' +
                              '<input type="button" value="Parar y Saltar" />' +
                              '<input type="button" value="Parar y Detener" />' +
+                             '<input type="button" value="Ir al Final" />' +
                          '</div>'
         );
 
         /**
-         * Establece la varible de movimiento en falso
+         * Para la animación actual pero continúa con el resto.
          */
-        function parar() {
-            movimiento = false;
-        }
-
-        function parartodo() {
-            // No queda claro funcionalidad.
-        }
-
-        function pararYsaltar() {
-            // No queda claro funcionalidad.
-        }
-
-        function pararYdetener() {
-            // No queda claro funcionalidad.
+        function saltarAnimacion() {
+            $('#pieza').stop(false, false);
         }
 
         /**
-         * Da una vuelta a la pieza sobre la caja.
+         * Detiene todas las animaciones de inmediato.
+         */
+        function parartodo() {
+            $('#pieza').stop(true, false);
+        }
+
+        /**
+         * Detiene la animación activa, pero acabándola primero
+         * y luego continua el resto.
+         */
+        function pararYsaltar() {
+            $('#pieza').stop(false, true);
+        }
+
+        /**
+         * Detiene las animaciones pero acabando primero la
+         * que se encuentra en ejecución.
+         */
+        function pararYdetener() {
+            $('#pieza').stop(true, true);
+        }
+
+        /**
+         * Ir al estado final de todas las animaciones
+         */
+        function irFinal() {
+            $('#pieza').finish();
+        }
+
+        /**
+         * Da una vuelta con la pieza dentro de la caja.
          */
         function mover() {
-            $('#pieza').animate({'margin-left':'350'}, tiempo, 'linear');
-            $('#pieza').animate({'margin-top':'350'}, tiempo, 'linear');
-            $('#pieza').animate({'margin-left':'0'}, tiempo, 'linear');
-            $('#pieza').animate({'margin-top':'0'}, tiempo, 'linear');
+            $('#pieza').animate({'margin-left':'350'}, tiempo, 'linear')
+                       .animate({'margin-top':'350'}, tiempo, 'linear')
+                       .animate({'margin-left':'0'}, tiempo, 'linear')
+                       .animate({'margin-top':'0'}, tiempo, 'linear');
         }
 
         function empezar() {
-            movimiento = true;
-
-            // No consigo realizar el bucle porque se solapan iteraciones
-            // y no encuentro explicación por qué ocurre esto
-            // while (movimiento) {
-            //     mover();
-            // }
-
-            // Solución temporal mientras descubro que ocurre con animate()
-            for (var i = 0; i <= 10; i++) {
-                mover();
-                if (movimiento) {
-                    break;
-                }
-            }
+            mover();
         }
+
         $('input[value="Empezar"]').on('click', empezar);
-        $('input[value="Parar"]').on('click', parar);
+        $('input[value="Saltar Animacion"]').on('click', saltarAnimacion);
         $('input[value="Parar Todo"]').on('click', parartodo);
         $('input[value="Parar y Saltar"]').on('click', pararYsaltar);
         $('input[value="Parar y Detener"]').on('click', pararYdetener);
+        $('input[value="Ir al Final"]').on('click', irFinal);
     }
     </script>
 </head>
