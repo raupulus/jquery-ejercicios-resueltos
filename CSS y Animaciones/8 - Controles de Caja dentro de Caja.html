@@ -23,6 +23,7 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
     <title>Controles de Caja dentro de Caja</title>
     <style type="text/css">
         #cajaPrincipal {
+            margin: auto;
             width: 400px;
             height: 400px;
             border: 10px solid #000000;
@@ -33,6 +34,19 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
             height: 50px;
             background-color: #ff0000;
         }
+
+        #cajaBotones {
+            margin-top: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        #cajaBotones > input {
+            margin: 0 3px;
+            padding: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
@@ -40,11 +54,13 @@ Detrás del primer div contener añadir 5 botones con las siguientes funcionalid
         $('body').append('<div id="cajaPrincipal">' +
                              '<div id="pieza"></div>' +
                          '</div>' +
-                         '<input type="button" value="Empezar" />' +
-                         '<input type="button" value="Parar" />' +
-                         '<input type="button" value="Parar Todo" />' +
-                         '<input type="button" value="Parar y Saltar" />' +
-                         '<input type="button" value="Parar y Detener" />'
+                         '<div id="cajaBotones">' +
+                             '<input type="button" value="Empezar" />' +
+                             '<input type="button" value="Parar" />' +
+                             '<input type="button" value="Parar Todo" />' +
+                             '<input type="button" value="Parar y Saltar" />' +
+                             '<input type="button" value="Parar y Detener" />' +
+                         '</div>'
         );
     }
     </script>
