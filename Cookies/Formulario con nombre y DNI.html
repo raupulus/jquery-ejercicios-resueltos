@@ -56,7 +56,14 @@ Implementar las siguientes funciones:
          * Muestra un prompt() para introducir el nombre de la Cookie a ver
          */
         function ver() {
-
+            var quieroVer = prompt('Introduce el nombre de la cookie');
+            if (quieroVer === '') {
+                alert('No has introducido nada');
+            } else if (Cookies.get(quieroVer) === undefined) {
+                alert('No existe esa Cookie');
+            } else {
+                alert('El valor es → ' + Cookies.get(quieroVer));
+            }
         }
 
         /**
@@ -67,7 +74,7 @@ Implementar las siguientes funciones:
             for (let i of $('input[type="text"]')) {
                 if ($(i).val() !== '') {
                     alert($(i).val());
-                    Cookies.set('nombre', 'valor');
+                    Cookies.set($(i).attr('name'), $(i).val());
                 }
             }
         }
@@ -98,8 +105,8 @@ Implementar las siguientes funciones:
 
 <body>
     <form>
-        Nombre <input type="text" /><br /><br />
-        DNI <input type="text" /><br /><br />
+        Nombre <input type="text" name="nombre" /><br /><br />
+        DNI <input type="text" name="dni" /><br /><br />
         <input type="button" value="Guardar" />
         <input type="button" value="Ver Cookie" />
         <input type="button" value="Ver Todas" />
