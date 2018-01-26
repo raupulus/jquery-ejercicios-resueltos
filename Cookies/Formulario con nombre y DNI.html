@@ -35,7 +35,13 @@ Implementar las siguientes funciones:
          * Elimina todas las cookies
          */
         function eliminarTodas() {
+            Cookies.remove('nombre');
+            Cookies.remove('dni');
 
+            if ((Cookies.get('nombre') === undefined) &&
+               (Cookies.get('dni') === undefined)) {
+                alert('Se han borrado las cookies');
+            }
         }
 
         /**
