@@ -34,6 +34,17 @@ Valida los siguientes campos:
     <script src="./jquery.validate.additional.js"></script>
     <script>
     window.onload = function() {
+        $("form:first").validate({
+                 rules: {
+                     "dni": { required:true, lettersonly:true },
+                 },
+                 messages: {
+                     "dni": { required:"El DNI es obligatorio"},
+                 },
+                 submitHandler: function(form){
+                     alert("Los datos son correctos");
+                 }
+             });
 
     }
     </script>
