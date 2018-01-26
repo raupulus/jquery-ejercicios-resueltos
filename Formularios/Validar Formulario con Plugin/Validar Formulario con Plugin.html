@@ -40,43 +40,50 @@ Valida los siguientes campos:
 </head>
 
 <body>
+    <h1>Validar Formulario con Plugin JQuery Validate</h1>
+
     <div>
         <form>
             <fieldset>
                 <legend>Introduce los datos y pulsa Comprobar</legend>
 
                 <label for="dni">DNI:</label>
-                <input id="dni" type="text" name="dni" pattern="^[0-9]{2}\.[0-9]{3}\.[0-9]{3}-[a-zA-Z]$" required />
+                <input id="dni" type="text" name="dni" />
 
                 <br /><br />
 
                 <label for="nombre">Nombre:</label>
-                <input id="nombre" type="text" name="nombre" size="40" maxlength="150" pattern="^[a-zA-Z]+[ ][a-zA-Z]+([ ][a-zA-Z]+){0,2}$" required/>
+                <input id="nombre" type="text" name="nombre" />
 
                 <br /><br />
 
                 <label for="edad">Fecha de Nacimiento:</label>
-                <input id="edad" type="date" name="edad" required />
+                <input id="edad" type="date" name="edad" />
 
                 <br /><br />
 
                 <label for="hijos">Número de hijos</label>
-                <input id="hijos" type="number" name="hijos" min="0" max="10" required />
+                <input id="hijos" type="number" name="hijos" />
+
+                <br /><br />
+
+                <label for="telefono">Teléfono:</label>
+                <input id="telefono" type="text" name="telefono" />
 
                 <br /><br />
 
                 <label for="email">Email:</label>
-                <input id="email" type="email" name="email" size="40" maxlength="132" pattern="^[a-zA-Z0-9_-]{2,63}@[a-zA-Z0-9]{2,63}[\.][a-z]{2,4}$" required />
+                <input id="email" type="email" name="email" />
 
                 <br /><br />
 
                 <label for="sitioweb">Página WEB:</label>
-                <input id="sitioweb" type="url" name="sitioweb" pattern="^(http(s)?:\/\/)+([w]{3}[\.])+[a-z0-9]+[\.][a-z]{2,3}$" />
+                <input id="sitioweb" type="url" name="sitioweb" />
 
                 <br /><br />
 
                 <label for="passwd">Contraseña:</label>
-                <input id="passwd" type="password" name="passwd" pattern="^.{8,10}$" required />
+                <input id="passwd" type="password" name="passwd" />
             </fieldset>
 
             <button type="button">Comprobar</button>
