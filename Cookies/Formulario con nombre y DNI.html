@@ -49,7 +49,9 @@ Implementar las siguientes funciones:
          * Muestra los valores de todas las cookies
          */
         function verTodas() {
-
+            var cookies = 'El nombre es → ' + Cookies.get('nombre');
+            cookies += '\nEl DNI es → ' + Cookies.get('dni');
+            alert(cookies);
         }
 
         /**
@@ -73,7 +75,6 @@ Implementar las siguientes funciones:
         function guardar() {
             for (let i of $('input[type="text"]')) {
                 if ($(i).val() !== '') {
-                    alert($(i).val());
                     Cookies.set($(i).attr('name'), $(i).val());
                 }
             }
