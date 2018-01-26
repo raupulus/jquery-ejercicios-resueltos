@@ -35,17 +35,36 @@ Valida los siguientes campos:
     <script>
     window.onload = function() {
         $("form:first").validate({
-                 rules: {
-                     "dni": { required:true, lettersonly:true },
-                 },
-                 messages: {
-                     "dni": { required:"El DNI es obligatorio"},
-                 },
-                 submitHandler: function(form){
-                     alert("Los datos son correctos");
-                 }
-             });
-
+            rules: {
+                'dni': {required:true, rangelength:[9,9]},
+                'nombre': {required:true, lettersonly:true},
+                'edad': {dateITA:true},
+                'hijos': {required:true},
+                'telefono': {required:true, digits:true},
+                'email': {required:true, email:true},
+                'sitioweb': {url:true},
+                'passwd': {required:true, minlength:8}
+            },
+            messages: {
+                'dni': {required:'DNI requerido',
+                        rangelength:'Tiene que ser una longitud de 9'},
+                'nombre': {required:'Introduce el nombre',
+                           lettersonly:'Sólo se admiten letras en el nombre'},
+                'edad': {dateITA:'El formato es dd/mm/yyyy'},
+                'hijos': {required:'Introduce la cantidad de hijos',
+                          digits:'Solo puede ser numérico'},
+                'telefono': {required: 'Introduce el email',
+                             digits:'Solo puedes introducir números'},
+                'email': {required:'Introduce tu E-Mail',
+                          email:'Formato correcto email@servidor.ext' },
+                'sitioweb': 'Formato https://www.fryntiz.es',
+                'passwd': {required:'Debes aceptar las condiciones',
+                           minlength:'Mínimo 8 carácteres'}
+            },
+            submitHandler: function(form) {
+                alert('Los datos son correctos');
+            }
+        });
     }
     </script>
 </head>
@@ -54,7 +73,7 @@ Valida los siguientes campos:
     <h1>Validar Formulario con Plugin JQuery Validate</h1>
 
     <div>
-        <form>
+        <form id="form1" name="form1" method="post" action="#">
             <fieldset>
                 <legend>Introduce los datos y pulsa Comprobar</legend>
 
@@ -69,7 +88,7 @@ Valida los siguientes campos:
                 <br /><br />
 
                 <label for="edad">Fecha de Nacimiento:</label>
-                <input id="edad" type="date" name="edad" />
+                <input id="edad" type="text" name="edad" />
 
                 <br /><br />
 
@@ -97,7 +116,7 @@ Valida los siguientes campos:
                 <input id="passwd" type="password" name="passwd" />
             </fieldset>
 
-            <button type="button">Comprobar</button>
+            <input type="submit" value="Comprobar" />
         </form>
     </div>
 
