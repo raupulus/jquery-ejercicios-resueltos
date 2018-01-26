@@ -42,15 +42,30 @@ Implementar las siguientes funciones:
          * Pide con prompt() la cookie que vas a eliminar
          */
         function eliminar() {
-
+            var quieroBorrar = prompt('Introduce el nombre de la cookie');
+            if (quieroBorrar === '') {
+                alert('No has introducido nada');
+            } else {
+                Cookies.remove(quieroBorrar);
+                if (Cookies.get(quieroBorrar) === undefined) {
+                    alert('Se ha borrado la cookie');
+                }
+            }
         }
 
         /**
          * Muestra los valores de todas las cookies
          */
         function verTodas() {
-            var cookies = 'El nombre es → ' + Cookies.get('nombre');
-            cookies += '\nEl DNI es → ' + Cookies.get('dni');
+            var cookies = '';
+            if (Cookies.get('nombre') !== undefined) {
+                cookies += 'Cookie nombre → ' + Cookies.get('nombre');
+            }
+
+            if (Cookies.get('dni') !== undefined) {
+                cookies += '\nCookie DNI → ' + Cookies.get('dni');
+            }
+
             alert(cookies);
         }
 
