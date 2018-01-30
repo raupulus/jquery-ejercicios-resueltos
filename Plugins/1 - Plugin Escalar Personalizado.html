@@ -18,19 +18,18 @@ el tamaño mínimo y máximo de la imagen.
 
     </style>
     <script src="./jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="jquery.escalar.js"></script>
-    <script type="text/javascript" src="jquery.escalarOpciones.js"></script>
-    <script type="text/javascript" src="jquery.efectos.js"></script>
+    <script type="text/javascript" src="./escalar/jquery.escalar.js"></script>
+    <script type="text/javascript" src="./escalar/jquery.escalarOpciones.js"></script>
+    <script type="text/javascript" src="./escalar/jquery.efectos.js"></script>
     <script type="text/javascript">
         $(document).ready(main);
 
         function main() {
 
-            $('#capa').efectos('escalar');
+            //$('#capa').efectos('escalar');
             //$('#capa').efectos('difuminar');
             //$('#capa').escalar();
             //$('#capa').difuminar();
-
 
             var minimo = prompt('Introduzca el tamaño mínimo');
             var maximo = prompt('Introduzca el tamaño máximo');
@@ -40,7 +39,6 @@ el tamaño mínimo y máximo de la imagen.
             }
 
             $('#capa').escalar(op);
-
         }
     </script>
 </head>
