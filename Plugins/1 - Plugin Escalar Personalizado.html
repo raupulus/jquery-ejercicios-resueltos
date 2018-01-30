@@ -18,14 +18,38 @@ el tamaño mínimo y máximo de la imagen.
 
     </style>
     <script src="./jquery-3.2.1.js"></script>
-    <script>
-    window.onload = function() {
+    <script type="text/javascript" src="jquery.escalar.js"></script>
+    <script type="text/javascript" src="jquery.escalarOpciones.js"></script>
+    <script type="text/javascript" src="jquery.efectos.js"></script>
+    <script type="text/javascript">
+        $(document).ready(main);
 
-    }
+        function main() {
+
+            $('#capa').efectos('escalar');
+            //$('#capa').efectos('difuminar');
+            //$('#capa').escalar();
+            //$('#capa').difuminar();
+
+
+            var minimo = prompt('Introduzca el tamaño mínimo');
+            var maximo = prompt('Introduzca el tamaño máximo');
+            var op ={
+                min: minimo,
+                max:maximo
+            }
+
+            $('#capa').escalar(op);
+
+        }
     </script>
 </head>
 
 <body>
     <h1>Plugin Escalar Personalizado</h1>
+
+    <div id="capa">
+        <img src="./images/jquery_logo.png" alt="jQuery Logo" />
+    </div>
 </body>
 </html>
