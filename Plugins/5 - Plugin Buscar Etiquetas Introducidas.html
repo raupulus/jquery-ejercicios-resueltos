@@ -20,41 +20,44 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-        /**
-         * Plugin que cuenta elemento pasado
-         */
-        (function($){
+        (function($) {
+            /**
+             * Plugin que cuenta elemento pasado
+             * @param  {Array} opciones Recibe un array con los elementos
+             */
             $.contar = function(opciones) {
+                // Creo la configuración por defecto que será sobreescrita
                 var configuracion = {
-                    e1: 'div',
+                    elementos: ['div']
                 };
 
+                // Extiendo la configuración por defecto con la pasada
                 $.extend(configuracion, opciones);
 
-                //alert(configuracion);
-
-                $(configuracion).each(function() {
-                    //document.write(this);
-                    alert(this);
+                // Recorre el array elementos y añade el mensaje y total
+                var mensaje = '';
+                $(configuracion.elementos).each(function() {
+                    mensaje += '<br />El elemento ' + this +
+                        ' se encuentra → ' + this.length +
+                        ' veces en la página';
                 });
 
                 // Engancha al final del documento un párrafo con los resultados
-                // $('body').append(
-                //     '<p>' +
-                //     'El total de etiquetas div es → ' + n_div + '<br />' +
-                //     '</p>'
-                // );
+                $('body').append(
+                    '<p>' +
+                    mensaje +
+                    '</p>'
+                );
                 return this;
             };
         })(jQuery);
     </script>
     <script>
     window.onload = function() {
-        $.contar();
-        // $.contar({
-        //     e1: 'p',
-        //     e2: 'div',
-        // })
+        //$.contar();
+        $.contar({
+            elementos: ['p', 'div', 'li'],
+        })
     }
     </script>
 </head>
