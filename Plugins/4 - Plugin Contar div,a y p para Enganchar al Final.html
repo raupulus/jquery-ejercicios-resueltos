@@ -7,7 +7,7 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Desarrollar un plugin que devuelva en un párrafo y sea enganchado en el documento al final del documento con la cantidad de etiquetas:
+Desarrollar un plugin que creará un párrafo al final del documentodevuelva en un párrafo y sea enganchado en el documento al final del documento con la cantidad de etiquetas:
     - div
     - enlaces
     - párrafos
@@ -22,6 +22,27 @@ De todo el documento al completo.
 
     </style>
     <script src="./jquery-3.2.1.js"></script>
+    <script>
+        /**
+         * Plugin que cuenta etiquetas div,a y párrafos
+         */
+        (function($){
+            $.contar = function() {
+                var n_div = $('div').length;
+                var n_a = $('a').length;
+                var n_p = $('p').length;
+                // Engancha al final del documento un párrafo
+                $('body').append(
+                    '<p>' +
+                    'El total de etiquetas div es → ' + n_div + '<br />' +
+                    'El total de etiquetas a es → ' + n_a + '<br />' +
+                    'El total de etiquetas p es → ' + n_p +
+                    '</p>'
+                );
+                return this;
+            };
+        })(jQuery);
+    </script>
     <script>
     window.onload = function() {
 
