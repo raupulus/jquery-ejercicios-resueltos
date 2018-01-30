@@ -27,7 +27,7 @@ párrafo al final del documento html.
                     contador++;
                 });
 
-                alert('El total de etiquetas es → ' + contador);
+                $('body').append('<p>El total de etiquetas es → ' + contador + '</p>');
                 return this;
             };
         })(jQuery);
