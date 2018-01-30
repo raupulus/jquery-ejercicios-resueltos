@@ -24,10 +24,10 @@ aparece una determinada etiqueta html.
             $.fn.contar = function() {
                 var contador = 0;
                 this.each(function() {
-                    contador += 1;
+                    contador++;
                 });
 
-                alert('El total de etiquetas es → ' + this.length);
+                alert('El total de etiquetas es → ' + contador);
                 return this;
             };
         })(jQuery);
