@@ -19,13 +19,42 @@ párrafo al final del documento html.
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
+        // Contar etiquetas
+        (function($){
+            $.fn.contar = function() {
+                var contador = 0;
+                this.each(function() {
+                    contador++;
+                });
 
+                alert('El total de etiquetas es → ' + contador);
+                return this;
+            };
+        })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        $('div').contar();
     }
     </script>
 </head>
 
 <body>
     <h1>Plugin Contar Elementos y Enganchar al Final</h1>
+    <div>div 1</div>
+    <div>div 2</div>
+    <div>div 3</div>
+    <div>div 4</div>
+    <p>p 1</p>
+    <p>p 2</p>
+    <p>p 3</p>
+    <ul>
+        <li>Lista 1</li>
+        <li>Lista 2</li>
+        <li>Lista 3</li>
+        <li>Lista 4</li>
+        <li>Lista 5</li>
+        <li>Lista 6</li>
+    </ul>
 </body>
 </html>
