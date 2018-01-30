@@ -21,22 +21,20 @@ aparece una determinada etiqueta html.
     <script>
         // Contar etiquetas
         (function($){
-            var contador = 0;
-
-            $.fn.escalar = function() {
+            $.fn.contar = function() {
+                var contador = 0;
                 this.each(function() {
                     contador += 1;
                 });
+
+                alert('El total de etiquetas es → ' + this.length);
+                return this;
             };
-
-            alert('El total de etiquetas es → ' + contador);
-            return this;
         })(jQuery);
-
     </script>
     <script>
     window.onload = function() {
-
+        $('div').contar();
     }
     </script>
 </head>
