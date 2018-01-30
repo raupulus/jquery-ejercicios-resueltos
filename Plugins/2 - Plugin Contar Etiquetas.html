@@ -19,6 +19,22 @@ aparece una determinada etiqueta html.
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
+        // Contar etiquetas
+        (function($){
+            var contador = 0;
+
+            $.fn.escalar = function() {
+                this.each(function() {
+                    contador += 1;
+                });
+            };
+
+            alert('El total de etiquetas es → ' + contador);
+            return this;
+        })(jQuery);
+
+    </script>
+    <script>
     window.onload = function() {
 
     }
