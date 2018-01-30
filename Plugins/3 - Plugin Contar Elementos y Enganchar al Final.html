@@ -19,14 +19,21 @@ párrafo al final del documento html.
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-        // Contar etiquetas
+        // Plugin que cuenta etiquetas y añade un párrafo al final
         (function($){
             $.fn.contar = function() {
+                // LLeva la cuenta de apariciones
                 var contador = 0;
+
+                // Recorre cada elemento y por iteración suma 1 al contador
                 this.each(function() {
                     contador++;
                 });
 
+                // Todos los pasos anteriores se resumirían en:
+                //var elementos = this.length
+
+                // Engancha al final del documento un párrafo
                 $('body').append('<p>El total de etiquetas es → ' + contador + '</p>');
                 return this;
             };
