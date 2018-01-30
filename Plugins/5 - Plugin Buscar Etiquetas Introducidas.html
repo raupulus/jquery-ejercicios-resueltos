@@ -20,8 +20,41 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
+        /**
+         * Plugin que cuenta elemento pasado
+         */
+        (function($){
+            $.contar = function(opciones) {
+                var configuracion = {
+                    e1: 'div',
+                };
 
+                $.extend(configuracion, opciones);
+
+                //alert(configuracion);
+
+                $(configuracion).each(function() {
+                    //document.write(this);
+                    alert(this);
+                });
+
+                // Engancha al final del documento un párrafo con los resultados
+                // $('body').append(
+                //     '<p>' +
+                //     'El total de etiquetas div es → ' + n_div + '<br />' +
+                //     '</p>'
+                // );
+                return this;
+            };
+        })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        $.contar();
+        // $.contar({
+        //     e1: 'p',
+        //     e2: 'div',
+        // })
     }
     </script>
 </head>
