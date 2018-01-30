@@ -23,12 +23,12 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
         (function($) {
             /**
              * Plugin que cuenta elemento pasado
-             * @param  {Array} opciones Recibe un array con los elementos
+             * @param  {Array} opciones Recibe un array con objetos selectores
              */
             $.contar = function(opciones) {
                 // Creo la configuración por defecto que será sobreescrita
                 var configuracion = {
-                    elementos: ['div']
+                    elementos: [$('div')]
                 };
 
                 // Extiendo la configuración por defecto con la pasada
@@ -37,10 +37,8 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
                 // Recorre el array elementos y añade el mensaje y total
                 var mensaje = '';
                 $(configuracion.elementos).each(function() {
-                    // TOFIX → En esta situación "this" es una cadena
-                    // Intentar seleccionar todos los elementos a partir de esa
-                    // cadena o usar otro tipo de iteración
-                    mensaje += '<br />El elemento ' + this +
+                    // Añade al mensaje final los datos del elemento actual
+                    mensaje += '<br />El elemento ' + this.prop('tagName') +
                         ' se encuentra → ' + this.length +
                         ' veces en la página';
                 });
@@ -59,8 +57,8 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
     window.onload = function() {
         //$.contar();
         $.contar({
-            //elementos: [$('p'), $('div'), $('li')],
-            elementos: ['p', 'div', 'li'],
+            elementos: [$('p'), $('div'), $('li')]
+            //elementos: ['p', 'div', 'li']
         })
     }
     </script>
