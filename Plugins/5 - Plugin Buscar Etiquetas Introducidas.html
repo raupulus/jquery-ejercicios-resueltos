@@ -37,6 +37,9 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
                 // Recorre el array elementos y añade el mensaje y total
                 var mensaje = '';
                 $(configuracion.elementos).each(function() {
+                    // TOFIX → En esta situación "this" es una cadena
+                    // Intentar seleccionar todos los elementos a partir de esa
+                    // cadena o usar otro tipo de iteración
                     mensaje += '<br />El elemento ' + this +
                         ' se encuentra → ' + this.length +
                         ' veces en la página';
@@ -56,6 +59,7 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
     window.onload = function() {
         //$.contar();
         $.contar({
+            //elementos: [$('p'), $('div'), $('li')],
             elementos: ['p', 'div', 'li'],
         })
     }
