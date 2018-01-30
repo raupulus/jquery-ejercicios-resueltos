@@ -28,10 +28,12 @@ De todo el documento al completo.
          */
         (function($){
             $.contar = function() {
+                // Variables que calculan la longitudo de los elementos
                 var n_div = $('div').length;
                 var n_a = $('a').length;
                 var n_p = $('p').length;
-                // Engancha al final del documento un párrafo
+
+                // Engancha al final del documento un párrafo con los resultados
                 $('body').append(
                     '<p>' +
                     'El total de etiquetas div es → ' + n_div + '<br />' +
