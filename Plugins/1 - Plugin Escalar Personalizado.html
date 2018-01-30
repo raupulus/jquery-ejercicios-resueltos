@@ -25,7 +25,6 @@ el tamaño mínimo y máximo de la imagen.
         $(document).ready(main);
 
         function main() {
-
             //$('#capa').efectos('escalar');
             //$('#capa').efectos('difuminar');
             //$('#capa').escalar();
@@ -33,9 +32,9 @@ el tamaño mínimo y máximo de la imagen.
 
             var minimo = prompt('Introduzca el tamaño mínimo');
             var maximo = prompt('Introduzca el tamaño máximo');
-            var op ={
+            var op = {
                 min: minimo,
-                max:maximo
+                max: maximo
             }
 
             $('#capa').escalar(op);
