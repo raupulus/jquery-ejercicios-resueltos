@@ -24,8 +24,30 @@ El usuario podrá indicar:
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
+    (function($) {
+        $.fn.menuDesplegable = function(opciones) {
+            var configuracion = {
+                color1: 'azul',
+                color2: 'blanco',
+                alinear: 'center',
+                velocidad: 'slow',
+                ancho: '300px'
+            };
 
+            $.extend(configuracion, opciones);
+
+
+            $(this).each(function() {
+
+            });
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        $('#mimenu').menuDesplegable();
     }
     </script>
 </head>
@@ -33,7 +55,7 @@ El usuario podrá indicar:
 <body>
     <h1>Plugin Gestionar Menú</h1>
 
-    <nav>
+    <nav id="mimenu">
         <div>
             <div>Inicio</div>
         </div>
