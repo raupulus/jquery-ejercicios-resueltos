@@ -29,8 +29,8 @@ El usuario podrá indicar:
     (function($) {
         $.fn.menuDesplegable = function(opciones) {
             var configuracion = {
-                color1: 'azul',
-                color2: 'blanco',
+                color1: '#ffffff',
+                color2: '#0000ff',
                 alinear: 'center',
                 velocidad: 'slow',
                 ancho: '300px'
@@ -48,13 +48,16 @@ El usuario podrá indicar:
             // Todos los enlaces
             this.find('a').css({
                 'text-decoration' : 'none',
-                'color' : '#000000'
+                'color' : '#000000',
             });
 
             // Los bloques <div> dentro de otro <div>
-            this.children('div').children('div').css({
-                //'visibility' : 'hidden',
+            this.children('div').children('div').next().css({
+                'display' : 'none',
             });
+
+            // Añade evento a los enlaces
+
             return this;
         };
     })(jQuery);
