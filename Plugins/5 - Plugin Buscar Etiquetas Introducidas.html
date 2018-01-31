@@ -56,10 +56,13 @@ En el caso de que ninguna sea indicada se buscarán solo las de tipo div.
     <script>
     window.onload = function() {
         //$.contar();
+        // $.contar({
+        //     elementos: [$('p'), $('div'), $('li')]
+        //     //elementos: ['p', 'div', 'li']
+        // })
         $.contar({
-            elementos: [$('p'), $('div'), $('li')]
-            //elementos: ['p', 'div', 'li']
-        })
+            elementos: [$(prompt('Introduce la etiqueta a buscar'))]
+        });
     }
     </script>
 </head>
