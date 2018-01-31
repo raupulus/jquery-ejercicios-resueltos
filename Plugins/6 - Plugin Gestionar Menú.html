@@ -33,7 +33,7 @@ El usuario podrá indicar:
                 color2: '#0000ff',
                 alinear: 'center',
                 velocidad: 'slow',
-                ancho: '300px'
+                ancho: '300px' // cada bloque de menú
             };
 
             $.extend(configuracion, opciones);
@@ -56,7 +56,15 @@ El usuario podrá indicar:
                 'display' : 'none',
             });
 
-            // Añade evento a los enlaces
+            // Añade evento a los div
+            this.children('div').hover(
+                function() {
+                    $(this).children('div').last().slideDown(configuracion.velocidad);
+                },
+                function() {
+                    $(this).children('div').last().slideUp(configuracion.velocidad);
+                }
+            )
 
             return this;
         };
