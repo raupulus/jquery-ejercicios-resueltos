@@ -29,12 +29,12 @@ El usuario podrá indicar:
     (function($) {
         $.fn.menuDesplegable = function(opciones) {
             var configuracion = {
-                color1: '#bbbbbb',
-                color2: '#0000ff',
-                color3: '#ff0000',
-                alinear: 'rigth',
-                velocidad: 'slow',
-                ancho: '150px' // cada bloque de menú
+                color1: '#bbbbbb',  // Color de texto
+                color2: '#0000ff',  // Color de fondo
+                color3: '#ff0000',  // Color de selección
+                alinear: 'rigth',   // Alineación del texto en el menú
+                velocidad: 'slow',  // Velocidad de la animación
+                ancho: '150px'      // Ancho de cada bloque en el menú
             };
 
             $.extend(configuracion, opciones);
