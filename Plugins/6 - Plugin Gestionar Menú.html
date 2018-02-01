@@ -27,6 +27,14 @@ El usuario podrá indicar:
     <script src="./jquery-3.2.1.js"></script>
     <script>
     (function($) {
+        /**
+         * Este plugin se llama sobre un menú de navegación y le aplica los
+         * colores y formatos pasados através de un objeto de configuración
+         * en la llamada del mismo.
+         * Oculta los subelementos para mostrarlos cuando pasamos el ratón
+         * @param  {Object} opciones Recibe un objeto con la configuración
+         * @return {this}            Devuelve el mismo elemento que lo llama
+         */
         $.fn.menuDesplegable = function(opciones) {
             var configuracion = {
                 color1: '#bbbbbb',  // Color de texto
@@ -37,6 +45,8 @@ El usuario podrá indicar:
                 ancho: '150px'      // Ancho de cada bloque en el menú
             };
 
+            // Reemplaza los valores introducido por el usuario en la
+            // configuracion establecida por defecto.
             $.extend(configuracion, opciones);
 
             // Los bloques <div> directamente hijos del menú
@@ -131,6 +141,7 @@ El usuario podrá indicar:
     </script>
     <script>
     window.onload = function() {
+        // Llamada al plugin sin parámetros
         //$('#mimenu').menuDesplegable();
 
         // LLamada al plugin pasándole parámetros
