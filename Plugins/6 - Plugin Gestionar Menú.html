@@ -29,11 +29,11 @@ El usuario podrá indicar:
     (function($) {
         $.fn.menuDesplegable = function(opciones) {
             var configuracion = {
-                color1: '#ffffff',
+                color1: '#bbbbbb',
                 color2: '#0000ff',
-                alinear: 'center',
+                alinear: 'rigth',
                 velocidad: 'slow',
-                ancho: '300px' // cada bloque de menú
+                ancho: '150px' // cada bloque de menú
             };
 
             $.extend(configuracion, opciones);
@@ -43,6 +43,8 @@ El usuario podrá indicar:
                 'float' : 'left',
                 'color' : configuracion.color1,
                 'background-color' : configuracion.color2,
+                'width' : configuracion.ancho,
+                'text-align' : configuracion.alinear,
             });
 
             // Todos los enlaces
@@ -51,18 +53,48 @@ El usuario podrá indicar:
                 'color' : '#000000',
             });
 
-            // Los bloques <div> dentro de otro <div>
+            // Los segundos bloques <div> dentro de otro <div> hijo del menú
             this.children('div').children('div').next().css({
                 'display' : 'none',
             });
 
-            // Añade evento a los div
+            // Añade evento al contenedor principal de cada menú
             this.children('div').hover(
-                function() {
-                    $(this).children('div').last().slideDown(configuracion.velocidad);
+                function() {  // Función de mousein
+                    var bloque = $(this).children('div').next();
+
+                    // Estilos del bloque padre (contenedor <div>)
+                    $(this).css({
+                        'color' : configuracion.color2,
+                        'background-color' : configuracion.color1,
+                    });
+
+                    // Animación para desplegar elemento
+                    bloque.slideDown(configuracion.velocidad);
+
+                    // Estilos para el bloque hijo
+                    bloque.css({
+                        'color' : configuracion.color2,
+                        'background-color' : configuracion.color1,
+                    });
                 },
-                function() {
-                    $(this).children('div').last().slideUp(configuracion.velocidad);
+                function() {  // Función de mouseout
+                    var bloque = $(this).children('div').next();
+
+                    // Estilos del bloque padre (contenedor <div>)
+                    $(this).css({
+                        'color' : configuracion.color1,
+                        'background-color' : configuracion.color2,
+                    });
+
+                    // Animación para desplegar elemento
+                    bloque.slideUp(configuracion.velocidad);
+
+                    // Estilos para el bloque hijo
+                    bloque.css({
+                        'color' : configuracion.color1,
+                        'background-color' : configuracion.color2,
+                    });
                 }
             )
 
@@ -72,7 +104,16 @@ El usuario podrá indicar:
     </script>
     <script>
     window.onload = function() {
-        $('#mimenu').menuDesplegable();
+        //$('#mimenu').menuDesplegable();
+
+        // LLamada al plugin pasándole parámetros
+        $('#mimenu').menuDesplegable({
+            color1: '#cc6633',
+            color2: '#33cc66',
+            alinear: 'center',
+            velocidad: 'slow',
+            ancho: '200px',
+        });
     }
     </script>
 </head>
