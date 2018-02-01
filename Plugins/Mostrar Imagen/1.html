@@ -34,14 +34,7 @@ Desarrolla dos funciones, una para cada tipo de información.
     <script src="./jquery-3.2.1.js"></script>
     <script>
     (function($) {
-        $.fn.muestrainfo = function(opciones) {
-            var configuracion = {
-                imagen: 'asd',
-                tiempo: 'malo',
-            };
-
-            $.extend(configuracion, opciones);
-
+        $.fn.muestrainfo = function() {
             $(this).children('li').each(function() {
                 var boton = $(this).find('input[type="button"]');
                 var resultado = $(this).find('.results');
