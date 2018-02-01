@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Desarrollar un plugin que permita gestionar menús.
+
+El usuario podrá indicar:
+    - Dos colores (opción principal y secundaria)
+    - Alineación del texto
+    - Ancho de cada bloque
+    - Velocidad de aparición.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Plugin Gestionar Menú</title>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    (function($) {
+        /**
+         * Este plugin se llama sobre un menú de navegación y le aplica los
+         * colores y formatos pasados através de un objeto de configuración
+         * en la llamada del mismo.
+         * Oculta los subelementos para mostrarlos cuando pasamos el ratón
+         * @param  {Object} opciones Recibe un objeto con la configuración
+         * @return {this}            Devuelve el mismo elemento que lo llama
+         */
+        $.fn.menuDesplegable = function(opciones) {
+            var configuracion = {
+                color1: '#bbbbbb',  // Color de texto
+                color2: '#0000ff',  // Color de fondo
+                color3: '#ff0000',  // Color de selección
+                alinear: 'rigth',   // Alineación del texto en el menú
+                velocidad: 'slow',  // Velocidad de la animación
+                ancho: '150px'      // Ancho de cada bloque en el menú
+            };
+
+            // Reemplaza los valores introducido por el usuario en la
+            // configuracion establecida por defecto.
+            $.extend(configuracion, opciones);
+
+            // Los bloques <div> directamente hijos del menú
+            this.children('div').css({
+                'float' : 'left',
+                'color' : configuracion.color1,
+                'background-color' : configuracion.color2,
+                'width' : configuracion.ancho,
+                'text-align' : configuracion.alinear,
+            });
+
+            // Todos los enlaces
+            this.find('a').css({
+                'text-decoration' : 'none',
+                'color' : '#000000',
+            });
+
+            // Los segundos bloques <div> dentro de otro <div> hijo del menú
+            this.children('div').children('div').next().css({
+                'display' : 'none',
+            });
+
+            // Añade evento al contenedor principal de cada menú
+            this.children('div').hover(
+                function() {  // Función de mousein
+                    var bloque = $(this).children('div').next();
+
+                    // Estilos del bloque padre (contenedor <div>)
+                    $(this).css({
+                        'color' : configuracion.color2,
+                        'background-color' : configuracion.color1,
+                    });
+
+                    // Animación para desplegar elemento
+                    bloque.slideDown(configuracion.velocidad);
+
+                    // Estilos para el bloque hijo
+                    bloque.css({
+                        'color' : configuracion.color2,
+                        'background-color' : configuracion.color1,
+                    });
+                },
+                function() {  // Función de mouseout
+                    var bloque = $(this).children('div').next();
+
+                    // Estilos del bloque padre (contenedor <div>)
+                    $(this).css({
+                        'color' : configuracion.color1,
+                        'background-color' : configuracion.color2,
+                    });
+
+                    // Animación para desplegar elemento
+                    bloque.slideUp(configuracion.velocidad);
+
+                    // Estilos para el bloque hijo
+                    bloque.css({
+                        'color' : configuracion.color1,
+                        'background-color' : configuracion.color2,
+                    });
+                }
+            );
+
+            // Estilos para enlaces cuando paso ratón por encima
+            this.find('a').hover(
+                function() {
+                    // Bloque padre del enlace cambia el color de fondo
+                    $(this).parent().css({
+                        'background-color' : configuracion.color3,
+                    });
+
+                    // Cambia el color del texto del enlace
+                    $(this).css({
+                        'color' : configuracion.color2,
+                    });
+                },
+                function() {
+                    // Bloque padre del enlace cambia el color de fondo
+                    $(this).parent().css({
+                        'background-color' : configuracion.color1,
+                    });
+
+                    // Cambia el color del texto del enlace
+                    $(this).css({
+                        'color' : '#000000',
+                    });
+                }
+            );
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        // Llamada al plugin sin parámetros
+        //$('#mimenu').menuDesplegable();
+
+        // LLamada al plugin pasándole parámetros
+        $('#mimenu').menuDesplegable({
+            color1: '#cc6633',   // Color de texto
+            color2: '#33cc66',   // Color de fondo
+            color3: '#6633cc',   // Color de selección
+            alinear: 'center',   // Alineación del texto en el menú
+            velocidad: 'hight',  // Velocidad de la animación
+            ancho: '200px',      // Ancho de cada bloque en el menú
+        });
+    }
+    </script>
+</head>
+
+<body>
+    <h1>Plugin Gestionar Menú</h1>
+
+    <nav id="mimenu">
+        <div>
+            <div>Inicio</div>
+        </div>
+
+        <div>
+            <div>Sobre nosotros</div>
+            <div>
+                <div><a href="#">Información</a></div>
+                <div><a href="#">Contacto</a></div>
+            </div>
+        </div>
+
+        <div>
+            <div>Proyectos</div>
+            <div>
+                <div><a href="#">Diseño Web</a></div>
+                <div><a href="#">Aplicaciones web</a></div>
+                <div><a href="#">Branding</a></div>
+            </div>
+        </div>
+
+        <div>
+            <div>FAQs</div>
+        </div>
+    </nav>
+</body>
+</html>
