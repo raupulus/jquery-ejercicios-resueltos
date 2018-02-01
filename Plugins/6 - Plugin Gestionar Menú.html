@@ -31,6 +31,7 @@ El usuario podrá indicar:
             var configuracion = {
                 color1: '#bbbbbb',
                 color2: '#0000ff',
+                color3: '#ff0000',
                 alinear: 'rigth',
                 velocidad: 'slow',
                 ancho: '150px' // cada bloque de menú
@@ -96,7 +97,33 @@ El usuario podrá indicar:
                         'background-color' : configuracion.color2,
                     });
                 }
-            )
+            );
+
+            // Estilos para enlaces cuando paso ratón por encima
+            this.find('a').hover(
+                function() {
+                    // Bloque padre del enlace cambia el color de fondo
+                    $(this).parent().css({
+                        'background-color' : configuracion.color3,
+                    });
+
+                    // Cambia el color del texto del enlace
+                    $(this).css({
+                        'color' : configuracion.color2,
+                    });
+                },
+                function() {
+                    // Bloque padre del enlace cambia el color de fondo
+                    $(this).parent().css({
+                        'background-color' : configuracion.color1,
+                    });
+
+                    // Cambia el color del texto del enlace
+                    $(this).css({
+                        'color' : '#000000',
+                    });
+                }
+            );
 
             return this;
         };
@@ -108,11 +135,12 @@ El usuario podrá indicar:
 
         // LLamada al plugin pasándole parámetros
         $('#mimenu').menuDesplegable({
-            color1: '#cc6633',
-            color2: '#33cc66',
-            alinear: 'center',
-            velocidad: 'slow',
-            ancho: '200px',
+            color1: '#cc6633',   // Color de texto
+            color2: '#33cc66',   // Color de fondo
+            color3: '#6633cc',   // Color de selección
+            alinear: 'center',   // Alineación del texto en el menú
+            velocidad: 'hight',  // Velocidad de la animación
+            ancho: '200px',      // Ancho de cada bloque en el menú
         });
     }
     </script>
