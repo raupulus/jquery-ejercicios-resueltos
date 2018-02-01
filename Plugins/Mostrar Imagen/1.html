@@ -33,14 +33,44 @@ Desarrolla dos funciones, una para cada tipo de información.
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
+    (function($) {
+        $.fn.muestrainfo = function(opciones) {
+            var configuracion = {
+                imagen: 'asd',
+                tiempo: 'malo',
+            };
 
+            $.extend(configuracion, opciones);
+
+            $(this).children('li').each(function() {
+                var boton = $(this).find('input[type="button"]');
+                var resultado = $(this).find('.results');
+                var imagen = './images/' + $(this).data('loc') + '.jpg';
+                var temperatura = $(this).data('temp');
+
+                // Añado evento a cada lista
+                boton.one('click', function() {
+                    resultado.append(`
+                        <img src="${imagen}"/>
+                        <p>Temperatura: ${temperatura}</p>
+                    `)
+                });
+            });
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        // Llamada al plugin pasando la caja con la lista <ul>
+        $('#cajaLista').muestrainfo();
     }
     </script>
 </head>
 
 <body>
-    <ul>
+    <ul id="cajaLista">
       <li class="tour" data-loc="london" data-temp="48°">
         London, UK
         <input type='button' value='Más información'></input>
