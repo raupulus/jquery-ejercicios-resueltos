@@ -42,9 +42,14 @@ Desarrolla dos funciones, una para cada tipo de información.
                 var temperatura = $(this).data('temp');
 
                 // Añado evento a cada lista
-                boton.one('click', function() {
+                boton.one('click.imagen', function() {
                     resultado.append(`
                         <img src="${imagen}"/>
+                    `)
+                });
+
+                boton.one('click.temperatura', function() {
+                    resultado.append(`
                         <p>Temperatura: ${temperatura}</p>
                     `)
                 });
