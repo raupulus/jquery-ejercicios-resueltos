@@ -19,7 +19,7 @@ Modifica el ejercicio 1 para que la funci√≥n con la que se muestra la informaci√
             flex-direction: row;
         }
 
-        body > ul >li {
+        body > ul > li {
             flex:1;
             display: flex;
             flex-direction:column;
@@ -39,16 +39,16 @@ Modifica el ejercicio 1 para que la funci√≥n con la que se muestra la informaci√
                 var imagen = './images/' + $(this).data('loc') + '.jpg';
                 var temperatura = $(this).data('temp');
 
+                var muestraTemp = function() {
+                    resultado.append(`
+                        <p>Temperatura: ${temperatura}</p>
+                    `)
+                };
+
                 // A√±ado evento a cada lista
                 boton.one('click.imagen', function() {
                     resultado.append(`
                         <img src="${imagen}"/>
-                    `)
-                });
-
-                boton.one('click.temperatura', function() {
-                    resultado.append(`
-                        <p>Temperatura: ${temperatura}</p>
                     `)
                 });
             });
