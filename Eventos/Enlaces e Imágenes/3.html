@@ -59,7 +59,7 @@ los tours (mostrará todas las imágenes de todos los bloques)
         $.fn.muestratour = function(opciones) {
             // Configuración por defecto solo muestra una imagen
             var configuracion = {
-                cantidad: 1,
+                cantidad: 3,
             };
 
             $.extend(configuracion, opciones);
@@ -67,8 +67,8 @@ los tours (mostrará todas las imágenes de todos los bloques)
             // Almaceno el botón sobre el que se pulsa para ver imágenes
             var verFotos = $(this).find('.see-photos');
 
-            // Almaceno botón que oultará imágenes
-            var ocultar = $(this).find('.hide-tour');
+            // Almaceno botón que mostrará todas las imágenes
+            var verTodas = $('.show-photos');
 
             // Añade evento a pulsar sobre ver Fotos
             verFotos.on('click', function() {
@@ -83,7 +83,12 @@ los tours (mostrará todas las imágenes de todos los bloques)
                 var resto = imagenes.length - configuracion.cantidad;
                 for (var i = resto; i < imagenes.length; i++) {
                     imagenes.eq(i).slideDown();
-                }
+                };
+            });
+
+            // Añade evento sobre el botón "Mostrar todas"
+            verTodas.on('click', function() {
+                verFotos.trigger('click');
             });
 
             return this;
@@ -93,12 +98,7 @@ los tours (mostrará todas las imágenes de todos los bloques)
     <script>
     window.onload = function() {
         // Llamada sin configuración
-        //$('#tourprices').muestratour();
-
-        // Llamada pasandole cantidad de imágenes para verse
-        $('#tourprices').muestratour({
-            cantidad : 3,
-        });
+        $('#tourprices').muestratour();
     }
     </script>
 </head>
