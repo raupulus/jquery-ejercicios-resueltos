@@ -97,7 +97,7 @@ Ahora cuando ocultamos un tour, su bloque desaparecerá (su <li> principal)
 
             // Añade evento sobre el botón "Ocultar tour"
             ocultar.on('click', function() {
-                $(this).parent().find('.photos').hide();
+                $(this).parent().slideUp();
             });
 
             return this;
