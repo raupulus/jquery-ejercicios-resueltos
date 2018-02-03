@@ -95,6 +95,11 @@ Ahora cuando ocultamos un tour, su bloque desaparecerá (su <li> principal)
                 verFotos.trigger('click');
             });
 
+            // Añade evento sobre el botón "Ocultar tour"
+            ocultar.on('click', function() {
+                $(this).parent().find('.photos').hide();
+            });
+
             return this;
         };
     })(jQuery);
@@ -113,48 +118,48 @@ Ahora cuando ocultamos un tour, su bloque desaparecerá (su <li> principal)
     <ul id="tourprices">
 <!-- Primer Elemento -->
         <li class="tour" data-loc="london,uk">
-        London, UK
+            London, UK
 
-        <ul class="photos">
-          <li><img src="images/london.jpg" /></li>
-          <li><img src="images/london.jpg" /></li>
-          <li><img src="images/london.jpg" /></li>
-        </ul>
+            <ul class="photos">
+              <li><img src="images/london.jpg" /></li>
+              <li><img src="images/london.jpg" /></li>
+              <li><img src="images/london.jpg" /></li>
+            </ul>
 
-        <a href="#" class="see-photos">Ver fotos</a>
+            <a href="#" class="see-photos">Ver fotos</a>
 
-        <a href="#" class="hide-tour">Ocultar tour</a>
-      </li>
+            <a href="#" class="hide-tour">Ocultar tour</a>
+        </li>
 
 <!-- Segundo Elemento -->
-      <li class="tour" data-loc="paris,france">
-        Paris, France
+        <li class="tour" data-loc="paris,france">
+            Paris, France
 
-        <ul class="photos">
-          <li><img src="images/paris1.jpg" /></li>
-          <li><img src="images/paris1.jpg" /></li>
-          <li><img src="images/paris1.jpg" /></li>
-        </ul>
+            <ul class="photos">
+              <li><img src="images/paris1.jpg" /></li>
+              <li><img src="images/paris1.jpg" /></li>
+              <li><img src="images/paris1.jpg" /></li>
+            </ul>
 
-        <a href="#" class="see-photos">Ver fotos</a>
+            <a href="#" class="see-photos">Ver fotos</a>
 
-        <a href="#" class="hide-tour">Ocultar tour</a>
-      </li>
+            <a href="#" class="hide-tour">Ocultar tour</a>
+        </li>
 
 <!-- Tercer Elemento -->
-      <li class="tour" data-loc="New York, NY, USA">
-        New York, NY, USA
+        <li class="tour" data-loc="New York, NY, USA">
+            New York, NY, USA
 
-        <ul class="photos">
-          <li><img src="images/newyork1.jpg" /></li>
-          <li><img src="images/newyork1.jpg" /></li>
-          <li><img src="images/newyork1.jpg" /></li>
-        </ul>
+            <ul class="photos">
+              <li><img src="images/newyork1.jpg" /></li>
+              <li><img src="images/newyork1.jpg" /></li>
+              <li><img src="images/newyork1.jpg" /></li>
+            </ul>
 
-        <a href="#" class="see-photos">Ver fotos</a>
+            <a href="#" class="see-photos">Ver fotos</a>
 
-        <a href="#" class="hide-tour">Ocultar tour</a>
-      </li>
+            <a href="#" class="hide-tour">Ocultar tour</a>
+        </li>
     </ul>
 </body>
 </html>
