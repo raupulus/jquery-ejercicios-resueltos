@@ -52,6 +52,11 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
     <script src="./jquery-3.2.1.js"></script>
     <script>
     (function($) {
+        /**
+         * Plugin que añade eventos a cada elemento de la lista, extrae
+         * los datos y genera el contenido según el botón pulsado
+         * @return {this} Devuelve el mismo objeto desde el que se llama.
+         */
         $.fn.muestratour = function() {
             this.each(function() {
 
@@ -63,7 +68,7 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
     </script>
     <script>
     window.onload = function() {
-
+        $('#tourprices').muestratour();
     }
     </script>
 </head>
