@@ -14,7 +14,7 @@ los tours (mostrará todas las imágenes de todos los bloques)
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Ejercicio 3 Enlaces</title>
+    <title>Ejercicio 2 Enlaces</title>
     <style type="text/css">
         img {
             width: 100px;
@@ -50,8 +50,55 @@ los tours (mostrará todas las imágenes de todos los bloques)
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
+    (function($) {
+        /**
+         * Plugin que añade eventos a cada elemento de la lista, extrae
+         * los datos y genera el contenido según el botón pulsado
+         * @return {this} Devuelve el mismo objeto desde el que se llama.
+         */
+        $.fn.muestratour = function(opciones) {
+            // Configuración por defecto solo muestra una imagen
+            var configuracion = {
+                cantidad: 1,
+            };
 
+            $.extend(configuracion, opciones);
+
+            // Almaceno el botón sobre el que se pulsa para ver imágenes
+            var verFotos = $(this).find('.see-photos');
+
+            // Almaceno botón que oultará imágenes
+            var ocultar = $(this).find('.hide-tour');
+
+            // Añade evento a pulsar sobre ver Fotos
+            verFotos.on('click', function() {
+                // Muestra el bloque completo para ocultar individualmente
+                $(this).parent().find('.photos').show();
+
+                // Oculto todas las imágenes del elemento actual
+                var imagenes = $(this).parent().find('.photos>li').hide();
+
+                // Calcula las imágenes que no se muestran, para recorrer la
+                // diferencia con el total de imágenes (las que si se muestran)
+                var resto = imagenes.length - configuracion.cantidad;
+                for (var i = resto; i < imagenes.length; i++) {
+                    imagenes.eq(i).slideDown();
+                }
+            });
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        // Llamada sin configuración
+        //$('#tourprices').muestratour();
+
+        // Llamada pasandole cantidad de imágenes para verse
+        $('#tourprices').muestratour({
+            cantidad : 3,
+        });
     }
     </script>
 </head>
