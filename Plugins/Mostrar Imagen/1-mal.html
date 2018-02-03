@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Realiza un plugin que al pulsar sobre el enlace Más información se muestre la foto y la información meteorológica correspondientes a cada tour.
+
+Desarrolla dos funciones, una para cada tipo de información.
+
+Este ejemplo funciona correctamente pero se realiza normalmente sin utilizar
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Enlace más información</title>
+    <style type="text/css">
+        body > ul {
+            display: flex;
+            flex-direction: row;
+        }
+
+        body > ul >li {
+            flex:1;
+            display: flex;
+            flex-direction:column;
+            align-items: center;
+            justify-content: center;
+            border:1px solid;
+            background-color: lightgrey;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    (function($) {
+        $.fn.muestrainfo = function() {
+            $(this).children('li').each(function() {
+                var boton = $(this).find('input[type="button"]');
+                var resultado = $(this).find('.results');
+                var imagen = './images/' + $(this).data('loc') + '.jpg';
+                var temperatura = $(this).data('temp');
+
+                // Añado evento a cada lista
+                boton.one('click', function() {
+                    resultado.append(`
+                        <img src="${imagen}"/>
+                        <p>Temperatura: ${temperatura}</p>
+                    `)
+                });
+            });
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        // Llamada al plugin pasando la caja con la lista <ul>
+        $('#cajaLista').muestrainfo();
+    }
+    </script>
+</head>
+
+<body>
+    <ul id="cajaLista">
+      <li class="tour" data-loc="london" data-temp="48°">
+        London, UK
+        <input type='button' value='Más información'></input>
+        <div class="results"></div>
+      </li>
+
+      <li class="tour" data-loc="paris1" data-temp="55°">
+        Paris, France
+        <input type='button' value='Más información'></input>
+        <div class="results"></div>
+      </li>
+
+      <li class="tour" data-loc="newyork1" data-temp="62°">
+        New York, NY, USA
+        <input type='button' value='Más información'></input>
+        <div class="results"></div>
+      </li>
+    </ul>
+</body>
+</html>

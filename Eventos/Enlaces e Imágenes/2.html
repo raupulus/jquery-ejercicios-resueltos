@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Modifica el plugin anterior para que se pueda personalizar el número
+de imágenes a mostrar de cada tour.
+
+Ahora al pulsar sobre "Ver fotos" solo conseguirá que aparezca 1 imagen por defecto. En caso que le pasemos el número de imágenes se mostrará tal cantidad.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio 2 Enlaces</title>
+    <style type="text/css">
+        img {
+            width: 100px;
+            height: 100px;
+        }
+
+        body > ul > li {
+            border: 3px dashed #000000;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .photos {
+            display: none;
+        }
+
+        .is-showing-photofy, #tourprices {
+            display: flex;
+        }
+
+        #tourprices li {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body > ul li ul {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    (function($) {
+        /**
+         * Plugin que añade eventos a cada elemento de la lista, extrae
+         * los datos y genera el contenido según el botón pulsado
+         * @return {this} Devuelve el mismo objeto desde el que se llama.
+         */
+        $.fn.muestratour = function(opciones) {
+            // Configuración por defecto solo muestra una imagen
+            var configuracion = {
+                cantidad: 1,
+            };
+
+            $.extend(configuracion, opciones);
+
+            // Almaceno el botón sobre el que se pulsa para ver imágenes
+            var verFotos = $(this).find('.see-photos');
+
+            // Añade evento a pulsar sobre ver Fotos
+            verFotos.on('click', function() {
+                // Muestra el bloque completo para ocultar individualmente
+                $(this).parent().find('.photos').show();
+
+                // Oculto todas las imágenes del elemento actual
+                var imagenes = $(this).parent().find('.photos>li').hide();
+
+                // Calcula las imágenes que no se muestran, para recorrer la
+                // diferencia con el total de imágenes (las que si se muestran)
+                var resto = imagenes.length - configuracion.cantidad;
+                for (var i = resto; i < imagenes.length; i++) {
+                    imagenes.eq(i).slideDown();
+                }
+            });
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        // Llamada sin configuración
+        //$('#tourprices').muestratour();
+
+        // Llamada pasandole cantidad de imágenes para verse
+        $('#tourprices').muestratour({
+            cantidad : 3,
+        });
+    }
+    </script>
+</head>
+
+<body>
+    <a href="#" class="show-photos">Mostrar todas las fotos</a>
+
+    <ul id="tourprices">
+<!-- Primer Elemento -->
+        <li class="tour" data-loc="london,uk">
+            London, UK
+
+            <ul class="photos">
+              <li><img src="images/london.jpg" /></li>
+              <li><img src="images/london.jpg" /></li>
+              <li><img src="images/london.jpg" /></li>
+            </ul>
+
+            <a href="#" class="see-photos">Ver fotos</a>
+
+            <a href="#" class="hide-tour">Ocultar tour</a>
+        </li>
+
+<!-- Segundo Elemento -->
+        <li class="tour" data-loc="paris,france">
+            Paris, France
+
+            <ul class="photos">
+              <li><img src="images/paris1.jpg" /></li>
+              <li><img src="images/paris1.jpg" /></li>
+              <li><img src="images/paris1.jpg" /></li>
+            </ul>
+
+            <a href="#" class="see-photos">Ver fotos</a>
+
+            <a href="#" class="hide-tour">Ocultar tour</a>
+        </li>
+
+<!-- Tercer Elemento -->
+        <li class="tour" data-loc="New York, NY, USA">
+            New York, NY, USA
+
+            <ul class="photos">
+              <li><img src="images/newyork1.jpg" /></li>
+              <li><img src="images/newyork1.jpg" /></li>
+              <li><img src="images/newyork1.jpg" /></li>
+            </ul>
+
+            <a href="#" class="see-photos">Ver fotos</a>
+
+            <a href="#" class="hide-tour">Ocultar tour</a>
+        </li>
+    </ul>
+</body>
+</html>
