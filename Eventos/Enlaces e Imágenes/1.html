@@ -58,7 +58,12 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
          * @return {this} Devuelve el mismo objeto desde el que se llama.
          */
         $.fn.muestratour = function() {
-            this.each(function() {
+            var verFotos = $(this).find('.see-photos');
+            var imagenes = $(this).find('.photos > li');
+            var ocultar = $(this).find('.hide-tour');
+
+            // Añade evento a pulsar sobre ver Fotos
+            verFotos.on('click', function() {
 
             });
 
