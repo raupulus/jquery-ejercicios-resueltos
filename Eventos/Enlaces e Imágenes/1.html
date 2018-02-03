@@ -7,8 +7,7 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Crea un plugin el cual al pulsar sobre el enlace "Ver fotos" mostrará las fotos
-correspondiente al tour (bloque actual).
+Crea un plugin el cual al pulsar sobre el enlace "Ver fotos" mostrará las fotos correspondiente al tour (bloque actual).
 
 Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
 -->
@@ -59,12 +58,13 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
          */
         $.fn.muestratour = function() {
             var verFotos = $(this).find('.see-photos');
-            var imagenes = $(this).find('.photos > li');
-            var ocultar = $(this).find('.hide-tour');
 
             // Añade evento a pulsar sobre ver Fotos
             verFotos.on('click', function() {
+                var imagenes = $(this).parent().find('.photos');
 
+                // Muestra la imagen
+                imagenes.slideDown();
             });
 
             return this;
@@ -87,9 +87,9 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
         London, UK
 
         <ul class="photos">
-          <li><img src="photos/london.jpg" /></li>
-          <li><img src="photos/london.jpg" /></li>
-          <li><img src="photos/london.jpg" /></li>
+          <li><img src="images/london.jpg" /></li>
+          <li><img src="images/london.jpg" /></li>
+          <li><img src="images/london.jpg" /></li>
         </ul>
 
         <a href="#" class="see-photos">Ver fotos</a>
@@ -102,9 +102,9 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
         Paris, France
 
         <ul class="photos">
-          <li><img src="photos/paris1.jpg" /></li>
-          <li><img src="photos/paris1.jpg" /></li>
-          <li><img src="photos/paris1.jpg" /></li>
+          <li><img src="images/paris1.jpg" /></li>
+          <li><img src="images/paris1.jpg" /></li>
+          <li><img src="images/paris1.jpg" /></li>
         </ul>
 
         <a href="#" class="see-photos">Ver fotos</a>
@@ -117,9 +117,9 @@ Mostrará todas las imágenes del tour a la vez, desde el mismo evento.
         New York, NY, USA
 
         <ul class="photos">
-          <li><img src="photos/newyork1.jpg" /></li>
-          <li><img src="photos/newyork1.jpg" /></li>
-          <li><img src="photos/newyork1.jpg" /></li>
+          <li><img src="images/newyork1.jpg" /></li>
+          <li><img src="images/newyork1.jpg" /></li>
+          <li><img src="images/newyork1.jpg" /></li>
         </ul>
 
         <a href="#" class="see-photos">Ver fotos</a>
