@@ -50,7 +50,34 @@ Ahora al pulsar sobre "Ver fotos" solo conseguirá que aparezca 1 imagen y no 3
         }
     </style>
     <script src="./jquery-3.2.1.js"></script>
-    
+    <script>
+    (function($) {
+        /**
+         * Plugin que añade eventos a cada elemento de la lista, extrae
+         * los datos y genera el contenido según el botón pulsado
+         * @return {this} Devuelve el mismo objeto desde el que se llama.
+         */
+        $.fn.muestratour = function() {
+            var verFotos = $(this).find('.see-photos');
+            var ocultar = $(this).find('.hide-tour');
+
+            // Añade evento a pulsar sobre ver Fotos
+            verFotos.on('click', function() {
+                var imagenes = $(this).parent().find('.photos');
+
+                // Muestra la imagen
+                imagenes.slideDown();
+            });
+
+            return this;
+        };
+    })(jQuery);
+    </script>
+    <script>
+    window.onload = function() {
+        $('#tourprices').muestratour();
+    }
+    </script>
 </head>
 
 <body>
