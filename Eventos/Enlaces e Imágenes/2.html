@@ -10,7 +10,7 @@
 Modifica el plugin anterior para que se pueda personalizar el número
 de imágenes a mostrar de cada tour.
 
-Ahora al pulsar sobre "Ver fotos" solo conseguirá que aparezca 1 imagen y no 3
+Ahora al pulsar sobre "Ver fotos" solo conseguirá que aparezca 1 imagen por defecto. En caso que le pasemos el número de imágenes se mostrará tal cantidad.
 -->
 <html lang="es">
 <head>
@@ -57,16 +57,31 @@ Ahora al pulsar sobre "Ver fotos" solo conseguirá que aparezca 1 imagen y no 3
          * los datos y genera el contenido según el botón pulsado
          * @return {this} Devuelve el mismo objeto desde el que se llama.
          */
-        $.fn.muestratour = function() {
+        $.fn.muestratour = function(opciones) {
+            // Configuración por defecto solo muestra una imagen
+            var configuracion = {
+                cantidad: 1,
+            };
+
+            $.extend(configuracion, opciones);
+
+            // Almaceno el botón sobre el que se pulsa para ver imágenes
             var verFotos = $(this).find('.see-photos');
-            var ocultar = $(this).find('.hide-tour');
 
             // Añade evento a pulsar sobre ver Fotos
             verFotos.on('click', function() {
-                var imagenes = $(this).parent().find('.photos');
+                // Muestra el bloque completo para ocultar individualmente
+                $(this).parent().find('.photos').show();
 
-                // Muestra la imagen
-                imagenes.slideDown();
+                // Oculto todas las imágenes del elemento actual
+                var imagenes = $(this).parent().find('.photos>li').hide();
+
+                // Calcula las imágenes que no se muestran, para recorrer la
+                // diferencia con el total de imágenes (las que si se muestran)
+                var resto = imagenes.length - configuracion.cantidad;
+                for (var i = resto; i < imagenes.length; i++) {
+                    imagenes.eq(i).slideDown();
+                }
             });
 
             return this;
@@ -75,7 +90,13 @@ Ahora al pulsar sobre "Ver fotos" solo conseguirá que aparezca 1 imagen y no 3
     </script>
     <script>
     window.onload = function() {
-        $('#tourprices').muestratour();
+        // Llamada sin configuración
+        //$('#tourprices').muestratour();
+
+        // Llamada pasandole cantidad de imágenes para verse
+        $('#tourprices').muestratour({
+            cantidad : 3,
+        });
     }
     </script>
 </head>
