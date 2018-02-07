@@ -25,6 +25,7 @@ Crear un formulario básico donde introducir un nombre de usuario y un botón pa
     <style type="text/css">
 
     </style>
+    <script src=""></script>
     <script>
         window.onload = function() {
             /**
@@ -32,12 +33,33 @@ Crear un formulario básico donde introducir un nombre de usuario y un botón pa
              * una respuesta JSON que convertiremos en objeto para mostrarla
              */
             function comprueba() {
+                // Extraigo el valor del input del formulario
+                var name = document.getElementById('entrada').value;
+
                 // Se instancia la petición
-                var xmlhttp = new XMLHttpRequest();
+                $.ajax({
+                    dataType: 'json'
+                    url: "../servidor/compruebaDisponibilidad"
+                    data:{'name':name},
+                    timeout: 5000  // Tiempo a esperar antes de dar error
+                })
+                 .done(function() {
+
+                 })
+
+
+                // Abre petición por método GET al servidor pasándole el parámetro "name"
+                xmlhttp.open("GET", "../servidor/compruebaDisponibilidadJSON.php?name=" + name, true);
+
+                // Envía la petición anterior para ser procesada
+                xmlhttp.send();
 
                 // Cuando abre la petición comprueba si ha terminado de forma correcta
                 xmlhttp.onreadystatechange = function() {
                     if ((xmlhttp.readyState === 4) && (xmlhttp.status === 200)) {
+
+
+
                         // Convierto la cadena como respuesta JSON del servidor en un objeto Javascript
                         var res = JSON.parse(xmlhttp.responseText);
 
@@ -75,14 +97,7 @@ Crear un formulario básico donde introducir un nombre de usuario y un botón pa
                     }
                 };
 
-                // Extraigo el valor del input del formulario
-                var name = document.getElementById('entrada').value;
 
-                // Abre petición por método GET al servidor pasándole el parámetro "name"
-                xmlhttp.open("GET", "../servidor/compruebaDisponibilidadJSON.php?name=" + name, true);
-
-                // Envía la petición anterior para ser procesada
-                xmlhttp.send();
             }
 
             // Añado Evento al botón de comprobar disponibilidad
