@@ -41,10 +41,10 @@ obteniendo el resultado mediante una consulta AJAX al servidor "consulta.php"
             })
             .done(function (data) {
                 // Limpio el bloque donde se pintan los mensajes
-                $('#errores').empty();
+                var msg = $('#errores').empty();
 
                 // Añado los nuevos mensajes
-                $('#errores').append(data);
+                msg.append(data);
             });
         }
 
@@ -57,16 +57,18 @@ obteniendo el resultado mediante una consulta AJAX al servidor "consulta.php"
 <body>
     <h1>Validar formulario en el Servidor</h1>
     <form id="formulario" method="post" action="../Servidor/consulta.php">
-        Fecha de Nacimiento <input id="fecha_nacimiento"
-                                   name="fecha_nacimiento" type="text" />
-        <br />
-
-        Código Postal <input id="codigo_postal" name="codigo_postal"
-                             type="text" />
+        <label for="fecha_nacimiento">Fecha de Nacimiento </label>
+        <input id="fecha_nacimiento" name="fecha_nacimiento" type="text" />
 
         <br />
 
-        Nacimiento <input id="telefono" name="telefono" type="text" />
+        <label for="codigo_postal">Código Postal</label>
+        <input id="codigo_postal" name="codigo_postal" type="text" />
+
+        <br />
+
+        <label for="telefono">Nacimiento</label>
+        <input id="telefono" name="telefono" type="text" />
 
         <br />
 
