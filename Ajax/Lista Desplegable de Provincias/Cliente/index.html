@@ -7,7 +7,28 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
+El objetivo de este ejercicio es crear una lista desplegable donde seleccionar
+una provincia, después de seleccionar la Provincia se habilitará otra lista
+desplegable donde seleccionar el Municipio filtrando para que aparezcan solo
+los que pertenecen a la Provincia seleccionada con anterioridad.
 
+Para lograr esto se usarán dos scripts en el servidor, los cuales devolverán
+un objeto JSON con la información correspondiente.
+    - El script del servidor utilizado para cargar las provincias se llamará
+      "cargaProvinciasJSON.php" y la respuesta del servidor tiene el
+      siguiente formato:
+      {"01":"Álava/Araba", "02":"Albacete", "03":"Alicante/Alacant" , ... }
+
+    - El script del servidor utilizado para cargar los municipios se llamará
+      cargaMunicipiosJSON.php y la respuesta del servidor tendrá el
+      siguiente formato:
+      {"0014":"Alegría-Dulantzi","0029": "Amurrio", ... }
+
+En esta actividad será necesario utilizar:
+    - jQuery
+    - AJAX
+    - JSON
+    - Objetos javascript con la respuesta JSON
 -->
 <html lang="es">
 <head>
