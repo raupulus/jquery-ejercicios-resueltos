@@ -44,10 +44,8 @@ En este caso usar jQuery y el método getJson()
 
                 // Se instancia la petición
                 $.getJSON({
-                    dataType: 'json',
                     url: "../servidor/compruebaDisponibilidadJSON.php",
-                    data:{'name':name},
-                    timeout: 5000  // Tiempo a esperar antes de dar error
+                    data:{'name': name},
                 }).done(function(datos) {
                     // Almaceno variable con caja donde pintar resultados
                     var resultado = document.getElementById('resultado');
@@ -92,6 +90,7 @@ En este caso usar jQuery y el método getJson()
 <body>
     <form>
         <h1>Comprobar disponibilidad de usuario mediante objeto JSON</h1>
+        <h2>Usando el método jQuery → getJson()</h2>
         <label for="entrada">Nombre de usuario: </label>
         <input id="entrada" type="text" />
         <a id="comprobar" href="#">Comprobar disponibilidad</a>
