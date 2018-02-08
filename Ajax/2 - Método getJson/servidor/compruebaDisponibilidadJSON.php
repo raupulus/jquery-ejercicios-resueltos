@@ -49,4 +49,3 @@ else {
 
 // Se devuelve la respuesta codificada mediante PHP en formato JSON
 echo json_encode($respuesta);
-?>
