@@ -23,8 +23,33 @@ Por último lo añadimos al DOM
 	<title>Mostrar Tours dinámicamente</title>
     <script src="jquery-3.2.1.js"></script>
     <script>
-        window.onload = function () {
+        /**
+         * @var tours Contiene un objeto con todos los tours que contiene las
+         *            propiedades "name" y "price"
+         */
+        var tours;
 
+        /**
+         * Recibe todos los tours desde el servidor
+         */
+        function obtenerTours() {
+            $.getJSON('../Servidor/consulta.php', function (data) {
+                //console.log(data);
+                var touractual = 0;
+                $.each(data, function (name, price) {
+                    $('#cajaTours').append('<div class="tour-' + touractual +
+                    '">' +
+                    '<h3 class="name">' + name + '</h3>' +
+                    '<p class="price">' + price + '</p>' +
+                    '</div>'
+                    );
+                });
+            });
+        }
+
+
+        window.onload = function () {
+            obtenerTours();
         }
     </script>
 </head>
@@ -34,6 +59,11 @@ Por último lo añadimos al DOM
 	<h2>Tours actuales</h2>
 
     <!-- Esto debe generarse dinámicamente desde el servidor-->
+    <div id="cajaTours">
+
+    </div>
+
+
 	<div class="tour-0">
 	  <h3 class="name"></h3>
 	  <p class="price"></p>
