@@ -18,65 +18,43 @@ con $.map() de forma que crearemos el nombre de la clase dinámicamente (tour
 Por último lo añadimos al DOM
 -->
 <html lang="es">
-<>
-	<meta charset="UTF-8">
-	<title>Mostrar Tours dinámicamente</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Tours dinámicamente</title>
     <script src="jquery-3.2.1.js"></script>
     <script>
-        /**
-         * @var tours Contiene un objeto con todos los tours que contiene las
-         *            propiedades "name" y "price"
-         */
-        var tours;
-
         /**
          * Recibe todos los tours desde el servidor
          */
         function obtenerTours() {
             $.getJSON('../Servidor/consulta.php', function (data) {
-                //console.log(data);
-                var touractual = 0;
-                $.each(data, function (name, price) {
-                    $('#cajaTours').append('<div class="tour-' + touractual +
-                    '">' +
-                    '<h3 class="name">' + name + '</h3>' +
-                    '<p class="price">' + price + '</p>' +
-                    '</div>'
+                // Recorre cada objeto contenido en el data usando su índice
+                // para generar la clase y sus valores para ser pintados
+                $.each(data, function (index, obj) {
+                    $('#cajaTours').append('<div class="tour-' + index +
+                        '">' +
+                        '<h3 class="name">' + obj.name + '</h3>' +
+                        '<p class="price">' + obj.price + '</p>' +
+                        '</div>'
                     );
                 });
+                //console.log(data);
             });
         }
 
-
         window.onload = function () {
-            obtenerTours();
+            $('#mostrar').on('click', obtenerTours);
         }
     </script>
 </head>
 <body>
     <h1>Mostrar Tours dinámicamente</h1>
-	<button>Mostrar tours</button>
-	<h2>Tours actuales</h2>
 
-    <!-- Esto debe generarse dinámicamente desde el servidor-->
-    <div id="cajaTours">
+    <button id="mostrar">Mostrar tours</button>
 
-    </div>
+    <h2>Tours actuales</h2>
 
-
-	<div class="tour-0">
-	  <h3 class="name"></h3>
-	  <p class="price"></p>
-	</div>
-
-	<div class="tour-1">
-	  <h3 class="name"></h3>
-	  <p class="price"></p>
-	</div>
-
-	<div class="tour-2">
-	  <h3 class="name"></h3>
-	  <p class="price"></p>
-	</div>
+    <!--Genero la estructura dinámicamente-->
+    <div id="cajaTours"></div>
 </body>
 </html>
