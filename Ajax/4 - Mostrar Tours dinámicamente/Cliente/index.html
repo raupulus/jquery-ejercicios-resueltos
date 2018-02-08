@@ -18,15 +18,22 @@ con $.map() de forma que crearemos el nombre de la clase dinámicamente (tour
 Por último lo añadimos al DOM
 -->
 <html lang="es">
-<head>
+<>
 	<meta charset="UTF-8">
 	<title>Mostrar Tours dinámicamente</title>
-	
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        window.onload = function () {
+
+        }
+    </script>
 </head>
 <body>
     <h1>Mostrar Tours dinámicamente</h1>
 	<button>Mostrar tours</button>
 	<h2>Tours actuales</h2>
+
+    <!-- Esto debe generarse dinámicamente desde el servidor-->
 	<div class="tour-0">
 	  <h3 class="name"></h3>
 	  <p class="price"></p>
@@ -41,6 +48,5 @@ Por último lo añadimos al DOM
 	  <h3 class="name"></h3>
 	  <p class="price"></p>
 	</div>
-	
 </body>
 </html>
