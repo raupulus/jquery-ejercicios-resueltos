@@ -27,14 +27,22 @@ obteniendo el resultado mediante una consulta AJAX al servidor "consulta.php"
     <script>
     window.onload = function() {
         /**
-         *
+         * Comprueba en el servidor si es válido el resultado y la pinta
          */
-        function comprobar() {
+        function comprobar(e) {
+            // Desactiva el evento por defecto del botón "submit"
+            e.preventDefault();
 
+            // Obtengo la respuesta del servidor y la pinto
+            $.post('../Servidor/consulta.php').done(function (data) {
+                $('#errores').empty();
+                $('#errores').append(data.serialize);
+            });
         }
 
         // Añado evento
         $('#formulario').on('submit', comprobar);
+    }
     </script>
 </head>
 
@@ -56,5 +64,7 @@ obteniendo el resultado mediante una consulta AJAX al servidor "consulta.php"
 
         <button type="submit">Validar Datos</button>
     </form>
+
+    <div id="errores"></div>
 </body>
 </html>
