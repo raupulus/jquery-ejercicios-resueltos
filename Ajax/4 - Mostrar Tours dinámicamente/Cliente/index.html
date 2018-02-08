@@ -7,15 +7,24 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
+Rellenar dinámicamente los tours mediante objetos JSON recibidos desde el
+servidor por AJAX donde deberá mostrarse el nombre y precio de cada uno.
 
+Desde el archivo php recibimos la cadena con los objetos instanciados de la
+clase "Tour" y desde aquí lo convertimos en un objeto JSON el cual iteramos
+con $.map() de forma que crearemos el nombre de la clase dinámicamente (tour
++ indice) por ejemplo "tour-0" "tour-1"...
+
+Por último lo añadimos al DOM
 -->
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Mostrar Tours dinámicamente</title>
 	
 </head>
 <body>
+    <h1>Mostrar Tours dinámicamente</h1>
 	<button>Mostrar tours</button>
 	<h2>Tours actuales</h2>
 	<div class="tour-0">
