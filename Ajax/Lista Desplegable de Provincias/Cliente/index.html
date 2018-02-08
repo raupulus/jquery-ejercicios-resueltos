@@ -36,22 +36,77 @@ En esta actividad será necesario utilizar:
     <title>Listas desplegables de Provincias y Municipios</title>
     <script src="jquery-3.2.1.js"></script>
     <script type="text/javascript">
-        function ordenar() {
-            $("select").each(function (index, elem) {
-                //guardamos la opción seleccionada
+        var prov;  // Provincia elegida
+        var mun;   // Municipio elegido
 
-                var listaActual = elem;
-                var sel = listaActual.selectedIndex;
+        /**
+         * Ordena las listas (No funciona aún)
+         */
+        function ordenar() {
+            $('select').each(function (index, elem) {
+                // Guardamos la opción seleccionada
+                var sel = elem.selectedIndex;
 
                 // Aplicacion del orden alfabetico
-                $(listaActual).html($("option", $(this)).sort(function (a, b) {
-                    //  return a.text == b.text ? 0 : a.text < b.text ? -1 : 1 //ordena por texto
+                $(elem).html($("option", $(this)).sort(function (a, b) {
+                    //return a.text == b.text ? 0 : a.text < b.text ? -1 : 1 //ordena por texto
                     return a.value == b.value ? 0 : a.value < b.value ? -1 : 1 //ordena por atributo value
                 }));
 
                 // Reestablecemos la opción seleccionada previamente
-                $(listaActual).prop('selectedIndex', sel); //listaActual.selectedIndex = sel;
+                $(elem).prop('selectedIndex', sel); //listaActual.selectedIndex = sel;
+            });
+        }
 
+        /**
+         * Rellena la lista de provincias
+         */
+        function rellenarProvincia() {
+            $.getJSON('../Servidor/cargaProvinciasJSON.php', function (data) {
+                $.each(data, function (codigo, nombre) {
+                    $('#provincia').append('<option value="' + codigo + '">' +
+                        nombre + '</option>');
+                });
+            });
+
+            //ordenar();
+        }
+
+        /**
+         * Limpia la lista de municipios y extrae elementos según la provincia
+         * que se haya elegido anteriormente.
+         */
+        function rellenarMunicipio() {
+            if($('#municipio').children().length > 1) {
+                $('#municipio').empty();
+            }
+
+            $.getJSON('../Servidor/cargaMunicipiosJSON.php',
+                {'provincia' : prov}, function
+                (data) {
+                $.each(data, function (codigo, nombre) {
+                    $('#municipio').append('<option value="' + codigo + '">' +
+                        nombre + '</option>');
+                });
+            });
+
+            //ordenar(mun);
+        }
+
+        window.onload = function () {
+            rellenarProvincia();
+
+            // Añade evento a la lista de municipios para llenarlas al pulsar
+            $('#municipio').on('click', rellenarMunicipio);
+
+            // Al seleccionar un municipio se guarda este en la variable
+            $('#municipio').on('change', function() {
+                mun = $(this).children('option:selected').val();
+            });
+
+            // Al seleccionar una ciudad se guarda esta en la variable
+            $('#provincia').on('change', function() {
+                prov = $(this).children('option:selected').val();
             });
         }
     </script>
