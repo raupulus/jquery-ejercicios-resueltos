@@ -34,9 +34,17 @@ obteniendo el resultado mediante una consulta AJAX al servidor "consulta.php"
             e.preventDefault();
 
             // Obtengo la respuesta del servidor y la pinto
-            $.post('../Servidor/consulta.php').done(function (data) {
+            $.ajax({
+                url: '../Servidor/consulta.php',
+                type: 'POST',
+                data: $('#formulario').serialize()
+            })
+            .done(function (data) {
+                // Limpio el bloque donde se pintan los mensajes
                 $('#errores').empty();
-                $('#errores').append(data.serialize);
+
+                // Añado los nuevos mensajes
+                $('#errores').append(data);
             });
         }
 
