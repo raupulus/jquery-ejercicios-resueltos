@@ -7,15 +7,19 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea un formulario con estos 3 campos:
+    - Fecha de Nacimiento
+    - Código
+    - Teléfono
 
+Valida los campos del formulario utilizando el método para jQuery "serialize()"
+Envía el formulario mediante POST al archivo "consulta.php" que simulará el
+servidor
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Ejercicios DOM Básicos</title>
-    <style type="text/css">
-
-    </style>
+    <title>Validar formulario en el Servidor</title>
     <script src="./jquery-3.2.1.js"></script>
     <script>
     window.onload = function() {
@@ -25,6 +29,14 @@
 </head>
 
 <body>
-
+    <h1>Validar formulario en el Servidor</h1>
+    <form method="post" action="../Servidor/consulta.php">
+        Fecha de Nacimiento <input type="text" />
+        <br />
+        Código Postal <input type="text" />
+        <br />
+        Nacimiento <input type="text" />
+        Validar datos <input type="button" />
+    </form>
 </body>
 </html>
