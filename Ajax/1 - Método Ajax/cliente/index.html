@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Comprobar disponibilidad de usuario mediante objeto JSON
+
+Crear un formulario básico donde introducir un nombre de usuario y un botón para
+comprobar si está disponible.
+    - Enviar variable con el nombre al servidor mediante GET (a un archivo php).
+    - El archivo php tendrá un retardo de pocos segundos y devolverá un objeto
+      JSON.
+    - En el archivo principal tenemos que capturar la cadena con el objeto JSON
+      y convertirlo a un objeto de Javascript
+    - Una vez tengamos el objeto de Javascript, rescatar su contenido:
+        - Si el contenido está disponible, mostramos que si.
+        - Si el contenido no está disponible lo indicamos, pero además añadimos
+          una serie de sugerencias tomadas del segundo objeto o array
+          (dentro del objeto principal) con estas sugerencias.
+
+En este caso usar jQuery y el método ajax()
+-->
+<!--suppress ALL -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Comprobar disponibilidad de usuario mediante objeto JSON</title>
+    <script src="./jquery-3.2.1.js"></script>
+    <!--suppress Annotator, Annotator -->
+    <script>
+        window.onload = function() {
+            /**
+             * Comprueba el nombre introducido en el input pasándolo a un script
+             * en el servidor y recibiendo una respuesta JSON que convertiremos
+             * en objeto para mostrarla.
+             */
+            function comprueba() {
+                // Extraigo el valor del input del formulario
+                var name = document.getElementById('entrada').value;
+
+                // Se instancia la petición
+                $.ajax({
+                    dataType: 'json',
+                    url: "../servidor/compruebaDisponibilidadJSON.php",
+                    data:{'name':name},
+                    timeout: 5000  // Tiempo a esperar antes de dar error
+                })
+                 .done(function(datos) {
+                     // Almaceno variable con caja donde pintar resultados
+                     var resultado = document.getElementById('resultado');
+
+                     // Limpia el resultado borrando todos los nodos hijos
+                     while (resultado.firstChild) {
+                         resultado.removeChild(resultado.firstChild);
+                     }
+
+                     // Crea nodo con la disponibilidad
+                     var p = document.createElement('p');
+                     p.append(document.createTextNode('Está disponible: ' + 
+                         datos.disponible));
+
+                     // Engancha nodo con la disponibilidad al resultado
+                     document.getElementById('resultado').append(p);
+
+                     // Si no está disponible muestra las alternativas importadas
+                     // noinspection Annotator
+                     if (datos.alternativas !== null) {
+
+
+                         // Creo título con las alternativas y lo añado a resultado
+                         var h3 = document.createElement('h3');
+                         h3.append(document.createTextNode('Alternativas:'));
+                         resultado.append(h3);
+
+                         // Muestro cada alternativa en un párrafo
+                         datos.alternativas.forEach( function (alt) {
+                             var p = document.createElement('p');
+                             p.append(document.createTextNode(alt));
+                             document.getElementById('resultado').append(p);
+                         })
+                     }
+                 });
+            }
+
+            // Añado Evento al botón de comprobar disponibilidad
+            document.getElementById('comprobar').addEventListener('click', comprueba);
+
+        }
+    </script>
+</head>
+
+<body>
+    <form>
+        <h1>Comprobar disponibilidad de usuario mediante objeto JSON</h1>
+        <label for="entrada">Nombre de usuario: </label>
+        <input id="entrada" type="text" />
+        <a id="comprobar" href="#">Comprobar disponibilidad</a>
+    </form>
+
+    <div id="resultado"></div>
+</body>
+</html>
