@@ -15,14 +15,11 @@
     <title>Listas desplegables de Provincias y Municipios</title>
     <script src="jquery-3.2.1.js"></script>
     <script type="text/javascript">
-        // Provincia elegida
-        var prov;
-
-        // Municipio elegido
-        var mun;
+        var prov;  // Provincia elegida
+        var mun;   // Municipio elegido
 
         /**
-         * Ordena las listas
+         * Ordena las listas (No funciona aún)
          */
         function ordenar() {
             $('select').each(function (index, elem) {
@@ -37,7 +34,6 @@
 
                 // Reestablecemos la opción seleccionada previamente
                 $(elem).prop('selectedIndex', sel); //listaActual.selectedIndex = sel;
-
             });
         }
 
@@ -52,7 +48,7 @@
                 });
             });
 
-            ordenar();
+            //ordenar();
         }
 
         /**
