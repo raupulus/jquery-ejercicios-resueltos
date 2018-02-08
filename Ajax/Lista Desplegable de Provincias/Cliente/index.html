@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Listas desplegables de Provincias y Municipios</title>
+    <script src="jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        function ordenar() {
+            $("select").each(function (index, elem) {
+                //guardamos la opción seleccionada
+
+                var listaActual = elem;
+                var sel = listaActual.selectedIndex;
+
+                // Aplicacion del orden alfabetico
+                $(listaActual).html($("option", $(this)).sort(function (a, b) {
+                    //  return a.text == b.text ? 0 : a.text < b.text ? -1 : 1 //ordena por texto
+                    return a.value == b.value ? 0 : a.value < b.value ? -1 : 1 //ordena por atributo value
+                }));
+
+                // Reestablecemos la opción seleccionada previamente
+                $(listaActual).prop('selectedIndex', sel); //listaActual.selectedIndex = sel;
+
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Listas desplegables de Provincias y Municipios</h1>
+    <form>
+        <label for="provincia">Provincia</label>
+        <select id="provincia">
+            <option>-Seleccionar-</option>
+        </select>
+
+        <br /><br />
+
+        <label for="municipio">Municipio</label>
+        <select id="municipio">
+            <option>-Seleccionar Provincia-</option>
+        </select>
+    </form>
+</body>
+</html>

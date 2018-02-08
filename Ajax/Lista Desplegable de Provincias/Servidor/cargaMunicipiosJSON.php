@@ -1,5 +1,4 @@
 ﻿<?php
-
 $municipios["01"]["0014"] = "Alegría-Dulantzi";
 $municipios["01"]["0029"] = "Amurrio";
 $municipios["01"]["0493"] = "Añana";
@@ -8115,11 +8114,9 @@ $municipios["52"]["0018"] = "Melilla";
 $provincia = trim($_POST["provincia"]);
 $losMunicipios = $municipios[$provincia];
 
-foreach($losMunicipios as $codigo => $nombre) {
-  $elementos_json[] = "\"$codigo\": \"$nombre\"";
+foreach ($losMunicipios as $codigo => $nombre) {
+    $elementos_json[] = "\"$codigo\": \"$nombre\"";
 }
 
-echo "{".implode(",", $elementos_json)."}"
+echo "{" . implode(",", $elementos_json) . "}";
 
-
-?>

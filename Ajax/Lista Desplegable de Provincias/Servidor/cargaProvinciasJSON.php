@@ -54,11 +54,8 @@ $provincias["49"] = "Zamora";
 $provincias["50"] = "Zaragoza";
 
 
-
-foreach($provincias as $codigo => $nombre) {
-  $elementos_json[] = "\"$codigo\": \"$nombre\"";
+foreach ($provincias as $codigo => $nombre) {
+    $elementos_json[] = "\"$codigo\": \"$nombre\"";
 }
 
-echo "{".implode(",", $elementos_json)."}"
-
-?>
+echo "{" . implode(",", $elementos_json) . "}";
