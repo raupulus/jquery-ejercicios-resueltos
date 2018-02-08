@@ -21,9 +21,11 @@ sleep($numeroAleatorio % 2);
 $disponible = ($numeroAleatorio % 2 == 0)? "si" : "no";
 
 // Crear el objeto respuesta, este será enviado y tratado en el cliente como objeto JSON
+
+/** @noinspection PhpUndefinedClassInspection */
 class Respuesta {
- public $disponible;
- public $alternativas;
+    public $disponible;
+    public $alternativas;
 }
 
 // Se instancia el objeto Respuesta para asignarlle valores
@@ -49,4 +51,4 @@ else {
 
 // Se devuelve la respuesta codificada mediante PHP en formato JSON
 echo json_encode($respuesta);
-?>
+
