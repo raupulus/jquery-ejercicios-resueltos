@@ -21,6 +21,9 @@
         // Municipio elegido
         var mun;
 
+        /**
+         * Ordena las listas
+         */
         function ordenar() {
             $('select').each(function (index, elem) {
                 // Guardamos la opción seleccionada
@@ -28,8 +31,8 @@
 
                 // Aplicacion del orden alfabetico
                 $(elem).html($("option", $(this)).sort(function (a, b) {
-                    return a.text == b.text ? 0 : a.text < b.text ? -1 : 1 //ordena por texto
-                    //return a.value == b.value ? 0 : a.value < b.value ? -1 : 1 //ordena por atributo value
+                    //return a.text == b.text ? 0 : a.text < b.text ? -1 : 1 //ordena por texto
+                    return a.value == b.value ? 0 : a.value < b.value ? -1 : 1 //ordena por atributo value
                 }));
 
                 // Reestablecemos la opción seleccionada previamente
@@ -38,6 +41,9 @@
             });
         }
 
+        /**
+         * Rellena la lista de provincias
+         */
         function rellenarProvincia() {
             $.getJSON('../Servidor/cargaProvinciasJSON.php', function (data) {
                 $.each(data, function (codigo, nombre) {
@@ -46,10 +52,18 @@
                 });
             });
 
-            //ordenar(prov);
+            ordenar(prov);
         }
 
+        /**
+         * Limpia la lista de municipios y extrae elementos según la provincia
+         * que se haya elegido anteriormente.
+         */
         function rellenarMunicipio() {
+            if($('#municipio').children().length > 1) {
+                $('#municipio').empty();
+            }
+
             $.getJSON('../Servidor/cargaMunicipiosJSON.php',
                 {'provincia' : prov}, function
                 (data) {
@@ -64,9 +78,17 @@
 
         window.onload = function () {
             rellenarProvincia();
+
+            // Añade evento a la lista de municipios para llenarlas al pulsar
             $('#municipio').on('click', rellenarMunicipio);
 
-            $('#provincia').on('change', function(){
+            // Al seleccionar un municipio se guarda este en la variable
+            $('#municipio').on('change', function() {
+                mun = $(this).children('option:selected').val();
+            });
+
+            // Al seleccionar una ciudad se guarda esta en la variable
+            $('#provincia').on('change', function() {
                 prov = $(this).children('option:selected').val();
             });
         }
