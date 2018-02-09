@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+El objetivo de este ejercicio es crear una lista desplegable donde seleccionar
+una provincia, después de seleccionar la Provincia se habilitará otra lista
+desplegable donde seleccionar el Municipio filtrando para que aparezcan solo
+los que pertenecen a la Provincia seleccionada con anterioridad.
+
+Para lograr esto se usarán dos scripts en el servidor, los cuales devolverán
+un objeto JSON con la información correspondiente.
+    - El script del servidor utilizado para cargar las provincias se llamará
+      "cargaProvinciasJSON.php" y la respuesta del servidor tiene el
+      siguiente formato:
+      {"01":"Álava/Araba", "02":"Albacete", "03":"Alicante/Alacant" , ... }
+
+    - El script del servidor utilizado para cargar los municipios se llamará
+      cargaMunicipiosJSON.php y la respuesta del servidor tendrá el
+      siguiente formato:
+      {"0014":"Alegría-Dulantzi","0029": "Amurrio", ... }
+
+En esta actividad será necesario utilizar:
+    - jQuery
+    - AJAX
+    - JSON
+    - Objetos javascript con la respuesta JSON
+-->
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Listas desplegables de Provincias y Municipios</title>
+    <script src="jquery-3.2.1.js"></script>
+    <script type="text/javascript">
+        var prov;  // Provincia elegida
+        var mun;   // Municipio elegido
+
+        /**
+         * Ordena las listas (No funciona aún)
+         */
+        function ordenar() {
+            $('select').each(function (index, elem) {
+                // Guardamos la opción seleccionada
+                var sel = elem.selectedIndex;
+
+                // Aplicacion del orden alfabetico
+                $(elem).html($("option", $(this)).sort(function (a, b) {
+                    //return a.text == b.text ? 0 : a.text < b.text ? -1 : 1 //ordena por texto
+                    return a.value == b.value ? 0 : a.value < b.value ? -1 : 1 //ordena por atributo value
+                }));
+
+                // Reestablecemos la opción seleccionada previamente
+                $(elem).prop('selectedIndex', sel); //listaActual.selectedIndex = sel;
+            });
+        }
+
+        /**
+         * Rellena la lista de provincias
+         */
+        function rellenarProvincia() {
+            $.getJSON('../Servidor/cargaProvinciasJSON.php', function (data) {
+                $.each(data, function (codigo, nombre) {
+                    $('#provincia').append('<option value="' + codigo + '">' +
+                        nombre + '</option>');
+                });
+            });
+
+            //ordenar();
+        }
+
+        /**
+         * Limpia la lista de municipios y extrae elementos según la provincia
+         * que se haya elegido anteriormente.
+         */
+        function rellenarMunicipio() {
+            if($('#municipio').children().length > 1) {
+                $('#municipio').empty();
+            }
+
+            $.getJSON('../Servidor/cargaMunicipiosJSON.php',
+                {'provincia' : prov}, function
+                (data) {
+                $.each(data, function (codigo, nombre) {
+                    $('#municipio').append('<option value="' + codigo + '">' +
+                        nombre + '</option>');
+                });
+            });
+
+            //ordenar(mun);
+        }
+
+        window.onload = function () {
+            rellenarProvincia();
+
+            // Añade evento a la lista de municipios para llenarlas al pulsar
+            $('#municipio').on('click', rellenarMunicipio);
+
+            // Al seleccionar un municipio se guarda este en la variable
+            $('#municipio').on('change', function() {
+                mun = $(this).children('option:selected').val();
+            });
+
+            // Al seleccionar una ciudad se guarda esta en la variable
+            $('#provincia').on('change', function() {
+                prov = $(this).children('option:selected').val();
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <h1>Listas desplegables de Provincias y Municipios</h1>
+    <form>
+        <label for="provincia">Provincia</label>
+        <select id="provincia">
+            <option>-Seleccionar-</option>
+        </select>
+
+        <br /><br />
+
+        <label for="municipio">Municipio</label>
+        <select id="municipio">
+            <option>-Seleccionar Provincia-</option>
+        </select>
+    </form>
+</body>
+</html>

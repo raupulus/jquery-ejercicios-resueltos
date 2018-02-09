@@ -24,13 +24,12 @@ comprobar si está disponible.
 
 En este caso usar jQuery y el método getJson()
 -->
-<!--suppress ALL -->
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Comprobar disponibilidad de usuario mediante objeto JSON</title>
     <script src="./jquery-3.2.1.js"></script>
-    <!--suppress Annotator, Annotator -->
+
     <script>
         window.onload = function() {
             /**
@@ -45,8 +44,8 @@ En este caso usar jQuery y el método getJson()
                 // Se instancia la petición
                 $.getJSON({
                     url: "../servidor/compruebaDisponibilidadJSON.php",
-                    data:{'name': name},
-                }).done(function(datos) {
+                    data: {'name': name},
+                }).done(function (datos) {
                     // Almaceno variable con caja donde pintar resultados
                     var resultado = document.getElementById('resultado');
 
@@ -72,7 +71,7 @@ En este caso usar jQuery y el método getJson()
                         resultado.append(h3);
 
                         // Muestro cada alternativa en un párrafo
-                        datos.alternativas.forEach( function (alt) {
+                        datos.alternativas.forEach(function (alt) {
                             var p = document.createElement('p');
                             p.append(document.createTextNode(alt));
                             document.getElementById('resultado').append(p);
@@ -88,14 +87,14 @@ En este caso usar jQuery y el método getJson()
 </head>
 
 <body>
-    <form>
-        <h1>Comprobar disponibilidad de usuario mediante objeto JSON</h1>
-        <h2>Usando el método jQuery → getJson()</h2>
-        <label for="entrada">Nombre de usuario: </label>
-        <input id="entrada" type="text" />
-        <a id="comprobar" href="#">Comprobar disponibilidad</a>
-    </form>
+<form>
+    <h1>Comprobar disponibilidad de usuario mediante objeto JSON</h1>
+    <h2>Usando el método jQuery → getJson()</h2>
+    <label for="entrada">Nombre de usuario: </label>
+    <input id="entrada" type="text"/>
+    <a id="comprobar" href="#">Comprobar disponibilidad</a>
+</form>
 
-    <div id="resultado"></div>
+<div id="resultado"></div>
 </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+ @author    Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license   https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Mostrar vuelos al pulsar sobre el botón correspondiente.
+Los valores serán traidos mediante AJAX como un array de objetos JSON.
+Convertir el string JSON en un array de Objetos javascript.
+Mostrar en una lista el número de vuelo y el momento (Fecha y Hora) de este.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Ver vuelos</title>
+    <style>
+        .cajaBotones {
+            margin: auto;
+            padding: 6px;
+            text-align: center;
+            background-color: #227788;
+            border-radius: 10px;
+            box-shadow: 3px 3px 3px #000000;
+        }
+        .cajaBotones > .update-available-flights {
+            font-size: 1.3em;
+            background-color: sandybrown;
+            border-radius: 10px;
+            box-shadow: 1px 1px 3px #000000;
+        }
+    </style>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        function verVuelos() {
+            $.getJSON('../Servidor/consulta.php', function (data) {
+                // Almaceno caja donde añadir la lista a la vez que la vacio
+                var fl = $('div.flights').empty();
+
+                // Variable donde guardo la estructura de la lista ul>li
+                var nod = '<ul class="flights">';
+
+                // Itero cada elemento del array de objetos extrayendo valores
+                $.each(data, function (index, dato) {
+                    nod += '<li>' + dato.flightNumber + dato.time + '</li>';
+                });
+                nod += '</ul>';
+
+                // Finalmente añado dentro de su caja el código HTML generado
+                fl.html(nod);
+            });
+        }
+
+        window.onload = function () {
+            $('.update-available-flights').on('click', verVuelos);
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Mostrar Vuelos <small>(Pulsa para ver)</small></h1>
+    </header>
+
+    <div>
+        <div class="cajaBotones">
+            <button class="update-available-flights">Ver vuelos</button>
+        </div>
+
+        <div class="flights"></div>
+    </div>
+   </body>
+</html>

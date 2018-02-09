@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Rellenar dinámicamente los tours mediante objetos JSON recibidos desde el
+servidor por AJAX donde deberá mostrarse el nombre y precio de cada uno.
+
+Desde el archivo php recibimos la cadena con los objetos instanciados de la
+clase "Tour" y desde aquí lo convertimos en un objeto JSON el cual iteramos
+con $.map() de forma que crearemos el nombre de la clase dinámicamente (tour
++ indice) por ejemplo "tour-0" "tour-1"...
+
+Por último lo añadimos al DOM
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mostrar Tours dinámicamente</title>
+    <script src="jquery-3.2.1.js"></script>
+    <script>
+        /**
+         * Recibe todos los tours desde el servidor
+         */
+        function obtenerTours() {
+            $.getJSON('../Servidor/consulta.php', function (data) {
+                // Recorre cada objeto contenido en el data usando su índice
+                // para generar la clase y sus valores para ser pintados
+                $.each(data, function (index, obj) {
+                    $('#cajaTours').append('<div class="tour-' + index +
+                        '">' +
+                        '<h3 class="name">' + obj.name + '</h3>' +
+                        '<p class="price">' + obj.price + '</p>' +
+                        '</div>'
+                    );
+                });
+                //console.log(data);
+            });
+        }
+
+        window.onload = function () {
+            $('#mostrar').on('click', obtenerTours);
+        }
+    </script>
+</head>
+<body>
+    <h1>Mostrar Tours dinámicamente</h1>
+
+    <button id="mostrar">Mostrar tours</button>
+
+    <h2>Tours actuales</h2>
+
+    <!--Genero la estructura dinámicamente-->
+    <div id="cajaTours"></div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea un formulario con estos 3 campos:
+    - Fecha de Nacimiento
+    - Código
+    - Teléfono
+
+Valida los campos del formulario utilizando el método para jQuery "serialize()"
+Envía el formulario mediante POST al archivo "consulta.php" que simulará el
+servidor.
+
+No se enviará el formulario al servidor, sino que se comprobará desde aquí
+obteniendo el resultado mediante una consulta AJAX al servidor "consulta.php"
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Validar formulario en el Servidor</title>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+    window.onload = function() {
+        /**
+         * Comprueba en el servidor si es válido el resultado y la pinta
+         */
+        function comprobar(e) {
+            // Desactiva el evento por defecto del botón "submit"
+            e.preventDefault();
+
+            // Obtengo la respuesta del servidor y la pinto
+            $.ajax({
+                url: '../Servidor/consulta.php',
+                type: 'POST',
+                data: $('#formulario').serialize()
+            })
+            .done(function (data) {
+                // Limpio el bloque donde se pintan los mensajes
+                var msg = $('#errores').empty();
+
+                // Añado los nuevos mensajes
+                msg.append(data);
+            });
+        }
+
+        // Añado evento
+        $('#formulario').on('submit', comprobar);
+    }
+    </script>
+</head>
+
+<body>
+    <h1>Validar formulario en el Servidor</h1>
+    <form id="formulario" method="post" action="../Servidor/consulta.php">
+        <label for="fecha_nacimiento">Fecha de Nacimiento </label>
+        <input id="fecha_nacimiento" name="fecha_nacimiento" type="text" />
+
+        <br />
+
+        <label for="codigo_postal">Código Postal</label>
+        <input id="codigo_postal" name="codigo_postal" type="text" />
+
+        <br />
+
+        <label for="telefono">Nacimiento</label>
+        <input id="telefono" name="telefono" type="text" />
+
+        <br />
+
+        <button type="submit">Validar Datos</button>
+    </form>
+
+    <div id="errores"></div>
+</body>
+</html>
