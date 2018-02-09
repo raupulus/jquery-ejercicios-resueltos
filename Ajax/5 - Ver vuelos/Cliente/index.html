@@ -1,30 +1,53 @@
 <!DOCTYPE html>
 <!--
- @author Raúl Caro Pastorino
+ @author    Raúl Caro Pastorino
  @copyright Copyright © 2017 Raúl Caro Pastorino
- @license https://wwww.gnu.org/licenses/gpl.txt
+ @license   https://wwww.gnu.org/licenses/gpl.txt
 -->
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-
+Mostrar vuelos al pulsar sobre el botón correspondiente.
+Los valores serán traidos mediante AJAX como un array de objetos JSON.
+Convertir el string JSON en un array de Objetos javascript.
+Mostrar en una lista el número de vuelo y el momento (Fecha y Hora) de este.
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Ver vuelos</title>
+    <style>
+        .update-available-flights {
+            margin: auto;
+        }
+    </style>
     <script src="jquery-3.2.1.js"></script>
     <script>
+        function verVuelos() {
+            $.getJSON('../Servidor/consulta.php', function (data) {
+                
+            })
+        }
 
+        window.onload = function () {
+            $('.update-available-flights').on('click', verVuelos);
+        }
     </script>
 </head>
 
 <body>
-    <button class="update-available-flights">Ver vuelos</button>
-    <div class="flights">
-        <ul class="flight-times">
+    <header>
+        <h1>Mostrar Vuelos <small>(Pulsa para ver)</small></h1>
+    </header>
 
-        </ul>
+    <div>
+        <button class="update-available-flights">Ver vuelos</button>
+
+        <div class="flights">
+            <ul class="flight-times">
+
+            </ul>
+        </div>
     </div>
-</body>
+   </body>
 </html>
