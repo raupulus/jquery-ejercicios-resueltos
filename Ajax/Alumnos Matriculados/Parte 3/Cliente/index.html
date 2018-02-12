@@ -7,10 +7,12 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Modifica la primera parte del ejercicio para que el usuario solicite los alumnos
-de un curso concreto.
+En esta parte el objetivo es generar una tabla con los datos obtenidos desde
+el servidor.
 
-Ahora solo se mostrarán los alumnos correspondientes al curso introducido.
+Una vez el usuario busque un curso, este aparecerá dentro de una tabla en la
+que los titulos <th> serán los nombre para la clave de cada Objeto y solo se
+mostrarán una vez en el encabezado de la tabla.
 -->
 <html lang="es">
 <head>
@@ -18,56 +20,60 @@ Ahora solo se mostrarán los alumnos correspondientes al curso introducido.
     <title>Alumnos Matriculados</title>
     <script src="./jquery-3.3.1.js"></script>
     <script>
-        window.onload = function() {
-            // Añado evento al botón de ver cursos
-            $('input[type="button"]').on('click', verCursos);
+    window.onload = function() {
+        // Añado evento al botón de ver cursos
+        $('input[type="button"]').on('click', verCursos);
 
-            /**
-             * Esta función comprueba el valor introducido y muestra los cursos
-             * si coincide.
-             */
-            function verCursos() {
-                // Obtiene el curso del input y lo convierte a minúsculas
-                var curso = $('input[name="entrada"]').val().toLowerCase();
+        /**
+         * Esta función comprueba el valor introducido y muestra los cursos
+         * si coincide.
+         */
+        function verCursos() {
+            // Obtiene el curso del input y lo convierte a minúsculas
+            var curso = $('input[name="entrada"]').val().toLowerCase();
 
-                // Comprueba que es válido antes de realizar la petición
-                if ((curso === '1daw') || (curso === '2daw')) {
-                    pintarDatos(curso);
-                } else {
-                    $('#boxResult').empty().append('No existe ese curso');
-                }
-            }
-
-            /**
-             * Realiza la petición para obtener los datos solo del curso deseado
-             * @param {String} curso Cadena con el nombre del curso para
-             *                 enviar por GET. valores admitidos "1daw" y "2daw"
-             */
-            function pintarDatos(curso) {
-
-                // Limpio y a la vez añado título del curso.
-                $('#boxResult').empty().append('<h2>' + curso + '</h2>');
-
-                $.getJSON('../Servidor/consulta.php?curso=' + curso,
-                    function (data) {
-
-                        // Recorre cada alumno.
-                        $.each(data, function(index, alumno) {
-
-                            // Variable donde guardo la lista para alumno actual.
-                            var elemento = '<li>';
-
-                            // Recorre y pinta cada propiedad del alumno y su clave.
-                            $.each(alumno, function(key, valor) {
-                                elemento += ' ' + key.toUpperCase() + ': ' + valor;
-                            });
-
-                            // Acopla la lista correspondiente al alumno en su caja.
-                            $('#boxResult').append(elemento +'</li>');
-                        });
-                    });
+            // Comprueba que es válido antes de realizar la petición
+            if ((curso === '1daw') || (curso === '2daw')) {
+                pintarDatos(curso);
+            } else {
+                $('#boxResult').empty().append('No existe ese curso');
             }
         }
+
+        /**
+         * Realiza la petición para obtener los datos solo del curso deseado
+         * @param {String} curso Cadena con el nombre del curso para
+         *                 enviar por GET. valores admitidos "1daw" y "2daw"
+         */
+        function pintarDatos(curso) {
+
+            // Limpio y a la vez añado título del curso.
+            $('#boxResult').empty().append('<h2>' + curso + '</h2>');
+
+            $.getJSON('../Servidor/consulta.php?curso=' + curso,
+            function (data) {
+                // Uso todas las claves/keys para generar cabecera
+                var cabecera = '<table><tr>';
+                Object.keys(data[0]).forEach(function(valor) {
+                    cabecera += '<th>' + valor.toUpperCase() + '</th>';
+                });
+                cabecera += '</tr>';
+
+                // Recorre cada alumno añadiendo cada fila a la variable.
+                var filas = '';
+                $.each(data, function(index, alumno) {
+                    filas += '<tr>';
+                    // Recorre y pinta cada propiedad del alumno y su clave.
+                    $.each(alumno, function(key, valor) {
+                        filas += '<td>' + valor + '</td>';
+                    });
+                    filas += '</tr>';
+                });
+
+                $('#boxResult').append(cabecera + filas);
+            });
+        }
+    }
     </script>
 </head>
 
