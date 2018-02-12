@@ -41,8 +41,7 @@ Ahora solo se mostrarán los alumnos correspondientes al curso introducido.
              * @param curso
              */
             function pintarDatos(curso) {
-
-                $('#boxResult').append('<h2>' + curso + '</h2>');
+                $('#boxResult').empty().append('<h2>' + curso + '</h2>');
                 $.getJSON('../Servidor/consulta.php?curso=' + curso,
                  function (data) {
                     $.each(data, function (index, obj) {
