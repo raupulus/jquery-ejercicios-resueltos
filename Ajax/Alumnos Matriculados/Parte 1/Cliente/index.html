@@ -31,32 +31,33 @@ El objeto recibido contiene dos objetos con la siguiente estructura:
     <script src="./jquery-3.3.1.js"></script>
     <script>
     window.onload = function() {
-        // TODO → Optimizar estructura que se repite:
-        $.getJSON('../Servidor/consulta.php', function (data) {
-            $.each(data[0], function (index, obj) {
-                $('#boxFirst').append('<li>' +
-                    'Nombre: ' + obj.nombre +
-                    ' Dni: ' + obj.dni +
-                    ' Acceso: ' + obj.acceso +
-                    '</li>'
-                );
-            });
 
-            $.each(data[1], function (index, obj) {
-                $('#boxSecond').append('<li>' +
-                    'Nombre: ' + obj.nombre +
-                    ' Dni: ' + obj.dni +
-                    ' Acceso: ' + obj.acceso +
-                    '</li>'
-                );
+        function pintarCursos(titulos, caja) {
+            $.getJSON('../Servidor/consulta.php', function (data) {
+               for (x in titulos) {
+                   // Pinta el título
+                   $(caja).append('<h2>' + titulos[x] + '</h2>');
+
+                   // Recorre cada uno de los cursos y añade sus datos
+                   $.each(data[x], function (index, obj) {
+                       $(caja).append('<li>' +
+                           'Nombre: ' + obj.nombre +
+                           ' Dni: ' + obj.dni +
+                           ' Acceso: ' + obj.acceso +
+                           '</li>'
+                       );
+                   });
+               }
             });
-        });
+        }
+
+        // Llama a la función pasándole los títulos y la caja donde colocar
+        pintarCursos(['1DAW', '2DAW'], '#boxResult');
     }
     </script>
 </head>
 
 <body>
-    <div id="boxFirst"><h2>1ºDAW</h2></div>
-    <div id="boxSecond"><h2>2ºDAW</h2></div>
+    <div id="boxResult"></div>
 </body>
 </html>
