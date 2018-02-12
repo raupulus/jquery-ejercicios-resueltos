@@ -34,7 +34,6 @@ El objeto recibido contiene dos objetos con la siguiente estructura:
         // TODO → Optimizar estructura que se repite:
         $.getJSON('../Servidor/consulta.php', function (data) {
             $.each(data[0], function (index, obj) {
-                console.log(obj);
                 $('#boxFirst').append('<li>' +
                     'Nombre: ' + obj.nombre +
                     ' Dni: ' + obj.dni +
@@ -44,7 +43,6 @@ El objeto recibido contiene dos objetos con la siguiente estructura:
             });
 
             $.each(data[1], function (index, obj) {
-                console.log(obj);
                 $('#boxSecond').append('<li>' +
                     'Nombre: ' + obj.nombre +
                     ' Dni: ' + obj.dni +
