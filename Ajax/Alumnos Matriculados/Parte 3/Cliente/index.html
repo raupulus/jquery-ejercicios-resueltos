@@ -18,6 +18,32 @@ mostrarán una vez en el encabezado de la tabla.
 <head>
     <meta charset="UTF-8" />
     <title>Alumnos Matriculados</title>
+    <style>
+        table {
+            margin: auto;
+            max-width: 800px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 3px solid #000000;
+            border-radius: 6px;
+            box-shadow: 5px 5px 3px #000000;
+        }
+        table tr:nth-child(odd)  {
+            background-color: #227788;
+        }
+        table tr:nth-child(even)  {
+            background-color: #319acf;
+        }
+        table th, table td {
+            padding: 10px;
+            font-size: 1.2em;
+        }
+        table th {
+            font-size: 1.4em;
+            color: #000000;
+            background-color: #ffe600;
+        }
+    </style>
     <script src="./jquery-3.3.1.js"></script>
     <script>
     window.onload = function() {
@@ -48,11 +74,13 @@ mostrarán una vez en el encabezado de la tabla.
         function pintarDatos(curso) {
 
             // Limpio y a la vez añado título del curso.
-            $('#boxResult').empty().append('<h2>' + curso + '</h2>');
+            $('#boxResult').empty().append('<p>' +
+                                           'Lista de alumnos matriculados en '+
+                                           curso + '</p>');
 
             $.getJSON('../Servidor/consulta.php?curso=' + curso,
             function (data) {
-                // Uso todas las claves/keys para generar cabecera
+                // Uso todas las claves/keys para generar cabecera <th>
                 var cabecera = '<table><tr>';
                 Object.keys(data[0]).forEach(function(valor) {
                     cabecera += '<th>' + valor.toUpperCase() + '</th>';
