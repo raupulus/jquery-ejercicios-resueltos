@@ -7,24 +7,46 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
+Modifica la primera parte del ejercicio para que el usuario solicite los alumnos
+de un curso concreto.
 
+Ahora solo se mostrarán los alumnos correspondientes al curso introducido.
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <title>Ejercicios DOM Básicos</title>
-    <style type="text/css">
-
-    </style>
     <script src="./jquery-3.3.1.js"></script>
     <script>
-    window.onload = function() {
+        window.onload = function() {
+            // TODO → Optimizar estructura que se repite:
+            $.getJSON('../Servidor/consulta.php', function (data) {
+                $.each(data[0], function (index, obj) {
+                    console.log(obj);
+                    $('#boxFirst').append('<li>' +
+                        'Nombre: ' + obj.nombre +
+                        ' Dni: ' + obj.dni +
+                        ' Acceso: ' + obj.acceso +
+                        '</li>'
+                    );
+                });
 
-    }
+                $.each(data[1], function (index, obj) {
+                    console.log(obj);
+                    $('#boxSecond').append('<li>' +
+                        'Nombre: ' + obj.nombre +
+                        ' Dni: ' + obj.dni +
+                        ' Acceso: ' + obj.acceso +
+                        '</li>'
+                    );
+                });
+            });
+        }
     </script>
 </head>
 
 <body>
-
+<div id="boxFirst"><h2>1ºDAW</h2></div>
+<div id="boxSecond"><h2>2ºDAW</h2></div>
 </body>
 </html>
