@@ -51,8 +51,7 @@
                                 'Diciembre'
                                ],
 
-                    // Fecha mínima → restar 12 años a la actual
-                    //minDate: new Date(2007, 1 - 1, 1)
+                    minDate: '-' + (12*360), // Restar 12 años a la actual
 
                     maxDate: '+0', // Bloquea selección de día superior a hoy
                     firstDay: 1, // Primer día de la semana
@@ -64,8 +63,11 @@
             menuCalendario();
 
             // Select para géneros
+            // TODO → No muestra icono
             $('#gender').selectmenu();
 
+            // Input para Últimos estudios
+            $('input[name="studies"]').checkboxradio();
         }
     </script>
 </head>
