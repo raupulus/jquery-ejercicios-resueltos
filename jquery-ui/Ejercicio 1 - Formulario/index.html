@@ -13,7 +13,8 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Formulario de Registro</title>
-    <link href="./jquery-ui.css"/>
+    <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="jquery-ui.theme.css">
     <style type="text/css">
         label {
             display: block;
@@ -32,6 +33,38 @@
     <script src="./jquery-ui.js"></script>
     <script>
         window.onload = function() {
+            function menuCalendario() {
+                $.datepicker.setDefaults($.datepicker.regional["es"]);
+                $('#date').datepicker({
+                    showOn:"both", // Muestra el icono del calendario junto
+                    buttonImage:"images/calendar.png",
+                    buttonText:"Seleccionar una fecha", // Texto icono del cal
+                    dateFormat:"dd-mm-yy",
+                    showButtonPanel:true, // Muestra el panel abajo
+                    currentText:"Hoy",    // Texto del panel de abajo para hoy
+                    closeText:"Cerrar",   // Texto para cerrar panel de abajo
+                    showAnim:"slideDown",
+                    dayNamesMin:["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                    monthNames:['Enero', 'Febrero', 'Marzo', 'Abril',
+                                'Mayo', 'Junio', 'Julio', 'Agosto',
+                                'Septiembre', 'Octubre', 'Noviembre',
+                                'Diciembre'
+                               ],
+
+                    // Fecha mínima → restar 12 años a la actual
+                    //minDate: new Date(2007, 1 - 1, 1)
+
+                    maxDate: '+0', // Bloquea selección de día superior a hoy
+                    firstDay: 1, // Primer día de la semana
+                });
+            }
+
+
+            // Configura el calendario
+            menuCalendario();
+
+            // Select para géneros
+            $('#gender').selectmenu();
 
         }
     </script>
