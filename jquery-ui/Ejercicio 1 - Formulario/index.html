@@ -61,7 +61,7 @@
             function obtenerLenguajes() {
                $.getJSON('./servidorTags.php', function(data) {
                    //console.log(data);
-                   lenguajes = data.slice(0);
+                   lenguajes = data;
                    console.log(lenguajes);
                    //return data.slice(0);
                 });
@@ -78,10 +78,11 @@
             $('input[name="studies"]').checkboxradio();
 
             // Checkbox para módulos
+            // TODO → Al pulsar aumenta slider (no se como)
             $('input[name="subjects"]').checkboxradio();
 
             // Slider que se autorrellena
-            // TODO → No se autorrellenar
+            // TODO → No autorrellena, solo se muestra deshabilitado
             $('#slider').slider({
                 disabled : true,
             });
@@ -94,6 +95,22 @@
                 minLength: 1,  // Longitud mínima para empezar a buscar
                 source: lenguajes,
             });
+
+            // Botones del final
+            $('button' ).button({
+                classes: {
+                    "ui-button": "highlight",
+                    icon: "ui-icon-gear",
+                }
+            });
+
+            $('#b3').on('click', function() {
+                // Mostrar dialogo raro y llevar a imprimir si acepta
+            });
+
+
+
+            console.log(lenguajes);
         }
     </script>
 </head>
@@ -170,9 +187,9 @@
     <br /><br />
 
     <div>
-        <button>Reset</button>
-        <button>Enviar</button>
-        <button>Imprimir</button>
+        <button id="b1">Reset</button>
+        <button id="b2">Enviar</button>
+        <button id="b3">Imprimir</button>
     </div>
 </form>
 </body>
