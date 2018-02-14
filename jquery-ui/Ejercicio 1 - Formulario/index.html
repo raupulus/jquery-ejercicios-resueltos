@@ -11,20 +11,101 @@
 -->
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>Ejercicios DOM Básicos</title>
-    <link href="./jquery-ui.css" />
+    <link href="./jquery-ui.css"/>
+    <style type="text/css">
+        label {
+            display: block;
+            margin: 20px 0px;
+        }
+
+        #progressbar, #slider {
+            width: 300px;
+        }
+
+        form {
+            margin: 20px;
+        }
+
+    </style>
     <script src="./jquery-3.3.1.js"></script>
     <script src="./jquery-ui.js"></script>
     <script src="./"></script>
     <script>
-    window.onload = function() {
+        window.onload = function() {
 
-    }
+        }
     </script>
 </head>
 
 <body>
+<h1>Formulario de registro CFGS DAW - IES DOÑANA</h1>
+<form>
+    <label> Nombre:
+        <input type='text' id='name' name='name'>
+    </label>
+    <label> Fecha de nacimiento:
+        <input type='text' id='date' name='date'>
+    </label>
+    <label> Sexo:
+        <select id="gender" name='gender'>
+            <option value="f" data-class="avatar"
+                    data-style="background-image: url(images/female.png);">Mujer
+            </option>
+            <option value="m" data-class="avatar"
+                    data-style="background-image: url(images/male.png);">Hombre
+            </option>
+        </select>
 
+    </label>
+    <fieldset>
+        <legend>Últimos estudios realizados:</legend>
+        <label for="radio-1">ESO</label>
+        <input type="radio" name="studies" id="radio-1">
+        <label for="radio-2">Bachillerato</label>
+        <input type="radio" name="studies" id="radio-2">
+        <label for="radio-3">CF</label>
+        <input type="radio" name="studies" id="radio-3">
+        <label for="radio-4">Otros</label>
+        <input type="radio" name="studies" id="radio-4">
+    </fieldset>
+
+    <fieldset>
+        <legend>Módulos:</legend>
+        <label>Programación
+            <input type="checkbox" name="subjects" value='prog'>
+        </label>
+        <label>Entornos de desarrollo
+            <input type="checkbox" name="subjects" value='ent'>
+        </label>
+        <label>Lenguaje de marcas
+            <input type="checkbox" name="subjects" value='leng'>
+        </label>
+        <label>Sistemas informáticos
+            <input type="checkbox" name="subjects" value='sist'>
+        </label>
+        <label>FOL
+            <input type="checkbox" name="subjects" value='fol'>
+        </label>
+    </fieldset>
+    <p>Módulos en los que se desea matricular</p>
+    <div id="slider" name='amount'>
+        <div id="custom-handle" class="ui-slider-handle"></div>
+    </div>
+    <label>Lenguajes de programación que conoces
+        <input type='text' name='tags' id="tags" size="50">
+    </label>
+    <br>
+    <br>
+
+    <div>
+        <button>Reset</button>
+        <button>Enviar</button>
+        <button>Imprimir</button>
+    </div>
+
+
+</form>
 </body>
 </html>
