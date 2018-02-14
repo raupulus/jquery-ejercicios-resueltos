@@ -31,6 +31,8 @@
     <script src="./jquery-3.3.1.js"></script>
     <script src="./jquery-ui.js"></script>
     <script>
+        var lenguajes = [];
+
         window.onload = function() {
             function menuCalendario() {
                 $.datepicker.setDefaults($.datepicker.regional["es"]);
@@ -56,6 +58,15 @@
                 });
             }
 
+            function obtenerLenguajes() {
+               $.getJSON('./servidorTags.php', function(data) {
+                   //console.log(data);
+                   lenguajes = data.slice(0);
+                   console.log(lenguajes);
+                   //return data.slice(0);
+                });
+            }
+
             // Configura el calendario
             menuCalendario();
 
@@ -68,6 +79,21 @@
 
             // Checkbox para módulos
             $('input[name="subjects"]').checkboxradio();
+
+            // Slider que se autorrellena
+            // TODO → No se autorrellenar
+            $('#slider').slider({
+                disabled : true,
+            });
+
+            // Input Autocompletar lenguajes
+            // TODO → No encuentro como conectar servidor
+            obtenerLenguajes();
+            console.log(lenguajes);
+            $('input[name="tags"]').autocomplete({
+                minLength: 1,  // Longitud mínima para empezar a buscar
+                source: lenguajes,
+            });
         }
     </script>
 </head>
