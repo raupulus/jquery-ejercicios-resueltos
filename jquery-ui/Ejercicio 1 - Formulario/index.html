@@ -68,6 +68,9 @@
 
             // Input para Últimos estudios
             $('input[name="studies"]').checkboxradio();
+
+            // Checkbox para módulos
+            $('input[name="subjects"]').checkboxradio();
         }
     </script>
 </head>
@@ -111,20 +114,25 @@
 
     <fieldset>
         <legend>Módulos:</legend>
-        <label>Programación</label>
-        <input type="checkbox" name="subjects" value='prog' />
+        <label>Programación
+            <input type="checkbox" name="subjects" value='prog' />
+        </label>
 
-        <label>Entornos de desarrollo</label>
-        <input type="checkbox" name="subjects" value='ent' />
+        <label>Entornos de desarrollo
+            <input type="checkbox" name="subjects" value='ent' />
+        </label>
 
-        <label>Lenguaje de marcas</label>
-        <input type="checkbox" name="subjects" value='leng' />
+        <label>Lenguaje de marcas
+            <input type="checkbox" name="subjects" value='leng' />
+        </label>
 
-        <label>Sistemas informáticos</label>
-        <input type="checkbox" name="subjects" value='sist' />
+        <label>Sistemas informáticos
+            <input type="checkbox" name="subjects" value='sist' />
+        </label>
 
-        <label>FOL</label>
-        <input type="checkbox" name="subjects" value='fol' />
+        <label>FOL
+            <input type="checkbox" name="subjects" value='fol' />
+        </label>
     </fieldset>
 
     <p>Módulos en los que se desea matricular</p>
