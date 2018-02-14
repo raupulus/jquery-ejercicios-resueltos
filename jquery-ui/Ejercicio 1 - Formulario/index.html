@@ -55,6 +55,8 @@
 
                     maxDate: '+0', // Bloquea selección de día superior a hoy
                     firstDay: 1, // Primer día de la semana
+                    changeMonth: true,
+                    changeYear: true,
                 });
             }
 
@@ -79,7 +81,9 @@
 
             // Checkbox para módulos
             // TODO → Al pulsar aumenta slider (no se como)
-            $('input[name="subjects"]').checkboxradio();
+            $('input[name="subjects"]').checkboxradio({
+                icon:false,
+            });
 
             // Slider que se autorrellena
             // TODO → No autorrellena, solo se muestra deshabilitado
