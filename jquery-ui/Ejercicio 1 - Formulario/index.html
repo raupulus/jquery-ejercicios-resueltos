@@ -14,7 +14,6 @@
     <meta charset="UTF-8"/>
     <title>Formulario de Registro</title>
     <link rel="stylesheet" type="text/css" href="jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="jquery-ui.theme.css">
     <style type="text/css">
         label {
             display: block;
@@ -50,14 +49,12 @@
                                 'Septiembre', 'Octubre', 'Noviembre',
                                 'Diciembre'
                                ],
-
                     minDate: '-' + (12*360), // Restar 12 años a la actual
 
                     maxDate: '+0', // Bloquea selección de día superior a hoy
                     firstDay: 1, // Primer día de la semana
                 });
             }
-
 
             // Configura el calendario
             menuCalendario();

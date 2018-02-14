@@ -1,7 +1,2 @@
 <?php
-
-	
-	echo "Se ha recibido la información correctamente";
-	
-
-?>
+echo "Se ha recibido la información correctamente";
