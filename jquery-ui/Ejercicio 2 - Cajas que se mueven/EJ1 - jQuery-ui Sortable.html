@@ -7,7 +7,13 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea 5 cajas (bloques div) que se puedan ordenar mediante
+http://jqueryui.com/sortable/ y jquery de forma que cuando estén las
+5 vocales en orden y se pulse comprobar muestre un diálogo de
+confirmación, en caso contrario de fallo.
 
+Cuando lleva dos partidas jugadas muestra si ha ganado y aparece un
+botón que da la posibilidad de reiniciar.
 -->
 <html lang="es">
 <head>
@@ -39,16 +45,68 @@
     <link href="./jquery-ui.css" />
     <script src="./jquery-3.3.1.js"></script>
     <script src="./jquery-ui.js"></script>
+    <script>
+        var letras = ['A', 'E', 'I', 'O', 'U'];
 
+        function desordena() {
+
+        }
+
+        function ganar() {
+            alert('Has ganado')
+        }
+
+        function perder() {
+            alert('Has perdido');
+        }
+
+        function comparar() {
+            var cajas = $('#sortable > .ui-state-default > span');
+
+            for (x in cajas) {
+                console.log($(cajas[x]).text());
+                console.log(letras[x]);
+                if ($(cajas[x]).text() != letras[x]) {
+                    return false
+                }
+            }
+
+            return true
+        }
+
+        function finpartida() {
+            // Comprueba si es la segunda vez
+            // En caso de ser la segunda vez y fin de partida
+            // Mostrará el resultado
+        }
+
+        function comprobar() {
+            if (comparar()) {
+                ganar();
+            } else {
+                perder();
+            }
+
+            finpartida();
+        }
+
+        window.onload = function() {
+            $('#sortable').sortable();
+            $('#sortable').disableSelection();
+
+            // Evento sobre botón de comprobar
+            $('button').on('click', comprobar);
+        }
+    </script>
 </head>
 <body>
-<ul id="sortable">
-    <li class="ui-state-default"><span></span></li>
-    <li class="ui-state-default"><span></span></li>
-    <li class="ui-state-default"><span></span></li>
-    <li class="ui-state-default"><span></span></li>
-    <li class="ui-state-default"><span></span></li>
-</ul>
-<button>Comprobar</button>
+    <ul id="sortable">
+        <li class="ui-state-default"><span>A</span></li>
+        <li class="ui-state-default"><span>E</span></li>
+        <li class="ui-state-default"><span>I</span></li>
+        <li class="ui-state-default"><span>O</span></li>
+        <li class="ui-state-default"><span>U</span></li>
+    </ul>
+    <button>Comprobar</button>
 </body>
 </html>
