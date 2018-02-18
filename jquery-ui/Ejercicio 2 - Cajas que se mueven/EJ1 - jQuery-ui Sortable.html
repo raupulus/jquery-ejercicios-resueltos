@@ -107,16 +107,25 @@ botón que da la posibilidad de reiniciar.
         }
 
         function comprobar() {
+            var cajas = $('#sortable > .ui-state-default > span');
+
+            $(cajas).show();
+
             if (comparar()) {
                 ganar();
             } else {
                 perder();
             }
 
+            $(cajas).hide();
+
             finpartida();
         }
 
         window.onload = function() {
+            var cajas = $('#sortable > .ui-state-default > span');
+            $(cajas).hide();
+
             // Desordenar array
             desordenar();
 
