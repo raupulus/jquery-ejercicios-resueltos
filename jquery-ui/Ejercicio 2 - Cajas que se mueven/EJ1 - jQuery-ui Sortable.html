@@ -47,9 +47,26 @@ botón que da la posibilidad de reiniciar.
     <script src="./jquery-ui.js"></script>
     <script>
         var letras = ['A', 'E', 'I', 'O', 'U'];
+        var letras1 = ['A', 'E', 'I', 'O', 'U'];
 
-        function desordena() {
+        /**
+         * Desordena el array de letras de forma aleatoria
+         */
+        function desordenar() {
+            var cajas = $('#sortable > .ui-state-default > span');
+
             // Rellena el html con el array "letras" desordenado
+            arr = letras1.sort(function() { return Math.random() - 0.5 }).slice(0);
+
+            //for (x in cajas) {
+            //    console.log($(cajas[x]).text())
+            //}
+
+            for (x in cajas) {
+                if (x < 5) {
+                    $(cajas[x]).text(arr[x]);
+                }
+            }
         }
 
         function ganar() {
@@ -58,20 +75,29 @@ botón que da la posibilidad de reiniciar.
 
         function perder() {
             alert('Has perdido');
+
+            // Comprobar si es el segundo intento para mostrar detalles y
+            // el botón de reiniciar.
+
         }
 
+        /**
+         * Compara el array con las posiciones de las letras.
+         * @returns {boolean} Devuelve true o false.
+         */
         function comparar() {
             var cajas = $('#sortable > .ui-state-default > span');
 
             for (x in cajas) {
-                console.log($(cajas[x]).text());
-                console.log(letras[x]);
-                if ($(cajas[x]).text() != letras[x]) {
-                    return false
+                if ((x < 4) && ($(cajas[x]).text() == letras[x])) {
+                    continue;
+                } else if(x == 4) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
-
-            return true
+            return true;
         }
 
         function finpartida() {
@@ -91,6 +117,10 @@ botón que da la posibilidad de reiniciar.
         }
 
         window.onload = function() {
+            // Desordenar array
+            desordenar();
+
+            // Añade funciones para mover bloques
             $('#sortable').sortable();
             $('#sortable').disableSelection();
 
@@ -101,11 +131,11 @@ botón que da la posibilidad de reiniciar.
 </head>
 <body>
     <ul id="sortable">
-        <li class="ui-state-default"><span>A</span></li>
-        <li class="ui-state-default"><span>E</span></li>
-        <li class="ui-state-default"><span>I</span></li>
-        <li class="ui-state-default"><span>O</span></li>
-        <li class="ui-state-default"><span>U</span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
     </ul>
     <button>Comprobar</button>
 </body>
