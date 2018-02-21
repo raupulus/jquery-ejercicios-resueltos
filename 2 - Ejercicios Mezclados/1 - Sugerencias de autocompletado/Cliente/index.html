@@ -7,15 +7,19 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea un formulario donde aparezca solo un campo de tipo <input> para nombres
+de usuarios.
 
+Este campo cuando el usuario introduzca valores mostrará sugerencias de forma
+que simulará un autocompletado.
+
+Para lograrlo hay que utilizar el archivo Servidor/autocompletar.php pasando
+parámetros mediante "GET"
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
     <title>Sugerencias de Autocompletado</title>
-    <style type="text/css">
-
-    </style>
     <script src="./jquery-3.3.1.js"></script>
     <script>
     window.onload = function() {
@@ -26,5 +30,9 @@
 
 <body>
     <h1>Sugerencias de Autocompletado</h1>
+
+    <form>
+        Usuario:<input type="text" />
+    </form>
 </body>
 </html>
