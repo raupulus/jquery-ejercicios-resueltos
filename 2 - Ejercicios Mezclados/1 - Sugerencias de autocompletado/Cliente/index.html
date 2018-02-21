@@ -22,16 +22,38 @@ parámetros mediante "GET"
     <title>Sugerencias de Autocompletado</title>
     <script src="./jquery-3.3.1.js"></script>
     <script>
-        function iniciar() {
+        var sugerencias = [];
 
+
+        function iniciar() {
+            $('#usuario').on('keyup', function() {
+                //console.log($(this).val());
+                obtenerDatos($(this).val());
+            });
         }
 
-        function obtenerDatos() {
-
+        function obtenerDatos(cadena) {
+            $.ajax({
+                type: 'GET',
+                url: "../Servidor/autocompletar.php",
+                data: {'q': cadena},
+            })
+             .done(function(datos) {
+                 sugerencias = datos.split(',');
+                 //console.log(sugerencias);
+                 mostrarSugerencias();
+            });
         }
 
         function mostrarSugerencias() {
+            res = $('#resultados');
 
+            res.empty();
+
+            for (x of sugerencias) {
+                console.log(x);
+                $(res).append('<br />' + x);
+            }
         }
 
         $(document).ready(iniciar);
@@ -42,7 +64,9 @@ parámetros mediante "GET"
     <h1>Sugerencias de Autocompletado</h1>
 
     <form>
-        Usuario:<input type="text" />
+        Usuario:<input id="usuario" name="usuario" type="text" />
     </form>
+
+    <div id="resultados"></div>
 </body>
 </html>

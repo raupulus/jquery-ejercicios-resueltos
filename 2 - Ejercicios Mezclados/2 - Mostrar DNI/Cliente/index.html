@@ -7,7 +7,7 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-Crear un formulario donde al seleccionar un <input type="radius"/> muestre
+Crear un formulario donde al seleccionar un <input type="radio" /> muestre
 los datos del usuario al que corresponda.
 
 Responderá en función del usuario seleccionado y además obtendrá la información
@@ -19,18 +19,30 @@ Los datos devueltos serán en formato JSON y habrá que manipularlos desde jQuer
 <head>
     <meta charset="UTF-8" />
     <title>Mostrar DNI</title>
-    <style type="text/css">
-
-    </style>
     <script src="./jquery-3.3.1.js"></script>
     <script>
-    window.onload = function() {
 
-    }
     </script>
 </head>
 
 <body>
     <h1>Mostrar DNI</h1>
+
+    <form>
+        <label for="user1"></label>
+        <input id="user1" name="user1" type="radio" />
+
+        <label for="user2"></label>
+        <input id="user2" name="user2" type="radio" />
+
+        <label for="user3"></label>
+        <input id="user3" name="user3" type="radio" />
+
+        <label for="user4"></label>
+        <input id="user4" name="user4" type="radio" />
+
+        <label for=""></label>
+        <input id="" name="" type="radio" />
+    </form>
 </body>
 </html>
