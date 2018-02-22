@@ -31,6 +31,10 @@ opacidad sobre 0.1 en escala de 1 (un 10% de opacidad).
             generarImagenes();
             $('#imagenes > img').css('opacity', 0.1)
             mostrarTodas();
+
+            // Agrego eventos a botones
+            $('#vertodas').on('click', mostrarTodas);
+            $('#verninguna').on('click', ocultarTodas);
         }
 
         /**
@@ -49,17 +53,23 @@ opacidad sobre 0.1 en escala de 1 (un 10% de opacidad).
          * Recorre todas las imágenes ocultando de una en una desde el final
          */
         function ocultarTodas() {
-            // Recorrer en un bucle ocultando desde el final
-            //$('#imagenes > img').css('opacity', 0.1)
+            var todas = $('#imagenes > img');
+
+            // Itera todas las imagenes rellamándose hasta haberlas mostrado
+            function  animando(actual) {
+                $(actual).animate({'opacity':'0.1'}, 1000, 'linear',
+                    function() {
+                        animando($(this).prev());
+                    });
+            }
+
+            animando(todas.last());
         }
 
         /**
          * Recorre todas las imágenes mostrando de una en una progresivamente
          */
         function mostrarTodas() {
-            // Recorrer en un bucle Mostrando una a una desde el principio.
-            //$('#imagenes > img').css('opacity', 0.1)
-
             var todas = $('#imagenes > img');
 
             // Itera todas las imagenes rellamándose hasta haberlas mostrado
@@ -68,7 +78,6 @@ opacidad sobre 0.1 en escala de 1 (un 10% de opacidad).
                     function() {
                         animando($(this).next());
                     });
-                console.log('otra ←←←');
             }
 
             animando(todas.first());
@@ -94,7 +103,8 @@ opacidad sobre 0.1 en escala de 1 (un 10% de opacidad).
         <h1>Animaciones Secuenciales</h1>
 
         <div id="botones">
-
+            <button id="vertodas">Mostrar Todas</button>
+            <button id="verninguna">Ocultar Todas</button>
         </div>
 
         <div id="imagenes">
