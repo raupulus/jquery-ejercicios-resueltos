@@ -16,21 +16,60 @@ Cuando se pulse sobre el botón del formulario se cambiará el css modificando
 todos los elementos, sin embargo al pulsar solo sobre un bloque/elemento sólo
 cambiará este.
 
-El objetivo de esta actividad es utilizar el método de jQuery "css()" y la
+El objetivo de esta actividad es utilizar los método de jQuery para clases y la
 referencia hacia el objeto que tiene el foco mediante "$(this)" principalmente.
 -->
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <title>Ejercicios DOM Básicos</title>
-    <style type="text/css">
+    <title>CSS cambio de clases y estilos</title>
+    <style>
+        .rojo {
+            color: #ff0000;
+        }
 
+        .verde {
+            color: #00ff00;
+        }
+
+        .negro {
+            color: #000000;
+        }
     </style>
     <script src="./jquery-3.2.1.js"></script>
     <script>
-    window.onload = function() {
+        /**
+         * Función que pinta todos los elementos menos los botones en color rojo
+         */
+        function colorRojo() {
+            restaurar();
+            $('*').not('button').toggleClass('rojo');
+        }
 
-    }
+        /**
+         * Función que pinta el elemento pulsado en color verde
+         */
+        function colorVerde() {
+            $(this).toggleClass('verde');
+        }
+
+        /**
+         * Función que restaura la página eliminando clases asignadas
+         */
+        function restaurar() {
+            $('*').removeClass('rojo');
+            $('*').removeClass('verde');
+        }
+
+        /**
+         * Inicializa las funciones tras cargar el documento y añade eventos
+         * a cada uno de los elementos correspondientes.
+         */
+        $(document).ready(function() {
+            $('#cambiarTodo').on('click', colorRojo);
+            $('h1, h2, p').on('click', colorVerde);
+            $('#reset').on('click', restaurar);
+        });
     </script>
 </head>
 
@@ -41,11 +80,12 @@ referencia hacia el objeto que tiene el foco mediante "$(this)" principalmente.
         <p>
             Puedes pulsar sobre el siguiente botón para cambiar las clases:
         </p>
-        <button>¡Púlsame!</button>
+        <button id="cambiarTodo">¡Púlsame!</button>
         <p>
             Si pulsas sobre otro elemento también cambiará la clase, pero
             esta vez de solo el elemento que pulsas.
         </p>
+        <button id="reset">Restaurar Todo</button>
     </div>
 </body>
 </html>
