@@ -21,7 +21,42 @@ Los datos devueltos serán en formato JSON y habrá que manipularlos desde jQuer
     <title>Mostrar DNI</title>
     <script src="./jquery-3.3.1.js"></script>
     <script>
+        /**
+         * Inicia la aplicación añadiendo eventos tras cargar el documento.
+         */
+        function iniciar() {
+            $('input[name="usuario"]').on('click', mostrarUsuario);
+        }
 
+        /**
+         * Muestra el usuario sobre el que hemos pulsado realizando una llamada
+         * por ajax mediante "getJSON" al servidor y enviando a la función que
+         * mostrará los datos "mostrarAlert()" solo el usuario pulsado.
+         */
+        function mostrarUsuario() {
+            var seleccionado = $(this);
+            var seleccionadoID = seleccionado.attr('id') - 1;
+
+            $.getJSON({
+                url: "../Servidor/personas.php",
+            })
+             .done(function (datos) {
+                 mostrarAlert(datos[seleccionadoID]);
+            });
+        }
+
+        /**
+         * Recibe solo el objeto con el usuario pulsado muestra su nombre y DNI.
+         * @param Object usuario El usuario recibido a pintar atributos.
+         */
+        function mostrarAlert(usuario) {
+            var nombre = 'El nombre del usuario es → ' + usuario.nombre;
+            var dni = 'El DNI del usuario es → ' + usuario.dni;
+
+            alert(nombre + '\n' + dni);
+        }
+
+        $(document).ready(iniciar);
     </script>
 </head>
 
