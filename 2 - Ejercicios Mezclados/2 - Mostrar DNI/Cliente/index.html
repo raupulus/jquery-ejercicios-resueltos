@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crear un formulario donde al seleccionar un <input type="radio" /> muestre
+los datos del usuario al que corresponda.
+
+Responderá en función del usuario seleccionado y además obtendrá la información
+(nombre y DNI) desde el archivo que simulará al servidor → Servidor/personas.php
+
+Los datos devueltos serán en formato JSON y habrá que manipularlos desde jQuery.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Mostrar DNI</title>
+    <script src="./jquery-3.3.1.js"></script>
+    <script>
+        /**
+         * Inicia la aplicación añadiendo eventos tras cargar el documento.
+         */
+        function iniciar() {
+            $('input[name="usuario"]').on('click', mostrarUsuario);
+        }
+
+        /**
+         * Muestra el usuario sobre el que hemos pulsado realizando una llamada
+         * por ajax mediante "getJSON" al servidor y enviando a la función que
+         * mostrará los datos "mostrarAlert()" solo el usuario pulsado.
+         */
+        function mostrarUsuario() {
+            var seleccionado = $(this);
+            var seleccionadoID = seleccionado.attr('id') - 1;
+
+            $.getJSON({
+                url: "../Servidor/personas.php",
+            })
+             .done(function (datos) {
+                 mostrarAlert(datos[seleccionadoID]);
+            });
+        }
+
+        /**
+         * Recibe solo el objeto con el usuario pulsado muestra su nombre y DNI.
+         * @param Object usuario El usuario recibido a pintar atributos.
+         */
+        function mostrarAlert(usuario) {
+            var nombre = 'El nombre del usuario es → ' + usuario.nombre;
+            var dni = 'El DNI del usuario es → ' + usuario.dni;
+
+            alert(nombre + '\n' + dni);
+        }
+
+        $(document).ready(iniciar);
+    </script>
+</head>
+
+<body>
+    <h1>Mostrar DNI</h1>
+
+    <form>
+        <fieldset>
+            <legend><h3>Usuario Disponibles</h3></legend>
+
+        <label>Selecciona el usuario:<br />
+            Usuario 1<input id="1" name="usuario" type="radio" />
+            <br /><br />
+            Usuario 2<input id="2" name="usuario" type="radio" />
+            <br /><br />
+            Usuario 3<input id="3" name="usuario" type="radio" />
+            <br /><br />
+            Usuario 4<input id="4" name="usuario" type="radio" />
+        </label>
+
+        </fieldset>
+    </form>
+</body>
+</html>

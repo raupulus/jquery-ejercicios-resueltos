@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Formulario de Registro</title>
+    <link rel="stylesheet" type="text/css" href="jquery-ui.css">
+    <style type="text/css">
+        label {
+            display: block;
+            margin: 20px 0px;
+        }
+
+        #progressbar, #slider {
+            width: 300px;
+        }
+
+        form {
+            margin: 20px;
+        }
+    </style>
+    <script src="./jquery-3.3.1.js"></script>
+    <script src="./jquery-ui.js"></script>
+    <script>
+        var lenguajes = [];
+
+        window.onload = function() {
+            function menuCalendario() {
+                $.datepicker.setDefaults($.datepicker.regional["es"]);
+                $('#date').datepicker({
+                    showOn:"both", // Muestra el icono del calendario junto
+                    buttonImage:"images/calendar.png",
+                    buttonText:"Seleccionar una fecha", // Texto icono del cal
+                    dateFormat:"dd-mm-yy",
+                    showButtonPanel:true, // Muestra el panel abajo
+                    currentText:"Hoy",    // Texto del panel de abajo para hoy
+                    closeText:"Cerrar",   // Texto para cerrar panel de abajo
+                    showAnim:"slideDown",
+                    dayNamesMin:["Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa"],
+                    monthNames:['Enero', 'Febrero', 'Marzo', 'Abril',
+                                'Mayo', 'Junio', 'Julio', 'Agosto',
+                                'Septiembre', 'Octubre', 'Noviembre',
+                                'Diciembre'
+                               ],
+                    minDate: '-' + (12*360), // Restar 12 años a la actual
+
+                    maxDate: '+0', // Bloquea selección de día superior a hoy
+                    firstDay: 1, // Primer día de la semana
+                    changeMonth: true,
+                    changeYear: true,
+                });
+            }
+
+            function obtenerLenguajes() {
+               $.getJSON('./servidorTags.php', function(data) {
+                   //console.log(data);
+                   lenguajes = data;
+                   console.log(lenguajes);
+                   //return data.slice(0);
+                });
+            }
+
+            // Configura el calendario
+            menuCalendario();
+
+            // Select para géneros
+            // TODO → No muestra icono
+            $('#gender').selectmenu();
+
+            // Input para Últimos estudios
+            $('input[name="studies"]').checkboxradio();
+
+            // Checkbox para módulos
+            // TODO → Al pulsar aumenta slider (no se como)
+            $('input[name="subjects"]').checkboxradio({
+                icon:false,
+            });
+
+            // Slider que se autorrellena
+            // TODO → No autorrellena, solo se muestra deshabilitado
+            $('#slider').slider({
+                disabled : true,
+            });
+
+            // Input Autocompletar lenguajes
+            // TODO → No encuentro como conectar servidor
+            obtenerLenguajes();
+            console.log(lenguajes);
+            $('input[name="tags"]').autocomplete({
+                minLength: 1,  // Longitud mínima para empezar a buscar
+                source: lenguajes,
+            });
+
+            // Botones del final
+            $('button' ).button({
+                classes: {
+                    "ui-button": "highlight",
+                    icon: "ui-icon-gear",
+                }
+            });
+
+            $('#b3').on('click', function() {
+                // Mostrar dialogo raro y llevar a imprimir si acepta
+            });
+
+
+
+            console.log(lenguajes);
+        }
+    </script>
+</head>
+
+<body>
+<h1>Formulario de registro</h1>
+<form id="formulario">
+    <label for="name"> Nombre:</label>
+    <input type='text' id='name' name='name' />
+
+    <label for="date"> Fecha de nacimiento:</label>
+    <input type='text' id='date' name='date' />
+
+    <label for="gender"> Sexo:</label>
+    <select id="gender" name='gender'>
+        <option value="f" data-class="avatar"
+                data-style="background-image: url(images/female.png);">
+            Mujer
+        </option>
+
+        <option value="m" data-class="avatar"
+                data-style="background-image: url(images/male.png);">
+            Hombre
+        </option>
+    </select>
+
+    <fieldset>
+        <legend>Últimos estudios realizados:</legend>
+        <label for="radio-1">ESO</label>
+        <input type="radio" name="studies" id="radio-1" />
+
+        <label for="radio-2">Bachillerato</label>
+        <input type="radio" name="studies" id="radio-2" />
+
+        <label for="radio-3">CF</label>
+        <input type="radio" name="studies" id="radio-3" />
+
+        <label for="radio-4">Otros</label>
+        <input type="radio" name="studies" id="radio-4" />
+    </fieldset>
+
+    <fieldset>
+        <legend>Módulos:</legend>
+        <label>Programación
+            <input type="checkbox" name="subjects" value='prog' />
+        </label>
+
+        <label>Entornos de desarrollo
+            <input type="checkbox" name="subjects" value='ent' />
+        </label>
+
+        <label>Lenguaje de marcas
+            <input type="checkbox" name="subjects" value='leng' />
+        </label>
+
+        <label>Sistemas informáticos
+            <input type="checkbox" name="subjects" value='sist' />
+        </label>
+
+        <label>FOL
+            <input type="checkbox" name="subjects" value='fol' />
+        </label>
+    </fieldset>
+
+    <p>Módulos en los que se desea matricular</p>
+    <div id="slider" name='amount'>
+        <div id="custom-handle" class="ui-slider-handle"></div>
+    </div>
+
+    <label>Lenguajes de programación que conoces
+        <input type='text' name='tags' id="tags" size="50" />
+    </label>
+
+    <br /><br />
+
+    <div>
+        <button id="b1">Reset</button>
+        <button id="b2">Enviar</button>
+        <button id="b3">Imprimir</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Mostrar la información de los alumnos matriculados en un centro organizado
+por cursos (1º y 2º).
+
+Mostrar un botón en la parte superior con el texto "Ver Cursos" que al ser
+pulsado realice una petición al servidor (../Servidor/consulta.php) mediante GET
+desde la que se recibirá una cadena JSON que pasaremos a objeto Javascript.
+
+El objeto recibido contiene dos objetos con la siguiente estructura:
+    - primero
+        - nombre
+        - dni
+        - acceso
+    - segundo
+        - nombre
+        - dni
+        - acceso
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Alumnos Matriculados</title>
+    <script src="./jquery-3.3.1.js"></script>
+    <script>
+    window.onload = function() {
+
+        function pintarCursos(titulos, caja) {
+            $.getJSON('../Servidor/consulta.php', function (data) {
+               for (x in titulos) {
+                   // Pinta el título
+                   $(caja).append('<h2>' + titulos[x] + '</h2>');
+
+                   // Recorre cada uno de los cursos y añade sus datos
+                   $.each(data[x], function (index, obj) {
+                       $(caja).append('<li>' +
+                           'Nombre: ' + obj.nombre +
+                           ' Dni: ' + obj.dni +
+                           ' Acceso: ' + obj.acceso +
+                           '</li>'
+                       );
+                   });
+               }
+            });
+        }
+
+        // Llama a la función pasándole los títulos y la caja donde colocar
+        pintarCursos(['1DAW', '2DAW'], '#boxResult');
+    }
+    </script>
+</head>
+
+<body>
+    <h1>Alumnos Matriculados</h1>
+    <div id="boxResult"></div>
+</body>
+</html>

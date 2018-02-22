@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea varios títulos, un párrafo y un botón.
+
+Crea las funciones necesarias para cambiar el aspecto de los elementos al
+ser pulsados.
+
+Cuando se pulse sobre el botón del formulario se cambiará el css modificando
+todos los elementos, sin embargo al pulsar solo sobre un bloque/elemento sólo
+cambiará este.
+
+El objetivo de esta actividad es utilizar los método de jQuery para clases y la
+referencia hacia el objeto que tiene el foco mediante "$(this)" principalmente.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>CSS cambio de clases y estilos</title>
+    <style>
+        .rojo {
+            color: #ff0000;
+        }
+
+        .verde {
+            color: #00ff00;
+        }
+
+        .negro {
+            color: #000000;
+        }
+    </style>
+    <script src="./jquery-3.2.1.js"></script>
+    <script>
+        /**
+         * Función que pinta todos los elementos menos los botones en color rojo
+         */
+        function colorRojo() {
+            restaurar();
+            $('*').not('button').toggleClass('rojo');
+        }
+
+        /**
+         * Función que pinta el elemento pulsado en color verde
+         */
+        function colorVerde() {
+            $(this).toggleClass('verde');
+        }
+
+        /**
+         * Función que restaura la página eliminando clases asignadas
+         */
+        function restaurar() {
+            $('*').removeClass('rojo');
+            $('*').removeClass('verde');
+        }
+
+        /**
+         * Inicializa las funciones tras cargar el documento y añade eventos
+         * a cada uno de los elementos correspondientes.
+         */
+        $(document).ready(function() {
+            $('#cambiarTodo').on('click', colorRojo);
+            $('h1, h2, p').on('click', colorVerde);
+            $('#reset').on('click', restaurar);
+        });
+    </script>
+</head>
+
+<body>
+    <h1>Este es el título h1 de ejercicio sobre clases con jQuery</h1>
+    <h2>Este es un Título h2</h2>
+    <div>
+        <p>
+            Puedes pulsar sobre el siguiente botón para cambiar las clases:
+        </p>
+        <button id="cambiarTodo">¡Púlsame!</button>
+        <p>
+            Si pulsas sobre otro elemento también cambiará la clase, pero
+            esta vez de solo el elemento que pulsas.
+        </p>
+        <button id="reset">Restaurar Todo</button>
+    </div>
+</body>
+</html>

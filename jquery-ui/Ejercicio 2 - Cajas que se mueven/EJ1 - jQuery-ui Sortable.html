@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea 5 cajas (bloques div) que se puedan ordenar mediante
+http://jqueryui.com/sortable/ y jquery de forma que cuando estén las
+5 vocales en orden y se pulse comprobar muestre un diálogo de
+confirmación, en caso contrario de fallo.
+
+Cuando lleva dos partidas jugadas muestra si ha ganado y aparece un
+botón que da la posibilidad de reiniciar.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>jQuery-ui Sortable</title>
+    <style>
+        #sortable {
+            margin: 0;
+            padding: 0;
+            width: 550px;
+        }
+
+        #sortable li {
+            list-style: none;
+            margin: 3px 3px 3px 0;
+            padding: 1px;
+            float: left;
+            width: 100px;
+            height: 90px;
+            font-size: 4em;
+            text-align: center;
+            border: 1px solid;
+        }
+
+        .oculto {
+            visibility: hidden;
+        }
+    </style>
+    <link href="./jquery-ui.css" />
+    <script src="./jquery-3.3.1.js"></script>
+    <script src="./jquery-ui.js"></script>
+    <script>
+        var letras = ['A', 'E', 'I', 'O', 'U'];
+        var letras1 = ['A', 'E', 'I', 'O', 'U'];
+
+        /**
+         * Desordena el array de letras de forma aleatoria
+         */
+        function desordenar() {
+            var cajas = $('#sortable > .ui-state-default > span');
+
+            // Rellena el html con el array "letras" desordenado
+            arr = letras1.sort(function() { return Math.random() - 0.5 }).slice(0);
+
+            //for (x in cajas) {
+            //    console.log($(cajas[x]).text())
+            //}
+
+            for (x in cajas) {
+                if (x < 5) {
+                    $(cajas[x]).text(arr[x]);
+                }
+            }
+        }
+
+        function ganar() {
+            alert('Has ganado');
+        }
+
+        function perder() {
+            alert('Has perdido');
+
+            // Comprobar si es el segundo intento para mostrar detalles y
+            // el botón de reiniciar.
+
+        }
+
+        /**
+         * Compara el array con las posiciones de las letras.
+         * @returns {boolean} Devuelve true o false.
+         */
+        function comparar() {
+            var cajas = $('#sortable > .ui-state-default > span');
+
+            for (x in cajas) {
+                if ((x < 4) && ($(cajas[x]).text() == letras[x])) {
+                    continue;
+                } else if(x == 4) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function finpartida() {
+            // Comprueba si es la segunda vez
+            // En caso de ser la segunda vez y fin de partida
+            // Mostrará el resultado
+        }
+
+        function comprobar() {
+            var cajas = $('#sortable > .ui-state-default > span');
+
+            $(cajas).show();
+
+            if (comparar()) {
+                ganar();
+            } else {
+                perder();
+            }
+
+            $(cajas).hide();
+
+            finpartida();
+        }
+
+        window.onload = function() {
+            var cajas = $('#sortable > .ui-state-default > span');
+            $(cajas).hide();
+
+            // Desordenar array
+            desordenar();
+
+            // Añade funciones para mover bloques
+            $('#sortable').sortable();
+            $('#sortable').disableSelection();
+
+            // Evento sobre botón de comprobar
+            $('button').on('click', comprobar);
+        }
+    </script>
+</head>
+<body>
+    <ul id="sortable">
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+        <li class="ui-state-default"><span></span></li>
+    </ul>
+    <button>Comprobar</button>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+En esta parte el objetivo es generar una tabla con los datos obtenidos desde
+el servidor.
+
+Una vez el usuario busque un curso, este aparecerá dentro de una tabla en la
+que los titulos <th> serán los nombre para la clave de cada Objeto y solo se
+mostrarán una vez en el encabezado de la tabla.
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Alumnos Matriculados</title>
+    <style>
+        table {
+            margin: auto;
+            max-width: 800px;
+            border-collapse: collapse;
+            border-spacing: 0;
+            border: 3px solid #000000;
+            border-radius: 6px;
+            box-shadow: 5px 5px 3px #000000;
+        }
+        table tr:nth-child(odd)  {
+            background-color: #227788;
+        }
+        table tr:nth-child(even)  {
+            background-color: #319acf;
+        }
+        table th, table td {
+            padding: 10px;
+            font-size: 1.2em;
+        }
+        table th {
+            font-size: 1.4em;
+            color: #000000;
+            background-color: #ffe600;
+        }
+    </style>
+    <script src="./jquery-3.3.1.js"></script>
+    <script>
+    window.onload = function() {
+        // Añado evento al botón de ver cursos
+        $('input[type="button"]').on('click', verCursos);
+
+        /**
+         * Esta función comprueba el valor introducido y muestra los cursos
+         * si coincide.
+         */
+        function verCursos() {
+            // Obtiene el curso del input y lo convierte a minúsculas
+            var curso = $('input[name="entrada"]').val().toLowerCase();
+
+            // Comprueba que es válido antes de realizar la petición
+            if ((curso === '1daw') || (curso === '2daw')) {
+                pintarDatos(curso);
+            } else {
+                $('#boxResult').empty().append('No existe ese curso');
+            }
+        }
+
+        /**
+         * Realiza la petición para obtener los datos solo del curso deseado
+         * @param {String} curso Cadena con el nombre del curso para
+         *                 enviar por GET. valores admitidos "1daw" y "2daw"
+         */
+        function pintarDatos(curso) {
+
+            // Limpio y a la vez añado título del curso.
+            $('#boxResult').empty().append('<p>' +
+                                           'Lista de alumnos matriculados en '+
+                                           curso + '</p>');
+
+            $.getJSON('../Servidor/consulta.php?curso=' + curso,
+            function (data) {
+                // Uso todas las claves/keys para generar cabecera <th>
+                var cabecera = '<table><tr>';
+                Object.keys(data[0]).forEach(function(valor) {
+                    cabecera += '<th>' + valor.toUpperCase() + '</th>';
+                });
+                cabecera += '</tr>';
+
+                // Recorre cada alumno añadiendo cada fila a la variable.
+                var filas = '';
+                $.each(data, function(index, alumno) {
+                    filas += '<tr>';
+                    // Recorre y pinta cada propiedad del alumno y su clave.
+                    $.each(alumno, function(key, valor) {
+                        filas += '<td>' + valor + '</td>';
+                    });
+                    filas += '</tr>';
+                });
+
+                $('#boxResult').append(cabecera + filas);
+            });
+        }
+    }
+    </script>
+</head>
+
+<body>
+    <h1>Alumnos Matriculados</h1>
+    <form>
+        <input name="entrada" type="text" />
+        <input type="button" value="Ver Cursos" />
+    </form>
+    <div id="boxResult"></div>
+</body>
+</html>
