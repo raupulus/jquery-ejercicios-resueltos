@@ -30,38 +30,52 @@ opacidad sobre 0.1 en escala de 1 (un 10% de opacidad).
         function iniciar() {
             generarImagenes();
             $('#imagenes > img').css('opacity', 0.1)
+            mostrarTodas();
         }
 
         /**
          * Añade imágenes a la página
          */
         function generarImagenes() {
-            var bloqueImg = $('#imagenes');
             var cantidad = 10;
-
-            for (i=1; i<=cantidad; i++) {
-                bloqueImg.append('<img src="jquery.png" />');
+            for (let i=1; i<=cantidad; i++) {
+                $('#imagenes').append('<img src="jquery.png" />');
             }
 
             $('#imagenes > img').on('click', ocultarUna);
         }
 
         /**
-         * 
+         * Recorre todas las imágenes ocultando de una en una desde el final
          */
         function ocultarTodas() {
-            
+            // Recorrer en un bucle ocultando desde el final
+            //$('#imagenes > img').css('opacity', 0.1)
         }
 
         /**
-         * 
+         * Recorre todas las imágenes mostrando de una en una progresivamente
          */
         function mostrarTodas() {
-            
+            // Recorrer en un bucle Mostrando una a una desde el principio.
+            //$('#imagenes > img').css('opacity', 0.1)
+
+            var todas = $('#imagenes > img');
+
+            // Itera todas las imagenes rellamándose hasta haberlas mostrado
+            function  animando(actual) {
+                $(actual).animate({'opacity':'1'}, 1000, 'linear',
+                    function() {
+                        animando($(this).next());
+                    });
+                console.log('otra ←←←');
+            }
+
+            animando(todas.first());
         }
 
         /**
-         *
+         * Oculta o Muestra solo la imagen sobre la cual hemos realizado click
          */
         function ocultarUna() {
             if ($(this).css('opacity') == 0.1) {
