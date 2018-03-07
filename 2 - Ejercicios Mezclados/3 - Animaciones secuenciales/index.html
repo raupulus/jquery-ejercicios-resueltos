@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea dos botones:
+    - Mostrar
+    - Ocultar
+
+Debajo añade un bloque con 8-10 imágenes pequeñas (80-150px) las cuales al
+pulsar sobre mostrar apareceran una tras otra con un delay de 1 segundo.
+
+Si pulsamos sobre el botón de ocultar quedarán con muy poca opacidad (0.1) que
+se perciban que existen pero además se tiene que notar que se ocultaron.
+
+Al pulsar sobre una imagen concreta, esta se ocultará igualmente con una
+opacidad sobre 0.1 en escala de 1 (un 10% de opacidad).
+
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Animaciones Secuenciales</title>
+    <script src="./jquery-3.3.1.js"></script>
+    <script>
+        function iniciar() {
+            generarImagenes();
+            $('#imagenes > img').css('opacity', 0.1)
+            mostrarTodas();
+
+            // Agrego eventos a botones
+            $('#vertodas').on('click', mostrarTodas);
+            $('#verninguna').on('click', ocultarTodas);
+        }
+
+        /**
+         * Añade imágenes a la página
+         */
+        function generarImagenes() {
+            var cantidad = 10;
+            for (let i=1; i<=cantidad; i++) {
+                $('#imagenes').append('<img src="jquery.png" />');
+            }
+
+            $('#imagenes > img').on('click', ocultarUna);
+        }
+
+        /**
+         * Recorre todas las imágenes ocultando de una en una desde el final
+         */
+        function ocultarTodas() {
+            var todas = $('#imagenes > img');
+
+            // Itera todas las imagenes rellamándose hasta haberlas mostrado
+            function  animando(actual) {
+                $(actual).animate({'opacity':'0.1'}, 1000, 'linear',
+                    function() {
+                        animando($(this).prev());
+                    });
+            }
+
+            animando(todas.last());
+        }
+
+        /**
+         * Recorre todas las imágenes mostrando de una en una progresivamente
+         */
+        function mostrarTodas() {
+            var todas = $('#imagenes > img');
+
+            // Itera todas las imagenes rellamándose hasta haberlas mostrado
+            function  animando(actual) {
+                $(actual).animate({'opacity':'1'}, 1000, 'linear',
+                    function() {
+                        animando($(this).next());
+                    });
+            }
+
+            animando(todas.first());
+        }
+
+        /**
+         * Oculta o Muestra solo la imagen sobre la cual hemos realizado click
+         */
+        function ocultarUna() {
+            if ($(this).css('opacity') == 0.1) {
+                $(this).css('opacity', 1);
+            } else {
+                $(this).css('opacity', 0.1);
+            }
+        }
+
+        $(document).ready(iniciar);
+    </script>
+</head>
+
+<body>
+    <div>
+        <h1>Animaciones Secuenciales</h1>
+
+        <div id="botones">
+            <button id="vertodas">Mostrar Todas</button>
+            <button id="verninguna">Ocultar Todas</button>
+        </div>
+
+        <div id="imagenes">
+
+        </div>
+    </div>
+</body>
+</html>

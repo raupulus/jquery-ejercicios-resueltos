@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!--
+ @author Raúl Caro Pastorino
+ @copyright Copyright © 2017 Raúl Caro Pastorino
+ @license https://wwww.gnu.org/licenses/gpl.txt
+-->
+
+<!--
+↓ INSTRUCCIONES DEL EJERCICIO ↓
+Crea un formulario donde aparezca solo un campo de tipo <input> para nombres
+de usuarios.
+
+Este campo cuando el usuario introduzca valores mostrará sugerencias de forma
+que simulará un autocompletado.
+
+Para lograrlo hay que utilizar el archivo Servidor/autocompletar.php pasando
+parámetros mediante "GET"
+-->
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sugerencias de Autocompletado</title>
+    <script src="./jquery-3.3.1.js"></script>
+    <script>
+        /**
+         * Inicializa agregando evento al <input> principal
+         */
+        function iniciar() {
+            $('#usuario').on('keyup', function() {
+                obtenerDatos($(this).val());
+            });
+        }
+
+        /**
+         * Esta función extrae los datos desde el servidor filtrando lo que
+         * ya ha introducido el usuario.
+         * @param {String} cadena Cadena que se envía al servidor para recibir
+         *                 sugerencias relacionadas.
+         */
+        function obtenerDatos(cadena) {
+            $.ajax({
+                type: 'GET',
+                url: "../Servidor/autocompletar.php",
+                data: {'q': cadena},
+            })
+             .done(function(datos) {
+                 var sugerencias = datos.split(',');
+                 mostrarSugerencias(sugerencias);
+            })
+             .fail(function(objeto, tipo, error) {
+                 var errores = [
+                     'No se pueden mostrar sugerencias',
+                     tipo + ': ' + error,
+                 ];
+                mostrarSugerencias(errores);
+            });
+        }
+
+        /**
+         * Recibe un array con las sugerencias o errores y los pinta.
+         * @param {Array} sugerencias El array a pintar.
+         */
+        function mostrarSugerencias(sugerencias) {
+            res = $('#resultados');
+
+            res.empty();
+
+            for (x of sugerencias) {
+                console.log(x);
+                $(res).append('<br />' + x);
+            }
+        }
+
+        // Espera a tener el documento listo antes de comenzar la ejecución
+        $(document).ready(iniciar);
+    </script>
+</head>
+
+<body>
+    <h1>Sugerencias de Autocompletado</h1>
+
+    <form>
+        Usuario:<input id="usuario" name="usuario" type="text" />
+    </form>
+
+    <div id="resultados"></div>
+</body>
+</html>
