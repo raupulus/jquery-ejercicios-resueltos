@@ -85,6 +85,9 @@ aspectos en un formulario
 
                 $('#slider').slider({
                     value: marcados*20,
+                    slide: function( event, ui ) {
+                        handle.text(valuemarcados);
+                    }
                 });
             }
 
@@ -107,6 +110,9 @@ aspectos en un formulario
             $('#slider').slider({
                 disabled : true,
                 //step: 5,  // Tamaño de cada paso
+                slide: function( event, ui ) {
+                    handle.text(0);
+                }
             });
 
             // Botones del final
@@ -115,6 +121,13 @@ aspectos en un formulario
                     "ui-button": "highlight",
                     icon: "ui-icon-gear",
                 }
+            });
+
+            $('#b1').button({
+
+                    icon: "ui-icon-trash",
+                    showLabel: false
+
             });
 
             $('#b3').on('click', function() {
