@@ -7,7 +7,8 @@
 
 <!--
 ↓ INSTRUCCIONES DEL EJERCICIO ↓
-
+Utiliza los elementos de http://api.jqueryui.com para validar y modificar
+aspectos en un formulario
 -->
 <html lang="es">
 <head>
@@ -26,6 +27,15 @@
 
         form {
             margin: 20px;
+        }
+
+        option.avatar {
+            background-repeat: no-repeat !important;
+            padding-left: 20px;
+        }
+
+        .avatar .ui-icon {
+            background-position: left top;
         }
     </style>
     <script src="./jquery-3.3.1.js"></script>
@@ -62,42 +72,47 @@
 
             function obtenerLenguajes() {
                $.getJSON('./servidorTags.php', function(data) {
-                   //console.log(data);
                    lenguajes = data;
-                   console.log(lenguajes);
-                   //return data.slice(0);
+                });
+            }
+            obtenerLenguajes();
+
+            /**
+             * Aumenta el slide con el número de elementos marcados
+             */
+            function modulosMarcados() {
+                var marcados = $('input[name="subjects"]:checked').length;
+
+                $('#slider').slider({
+                    value: marcados*20,
+                    slide: function( event, ui ) {
+                        handle.text(valuemarcados);
+                    }
                 });
             }
 
             // Configura el calendario
             menuCalendario();
 
-            // Select para géneros
+            // Select para géneros -> No entiendo porque mete clases o que son
             // TODO → No muestra icono
-            $('#gender').selectmenu();
+            $('#gender').selectmenu().addClass( "ui-menu-icons avatar" );
 
             // Input para Últimos estudios
             $('input[name="studies"]').checkboxradio();
 
             // Checkbox para módulos
-            // TODO → Al pulsar aumenta slider (no se como)
             $('input[name="subjects"]').checkboxradio({
                 icon:false,
-            });
+            }).on('click', modulosMarcados);
 
             // Slider que se autorrellena
-            // TODO → No autorrellena, solo se muestra deshabilitado
             $('#slider').slider({
                 disabled : true,
-            });
-
-            // Input Autocompletar lenguajes
-            // TODO → No encuentro como conectar servidor
-            obtenerLenguajes();
-            console.log(lenguajes);
-            $('input[name="tags"]').autocomplete({
-                minLength: 1,  // Longitud mínima para empezar a buscar
-                source: lenguajes,
+                //step: 5,  // Tamaño de cada paso
+                slide: function( event, ui ) {
+                    handle.text(0);
+                }
             });
 
             // Botones del final
@@ -108,13 +123,26 @@
                 }
             });
 
-            $('#b3').on('click', function() {
-                // Mostrar dialogo raro y llevar a imprimir si acepta
+            $('#b1').button({
+
+                    icon: "ui-icon-trash",
+                    showLabel: false
+
             });
 
+            $('#b3').on('click', function() {
+                var opcion = confirm('¿Quieres imprimir?');
+                if (opcion == true) {
+                    window.print();
+                }
+            });
 
-
+            // Input Autocompletar lenguajes
             console.log(lenguajes);
+            $('input[name="tags"]').autocomplete({
+                minLength: 1,  // Longitud mínima para empezar a buscar
+                source: lenguajes,
+            });
         }
     </script>
 </head>
